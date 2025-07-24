@@ -1,4 +1,4 @@
-package com.ohAM.lifeEgg;
+package com.ohAM.lifeEgg.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
