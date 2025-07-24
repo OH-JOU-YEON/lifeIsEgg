@@ -128,8 +128,7 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>  
-		
-		<!-- 
+	<!-- 
 	MariaDB 라이브러리
     https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client 
 -->
@@ -178,7 +177,8 @@
     <groupId>commons-dbcp</groupId>
     <artifactId>commons-dbcp</artifactId>
     <version>1.4</version>
-</dependency>      
+</dependency>	
+	   
 	</dependencies>
     <build>
         <plugins>
