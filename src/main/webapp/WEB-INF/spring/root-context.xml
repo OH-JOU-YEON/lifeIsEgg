@@ -5,16 +5,20 @@
 
 
 <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-    <property name="driverClass" value="org.mariadb.jdbc.Driver"/>
-    <property name="url" value="jdbc:mariadb://localhost:8090/lifeEgg"/>
-    <property name="username" value="root"/>
-    <property name="password" value="5555"/>
+    <property name="driverClass" value="org.mariadb.jdbc.Driver"></property>
+    <property name="url" value="jdbc:mariadb://localhost:8090/lifeEgg"></property>
+    <property name="username" value="root"></property>
+    <property name="password" value="5555"></property>
 </bean>
  
 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-    <property name="dataSource" ref="dataSource"/>
-    <property name="configLocation" value="classpath:/database/config/mybatis-config.xml"/>
-    <property name="mapperLocations" value="classpath*:/database/mappers/*.xml"/>
+    <property name="dataSource" ref="dataSource"></property>
+    <property name="configLocation" value="classpath:/database/config/mybatis-config.xml"></property>
+    <property name="mapperLocations" value="classpath*:/database/mappers/*.xml"></property>
+</bean>
+
+<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+    <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 </bean>
  
 </beans>
