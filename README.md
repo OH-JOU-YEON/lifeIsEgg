@@ -60,7 +60,8 @@
 
 #### ERD 및 아키텍처
 
-업로드 예정 
+<img width="1120" height="647" alt="image" src="https://github.com/user-attachments/assets/6bdaa5c0-a794-4cbf-b26c-7b25c421c24f" />
+ 
 
 ### 기대 효과
 
