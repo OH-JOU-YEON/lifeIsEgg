@@ -1,0 +1,22 @@
+package com.lifeIsEgg.dto;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter 
+@Setter 
+public class PostDTO {
+	
+	private String content; 
+	private boolean status; 
+	private LocalDateTime created_at; 
+	private Long user_id; 
+	private UUID uuid; 
+	
+
+	
+
+}
