@@ -1,8 +1,8 @@
-package com.lifeIsEgg.dao;
+package com.lifeEgg.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.lifeIsEgg.dto.UserDTO;
+import com.lifeEgg.dto.UserDTO;
 
 @Mapper
 public interface UserDAO {
