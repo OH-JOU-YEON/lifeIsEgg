@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.lifeIsEgg.dao.PostDAO">
+<mapper namespace="com.lifeEgg.dao.PostDAO">
 	
 <insert id="create">
 insert into post (user_name) values (#{userName})

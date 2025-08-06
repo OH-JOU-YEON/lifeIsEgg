@@ -1,4 +1,4 @@
-package com.lifeIsEgg.dto;
+package com.lifeEgg.dto;
 
 import lombok.Getter;
 import lombok.Setter;

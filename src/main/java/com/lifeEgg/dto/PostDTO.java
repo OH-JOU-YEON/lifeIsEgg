@@ -1,4 +1,4 @@
-package com.lifeIsEgg.dto;
+package com.lifeEgg.dto;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
