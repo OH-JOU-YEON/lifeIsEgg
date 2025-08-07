@@ -9,7 +9,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>LifeIsEgg</title>
+    <title>Ogani | Template</title>
 
     <!-- Google Font -->
     <link
@@ -18,17 +18,22 @@
     />
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>" />
-    <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>"  />
+    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>" />
     <link rel="stylesheet" href="<c:url value="/resources/css/elegant-icons.css"/>" />
     <link rel="stylesheet" href="<c:url value="/resources/css/nice-select.css"/>" />
     <link rel="stylesheet" href="<c:url value="/resources/css/jquery-ui.min.css"/>" />
     <link rel="stylesheet" href="<c:url value="/resources/css/owl.carousel.min.css"/>" />
-    <link rel="stylesheet" href="<c:url value="/resources/css/slicknav.min.css"/>" />
-    <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
+    <link rel="stylesheet" href="<c:url value="/resources/css/slicknav.min.css" />" />
+    <link rel="stylesheet" href="<c:url value="/resources/css/style.css" />" />
+    <link rel="stylesheet" href="<c:url value="/resources/css/content-tools.min.css"/>" />
   </head>
 
   <body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+      <div class="loader"></div>
+    </div>
 
     <!-- Header Section Begin -->
     <header class="header">
@@ -44,14 +49,11 @@
         <div class="row">
           <div class="col-lg-3">
             <div class="header__logo">
-              <a href="./index.html"><img src="<c:url value="/resources/img/Egg2.png"/>" /></a>
+              <a href="./index.html"><img src="img/logo.png" alt="" /></a>
             </div>
           </div>
           <div class="col-lg-6"></div>
           <div class="col-lg-3"></div>
-        </div>
-        <div class="humberger__open">
-          <i class="fa fa-bars"></i>
         </div>
       </div>
     </header>
@@ -88,13 +90,14 @@
                 <button class="site-btn">login</button>
               </div>
             </div>
-            <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
-              <div class="hero__text">
-                <span>FRUIT FRESH</span>
-                <h2>Vegetable <br />100% Organic</h2>
-                <p>Free Pickup and Delivery Available</p>
-                <a href="#" class="primary-btn">SHOP NOW</a>
-              </div>
+            <div
+              class="hero__item set-bg"
+              data-editable
+              data-name="main-content"
+            >
+              <blockquote>
+                오늘 하루는 어떠셨나요? 오늘의 일기를 작성해보세요
+              </blockquote>
             </div>
           </div>
         </div>
@@ -103,6 +106,15 @@
     <!-- Hero Section End -->
 
     <!-- Js Plugins -->
-   
+    <script src="<c:url value="/resources/js/content-tools.min.js"/>"/></script>
+    <script src="<c:url value="/resources/js/editor.js"/>"/></script>
+    <script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"/></script>
+    <script src="<c:url value="/resources/js/bootstrap.min.js"/>"/></script>
+    <script src="<c:url value="/resources/js/jquery.nice-select.min.js"/>"/></script>
+    <script src="<c:url value="/resources/js/jquery-ui.min.js"/>"/></script>
+    <script src="<c:url value="/resources/js/jquery.slicknav.js"/>"/></script>
+    <script src="<c:url value="/resources/js/mixitup.min.js"/>"/></script>
+    <script src="<c:url value="/resources/js/owl.carousel.min.js"/>"/></script>
+    <script src="<c:url value="/resources/js/main.js"/>"/></script>
   </body>
 </html>
