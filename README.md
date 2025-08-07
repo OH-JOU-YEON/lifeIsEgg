@@ -60,7 +60,8 @@
 
 #### ERD 및 아키텍처
 
-<img width="1822" height="1166" alt="image" src="https://github.com/user-attachments/assets/b10ccafd-b6c1-430f-b230-bc1c79a1827b" />
+<img width="1813" height="1183" alt="image" src="https://github.com/user-attachments/assets/3a6bf92a-ebc4-43dd-9e66-27091185c534" />
+
 
  
 
