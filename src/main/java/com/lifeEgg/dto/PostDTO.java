@@ -10,12 +10,13 @@ import lombok.Setter;
 @Setter 
 public class PostDTO {
 	
+	private Long id; 
 	private String content; 
 	private boolean status; 
 	private LocalDateTime created_at; 
 	private Long user_id; 
 	private UUID uuid; 
-	
+	private int age; 
 
 	
 
