@@ -3,8 +3,7 @@ package com.lifeEgg.dao;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.lifeEgg.dto.AlarmDTO;
-import com.lifeEgg.dto.CheerDTO;
-import com.lifeEgg.dto.UserDTO;
+
 
 @Mapper 
 public interface AlarmDAO {
