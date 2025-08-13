@@ -6,19 +6,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.lifeEgg.dao.PostDAO">
 	
 <insert id="create">
-insert into post (user_name) values (#{userName})
+insert into post (content, status, created_at, user_id, uuid) values (#{content}, #{status},
+		#{created_at}, #{user_id}, #{uuid}})
 </insert>
 
-<select id="read" resultType="UserDTO">
-select * from user where id = #{userId}
+<select id="read" resultType="PostDTO">
+select * from user where id = #{id}
 </select>
 
 <update id="update">
-update post set user_name=#{userName}, age=#{age} where id = #{userId}
+update post set content=#{content}, status=#{status}, created_at = #{created_at},
+		 where id = #{id}
 </update>
 
 <delete id="delete"> 
-delete from Post where uuid = #{uuid} 
+delete from Post where id = #{id} 
 </delete>
 
 

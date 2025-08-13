@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lifeEgg.dao.AlarmDAO">
+	
+<insert id="create">
+insert into alarm (content, user_id, post_id, cheer_id, uuid) values (#{content}, #{user_id}, #{post_id}
+						,#{cheer_id}, #{uuid})
+</insert>
+
+<select id="read" resultType="AlarmDTO">
+select * from user where id = #{id}
+</select>
+
+<select id="readByUuid" resultType="AlarmDTO">
+select * from user where uuid = #{uuid}
+</select>
+
+
+<delete id="delete"> 
+delete from Post where id = #{id} 
+</delete>
+
+
+</mapper>
