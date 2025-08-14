@@ -1,10 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<<<<<<< Upstream, based on origin/master
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-=======
-<%@ page session="false" %>
->>>>>>> dac3a51 로그인 컨트롤러 작성
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
