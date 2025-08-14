@@ -1,4 +1,4 @@
-package com.lifeEgg.googleLogin;
+package com.lifeEgg.login.google;
 
 import lombok.Builder;
 import lombok.Data;

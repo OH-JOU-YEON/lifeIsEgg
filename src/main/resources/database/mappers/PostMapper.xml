@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.lifeEgg.dao.PostDAO">
 	
 <insert id="create">
+<<<<<<< Upstream, based on origin/master
 insert into post (content, status, created_at, user_id, uuid) values (#{content}, #{status},
 		#{created_at}, #{user_id}, #{uuid}})
 </insert>
@@ -21,6 +22,21 @@ update post set content=#{content}, status=#{status}, created_at = #{created_at}
 
 <delete id="delete"> 
 delete from Post where id = #{id} 
+=======
+insert into post (user_name) values (#{userName})
+</insert>
+
+<select id="read" resultType="UserDTO">
+select * from user where id = #{userId}
+</select>
+
+<update id="update">
+update post set user_name=#{userName}, age=#{age} where id = #{userId}
+</update>
+
+<delete id="delete"> 
+delete from Post where uuid = #{uuid} 
+>>>>>>> dac3a51 로그인 컨트롤러 작성
 </delete>
 
 

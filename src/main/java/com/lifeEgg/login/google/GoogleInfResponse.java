@@ -1,11 +1,11 @@
-package com.lifeEgg.googleLogin;
+package com.lifeEgg.login.google;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class GoogleInfResponse { //개인 정보 받아옴
+public class GoogleInfResponse {
     private String iss;
     private String azp;
     private String aud;

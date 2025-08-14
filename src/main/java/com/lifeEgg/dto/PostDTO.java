@@ -10,6 +10,7 @@ import lombok.Setter;
 @Setter 
 public class PostDTO {
 	
+<<<<<<< Upstream, based on origin/master
 	private Long id; 
 	private String content; 
 	private boolean status; 
@@ -17,6 +18,14 @@ public class PostDTO {
 	private Long user_id; 
 	private UUID uuid; 
 	private int age; 
+=======
+	private String content; 
+	private boolean status; 
+	private LocalDateTime created_at; 
+	private Long user_id; 
+	private UUID uuid; 
+	
+>>>>>>> dac3a51 로그인 컨트롤러 작성
 
 	
 

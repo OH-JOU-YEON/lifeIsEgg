@@ -728,7 +728,10 @@ ol {
 .hero__item {
   height: 431px;
   display: flex;
+<<<<<<< Upstream, based on origin/master
   border: 1px solid #ebebeb;
+=======
+>>>>>>> dac3a51 로그인 컨트롤러 작성
   align-items: center;
   padding-left: 75px;
 }
