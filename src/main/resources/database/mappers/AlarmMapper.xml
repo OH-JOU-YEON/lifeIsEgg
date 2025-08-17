@@ -11,11 +11,11 @@ insert into alarm (content, user_id, post_id, cheer_id, uuid) values (#{content}
 </insert>
 
 <select id="read" resultType="AlarmDTO">
-select * from user where id = #{id}
+select * from alarm where id = #{id}
 </select>
 
 <select id="readByUuid" resultType="AlarmDTO">
-select * from user where uuid = #{uuid}
+select * from alarm where uuid = #{uuid}
 </select>
 
 

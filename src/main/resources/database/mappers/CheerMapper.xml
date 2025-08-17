@@ -6,21 +6,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.lifeEgg.dao.CheerDAO">
 	
 <insert id="create">
-insert into post (content, user_id, parent_id, uuid) values (#{content}, #{user_id},
-						#{parent_id}, #{uuid})
+insert into cheer (content, user_id, parent_id, uuid) values (#{content}, #{user_id}, #{parent_id}, #{uuid})
 </insert>
 
 <select id="read" resultType="CheerDTO">
-select * from user where id = #{userId}
+select * from cheer where id = #{userId}
 </select>
 
 <select id="readByUuid" resultType="CheerDTO">
-select * from user where uuid = #{uuid}
+select * from cheer where uuid = #{uuid}
 </select>
 
 
 <delete id="delete"> 
-delete from Post where id = #{id} 
+delete from cheer where id = #{id} 
 </delete>
 
 
