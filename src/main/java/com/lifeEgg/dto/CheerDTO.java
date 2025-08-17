@@ -1,10 +1,8 @@
 package com.lifeEgg.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class CheerDTO {
 	
 	private Long id;
@@ -13,6 +11,8 @@ public class CheerDTO {
 	private Long post_id; 
 	private Long parent_id; 
 	private String uuid; 
+	
+	
 	
 	
 	
