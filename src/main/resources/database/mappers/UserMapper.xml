@@ -6,21 +6,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.lifeEgg.dao.UserDAO">
 
 	
-<insert id="create">
-insert into user (user_name) values (#{userName})
-</insert>
+	<insert id="insertUser">
+		insert into user (user_name, age, email)
+		values (#{userName}, #{age}, #{email});
+	</insert>
 
-<select id="read" resultType="UserDTO">
-select * from user where id = #{userId}
-</select>
+	<select id="findUserById" resultType="UserDTO">
+		select * 
+		from user 
+		where id = #{userId}
+	</select>
 
-<update id="update">
-update user set user_name=#{userName}, age=#{age} where id = #{userId}
-</update>
+    <select id="findUserByEmail" parameterType="string" resultType="UserDTO">
+        select * 
+        from user 
+        where email =#{email}
+    </select>
 
-<delete id="delete"> 
-delete from user where id = #{userId} 
-</delete>
+	<update id="updateUser">
+		update user
+		set user_name=#{userName}, age=#{age}
+		where id = #{userId} 
+	</update>
+
+	<delete id="deleteUser"> 
+		delete * 
+		from user 
+		where id = #{userId} 
+	</delete>
 
 
 </mapper>

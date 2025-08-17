@@ -9,7 +9,6 @@ import lombok.Setter;
 @Getter 
 @Setter 
 public class PostDTO {
-	
 	private Long id; 
 	private String content; 
 	private boolean status; 
@@ -17,7 +16,4 @@ public class PostDTO {
 	private Long user_id; 
 	private UUID uuid; 
 	private int age; 
-
-	
-
 }
