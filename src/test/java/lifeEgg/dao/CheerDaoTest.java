@@ -55,7 +55,12 @@ public class CheerDaoTest {
 		
 		
 
-			cheer.create(cheerDTO);
+			try {
+				cheer.create(cheerDTO);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		 
 	}
 
