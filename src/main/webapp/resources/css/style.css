@@ -171,6 +171,18 @@ ol {
   letter-spacing: 2px;
 }
 
+.last-btn {
+  display: inline-block;
+  right: 0;
+  font-size: 14px;
+  padding: 10px 28px 10px;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: 700;
+  background: #b7ada9;
+  border: none;
+}
+
 .site-btn {
   font-size: 14px;
   color: #ffffff;
@@ -559,6 +571,41 @@ ol {
 /*---------------------
   Hero
 -----------------------*/
+input[type="date"] {
+  border: none;
+  position: relative;
+  width: 100%;
+  padding: 10px;
+  background: no-repeat right 10px center / 35px auto;
+  background-color: #b7ada9;
+  color: white;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 100%;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
+}
+
+input[type="date"]::before {
+  content: attr("날짜를 선택해주세요.");
+  width: 100%;
+  height: 100%;
+}
+
+input[type="date"]:valid::before {
+  display: none;
+}
 
 .hero {
   padding-bottom: 50px;
@@ -643,6 +690,11 @@ ol {
   height: 50px;
   position: relative;
   float: left;
+}
+
+.hero__date__form {
+  border: none;
+  position: relative;
 }
 
 .hero__search__form form .hero__search__categories {

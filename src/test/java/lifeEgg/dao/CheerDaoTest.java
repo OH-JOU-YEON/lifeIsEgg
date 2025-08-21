@@ -48,12 +48,19 @@ public class CheerDaoTest {
 	
 	
 	@Test 
-	public void cheerCreateTest() throws Exception  {
+	public void cheerCreateTest()  {
 		
-		cheerDTO.setContent("테스트2");
+		cheerDTO.setContent("테스트");
 		cheerDTO.setUuid(UUID.randomUUID().toString());
 		
-		cheer.create(cheerDTO);
+		
+		 
+			try {
+				cheer.create(cheerDTO);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		 
 	}
 

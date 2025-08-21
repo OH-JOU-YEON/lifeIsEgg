@@ -1,9 +1,5 @@
 package com.lifeEgg.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
@@ -21,9 +17,11 @@ import com.lifeEgg.dto.UserDTO;
 import com.lifeEgg.login.google.GoogleInfResponse;
 import com.lifeEgg.login.google.GoogleTokenResponse;
 
+import lombok.RequiredArgsConstructor;
 
 
 @Controller
+@RequiredArgsConstructor
 @PropertySource("classpath:application.properties")
 public class LoginController {
 
@@ -32,8 +30,9 @@ public class LoginController {
     @Value("${google.client.pw}")
     private String googleClientPw;
     
-	@Autowired
-	private UserDAO userDao;
+
+//	
+	private final UserDAO userDao;
 
 	
 	@PostMapping("/oauth2/google")
