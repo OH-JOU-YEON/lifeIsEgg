@@ -3,11 +3,9 @@ package com.lifeEgg.dto;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter 
-@Setter 
+@Data 
 public class PostDTO {
 	private Long id; 
 	private String content; 

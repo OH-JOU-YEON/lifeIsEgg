@@ -76,20 +76,13 @@
               </ul>
             </div>
           </div>
-         <div class="col-lg-9">
+          <div class="col-lg-9">
             <div class="hero__search">
               <div class="hero__search__form">
                 <button class="site-btn">login</button>
               </div>
             </div>
-            <input type="date" />
             <div id="content" data-name="main-content"></div>
-            <br />
-            <div style="display: flex">
-              <button class="last-btn" style="margin-left: auto">
-                작성하기
-              </button>
-            </div>
           </div>
         </div>
       </div>
