@@ -1,8 +1,5 @@
 package com.lifeEgg.controller;
 
-import java.util.Map;
-import java.util.HashMap;
-
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -14,13 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import com.lifeEgg.dao.UserDAO;
-import com.lifeEgg.dto.UserDTO;
 import com.lifeEgg.login.google.GoogleRequest;
 import com.lifeEgg.login.google.GoogleResponse;
+
+import lombok.RequiredArgsConstructor;
 
 
 
 @Controller
+@RequiredArgsConstructor
 @PropertySource("classpath:application.properties")
 public class LoginController {
 
@@ -29,8 +28,8 @@ public class LoginController {
     @Value("${google.client.pw}")
     private String googleClientPw;
     
-//	@Autowired
-	private UserDAO userDao;
+//	
+	private final UserDAO userDao;
 
 	
 	
