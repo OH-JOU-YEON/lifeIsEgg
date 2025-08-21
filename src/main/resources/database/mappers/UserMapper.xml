@@ -14,11 +14,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findUserById" resultType="UserDTO">
 		select * 
 		from user 
-		where id = #{userId}
+		where id = #{id}
 	</select>
 
-    <select id="findUserByEmail" parameterType="string" resultType="UserDTO">
-        select * 
+    <select id="findUserIdByEmail" parameterType="string" resultType="int">
+        select id 
         from user 
         where email =#{email}
     </select>
@@ -26,13 +26,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateUser">
 		update user
 		set user_name=#{userName}, age=#{age}
-		where id = #{userId} 
+		where id = #{id} 
 	</update>
 
 	<delete id="deleteUser"> 
 		delete * 
 		from user 
-		where id = #{userId} 
+		where id = #{id} 
 	</delete>
 
 
