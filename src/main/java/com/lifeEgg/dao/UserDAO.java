@@ -11,7 +11,8 @@ public interface UserDAO {
     
     public UserDTO findUserById(int id) throws Exception;
     
-    public int findUserIdByEmail(String email) throws Exception;
+    //null 처리용
+    public Integer findUserIdByEmail(String email) throws Exception;
 
     public void updateUser(UserDTO user) throws Exception;
 

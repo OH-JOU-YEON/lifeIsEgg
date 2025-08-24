@@ -29,19 +29,19 @@ public class DBTest {
     public void findByUserIdSuccssesTest() throws Exception {
 		UserDTO user = new UserDTO();
 		
-		int userId = userDao.findUserIdByEmail("이메일");
+		Integer userId = userDao.findUserIdByEmail("이메일");
     	System.out.println(userId);
     	user = userDao.findUserById(userId);
     	System.out.println(user.getAge());
     	System.out.println(user.getEmail());
     	System.out.println(user.getId());
-    	System.out.println(user.getUserName());
+    	System.out.println(user.getUser_name());
 
     }
 	
 	@Test
-    public void findByUserIdFailTest() throws Exception {		
-		int userId = userDao.findUserIdByEmail("aaa");
+    public void findByUserIdFailTest() throws Exception {	
+		Integer userId = userDao.findUserIdByEmail("aaa");
     	System.out.println(userId);
     	
     }
