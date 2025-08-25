@@ -67,9 +67,13 @@ public class LoginController {
 
             MultiValueMap<String, Object> infParams = new LinkedMultiValueMap<>();
             infParams.add("access_token", responseEntity.getBody().getAccess_token()); //토큰 param에 넣기
-
+            
             ResponseEntity<GoogleInfResponse> infResponseEntity = restTemplate.postForEntity("https://oauth2.googleapis.com/tokeninfo",
                     infParams, GoogleInfResponse.class); //사용자 정보
+            
+//            ResponseEntity<String> infResponseEntity = restTemplate.postForEntity("https://people.googleapis.com/v1/people/me?"
+//            		+ "personFields=names,emailAddresses,ageRanges",
+//                    infParams, String.class); //사용자 정보
             
             if (infResponseEntity.getStatusCode() == HttpStatus.OK) {
 //            	System.out.println(infResponseEntity.getBody().toString());

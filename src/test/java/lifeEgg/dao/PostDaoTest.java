@@ -36,7 +36,7 @@ public class PostDaoTest {
 		
 		UserDTO user = new UserDTO();
 		
-		 user.setUserName("김광훈"); 
+		 user.setUser_name("김광훈"); 
 		 user.setEmail("kghwaon@gmail.com");
 		 user.setAge(20);
 		 
