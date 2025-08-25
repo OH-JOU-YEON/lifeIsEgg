@@ -54,7 +54,7 @@ public class CheerDaoTest {
 		cheerDTO.setUuid(UUID.randomUUID().toString());
 		
 		
-
+		 
 			try {
 				cheer.create(cheerDTO);
 			} catch (Exception e) {
