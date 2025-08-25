@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	
 	<insert id="insertUser">
-		insert into user (user_name, age, email)
-		values (#{userName}, #{age}, #{email});
+		insert into user (name, age, email)
+		values (#{name}, #{age}, #{email});
 	</insert>
 
 	<select id="findUserById" resultType="UserDTO">
@@ -17,15 +17,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id = #{id}
 	</select>
 
-    <select id="findUserIdByEmail" parameterType="string" resultType="int">
-        select id 
+    <select id="findUserIdByEmail" parameterType="string" resultType="Integer">
+		select COALESCE(id, 0)
         from user 
         where email =#{email}
     </select>
 
 	<update id="updateUser">
 		update user
-		set user_name=#{userName}, age=#{age}
+		set name=#{name}, age=#{age}
 		where id = #{id} 
 	</update>
 

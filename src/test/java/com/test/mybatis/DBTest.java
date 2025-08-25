@@ -20,7 +20,7 @@ public class DBTest {
 //    public void insertDBTest() throws Exception {
 //		UserDTO user = new UserDTO();
 //		user.setEmail("이메일");
-//		user.setUserName("테스트");
+//		user.setName("테스트");
 //		user.setAge(99);
 //		userDao.insertUser(user);
 //    }
@@ -29,19 +29,19 @@ public class DBTest {
     public void findByUserIdSuccssesTest() throws Exception {
 		UserDTO user = new UserDTO();
 		
-		int userId = userDao.findUserIdByEmail("이메일");
+		Integer userId = userDao.findUserIdByEmail("이메일");
     	System.out.println(userId);
     	user = userDao.findUserById(userId);
     	System.out.println(user.getAge());
     	System.out.println(user.getEmail());
     	System.out.println(user.getId());
-    	System.out.println(user.getUserName());
+    	System.out.println(user.getName());
 
     }
 	
 	@Test
-    public void findByUserIdFailTest() throws Exception {		
-		int userId = userDao.findUserIdByEmail("aaa");
+    public void findByUserIdFailTest() throws Exception {	
+		Integer userId = userDao.findUserIdByEmail("aaa");
     	System.out.println(userId);
     	
     }
