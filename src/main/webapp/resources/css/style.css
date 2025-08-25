@@ -261,6 +261,15 @@ ol {
 /*---------------------
   Header
 -----------------------*/
+@font-face {
+  font-family: "flower";
+  src: url("../fonts/온글잎\ 위씨리스트.ttf") format("truetype");
+}
+
+.logo h2 {
+  font-family: "flower";
+}
+
 
 .header__top {
   background: #f5f5f5;
