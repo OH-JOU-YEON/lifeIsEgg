@@ -20,7 +20,7 @@ public class DBTest {
 //    public void insertDBTest() throws Exception {
 //		UserDTO user = new UserDTO();
 //		user.setEmail("이메일");
-//		user.setUserName("테스트");
+//		user.setName("테스트");
 //		user.setAge(99);
 //		userDao.insertUser(user);
 //    }
@@ -35,7 +35,7 @@ public class DBTest {
     	System.out.println(user.getAge());
     	System.out.println(user.getEmail());
     	System.out.println(user.getId());
-    	System.out.println(user.getUser_name());
+    	System.out.println(user.getName());
 
     }
 	

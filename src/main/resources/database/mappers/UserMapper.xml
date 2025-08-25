@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	
 	<insert id="insertUser">
-		insert into user (user_name, age, email)
-		values (#{user_name}, #{age}, #{email});
+		insert into user (name, age, email)
+		values (#{name}, #{age}, #{email});
 	</insert>
 
 	<select id="findUserById" resultType="UserDTO">
@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="updateUser">
 		update user
-		set user_name=#{user_name}, age=#{age}
+		set name=#{name}, age=#{age}
 		where id = #{id} 
 	</update>
 
