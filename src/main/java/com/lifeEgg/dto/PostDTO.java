@@ -12,6 +12,6 @@ public class PostDTO {
 	private boolean status; 
 	private LocalDateTime created_at; 
 	private Long user_id; 
-	private UUID uuid; 
+	private String uuid; 
 	private int age; 
 }
