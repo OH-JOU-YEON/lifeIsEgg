@@ -1,4 +1,4 @@
-package com.ohAM.lifeEgg.controller;
+package com.lifeEgg.controller;
 
 
 
