@@ -44,7 +44,23 @@
         <div class="row">
           <div class="col-lg-3">
             <div class="header__logo">
-              <a href="./index.html"><img src="<c:url value="/resources/img/Egg2.png"/>" /></a>
+              <a href="./index.html"
+                ><div
+                  class="logo"
+                  style="
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                  "
+                >
+                  <img
+                    src="<c:url value='resources/img/boiled-egg.png'/>"
+                    style="width: 50px; height: 50px; margin-right: 8px"
+                    alt=""
+                  />
+                  <h2>Life is Egg...</h2>
+                </div>
+              </a>
             </div>
           </div>
           <div class="col-lg-6"></div>
