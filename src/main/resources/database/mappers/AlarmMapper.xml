@@ -10,17 +10,22 @@ insert into alarm (content, user_id, post_id, cheer_id, uuid) values (#{content}
 						,#{cheer_id}, #{uuid})
 </insert>
 
-<select id="read" resultType="AlarmDTO">
-select * from alarm where id = #{id}
-</select>
 
 <select id="readByUuid" resultType="AlarmDTO">
 select * from alarm where uuid = #{uuid}
 </select>
 
 
+<select id="readByUserId" resultType="hashmap">
+select * from alarm where user_id = #{userId}
+</select>
+
 <delete id="delete"> 
-delete from Post where id = #{id} 
+delete from alarm where id = #{id} 
+</delete>
+
+<delete id="deleteByUuid"> 
+delete from alarm where uuid = #{uuid} 
 </delete>
 
 
