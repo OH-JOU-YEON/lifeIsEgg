@@ -27,9 +27,9 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/slicknav.min.css" />" />
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css" />" />
   </head>
-  
-    <body>
 
+  <body>
+  
     <!-- Header Section Begin -->
     <header class="header">
       <div class="header__top">
@@ -44,7 +44,7 @@
         <div class="row">
           <div class="col-lg-3">
             <div class="header__logo">
-             <a href="./index.html"
+              <a href="./index.html"
                 ><div
                   class="logo"
                   style="
@@ -66,12 +66,15 @@
           <div class="col-lg-6"></div>
           <div class="col-lg-3"></div>
         </div>
+        <div class="humberger__open">
+          <i class="fa fa-bars"></i>
+        </div>
       </div>
     </header>
     <!-- Header Section End -->
-
+    
     <!-- Hero Section Begin -->
-    <section class="hero">
+	<section class="hero">
       <div class="container">
         <div class="row">
           <div class="col-lg-3">
@@ -86,31 +89,48 @@
                 <li><a href="#">알림</a></li>
               </ul>
             </div>
-          </div>
+           </div>
           <div class="col-lg-9">
             <div class="hero__search">
               <div style="display: flex">
-                <button class="site-btn" onclick="login()" style="margin-left: auto">회원가입/로그인</button>
+                <button class="site-btn" onclick="logout()" style="margin-left: auto">로그아웃</button>
                 <script type="text/javascript">
-                	function login(){
-                		const form = document.createElement("form");
+                	function logout(){
+/*                 		const form = document.createElement("form");
                 	    form.method = "POST";
                 	    form.action = "http://localhost:8090/lifeEgg/oauth2/google";
                 	    document.body.appendChild(form);
-                	    form.submit();
+                	    form.submit(); */
 					}
 				</script>   
               </div>
             </div>
-            <div class="product__details__text" style="display: flex">
-              <div class="col" style="position:relative; left:40px;">
+            <div class="product__details__text">
+              <div class="col" style="position:relative; left:30px; width:75%">
                 <br>
-                <h3>오늘 하루의 마무리, 삶은 달걀</h3>
+                <h4>내 정보</h4>
                 <br>
-                <p style="display:inline">오늘 있었던 일을 일기로 기록할 수 있어요.</p>
+                <p>내 정보는 다른 사용자에게 노출되지 않습니다.</p>
+                <div class="row" style="position:relative; left:20px;">
+                  <label for="name">이름</label>
+                  <input type="text" id="name" placeholder="기존 이름" maxlength="15" size="17" style="margin-left:auto;">
+                </div>
+                
                 <br>
+				<div class="row" style="position:relative; left:20px;">
+                  <label for="age">나이</label>
+                  <input type="number" id="age" placeholder="기존 나이" min=0 max=99 size="2" style="margin-left:auto;">
+                </div>
                 <br>
-                <p style="display:inline">누군가의 일기에 공감하고, 응원하는 말을 남길 수 있어요.</p>
+                <div class="row" style="position:relative; left:20px;">
+                  <label>연결된 이메일</label>
+                  <p style="margin-left:auto;">@gmail.com</p>
+                </div>
+                <br>
+                <div class="row" style="position:relative; left:20px;">
+                  <button class="last-btn" style="margin-left: auto">저장</button>
+                </div>
+                
               </div>
             </div>
           </div>
