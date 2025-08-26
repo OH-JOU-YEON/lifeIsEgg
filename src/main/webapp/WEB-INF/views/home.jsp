@@ -18,18 +18,19 @@
     />
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>" />
-    <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>"  />
+    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>" />
     <link rel="stylesheet" href="<c:url value="/resources/css/elegant-icons.css"/>" />
     <link rel="stylesheet" href="<c:url value="/resources/css/nice-select.css"/>" />
     <link rel="stylesheet" href="<c:url value="/resources/css/jquery-ui.min.css"/>" />
     <link rel="stylesheet" href="<c:url value="/resources/css/owl.carousel.min.css"/>" />
-    <link rel="stylesheet" href="<c:url value="/resources/css/slicknav.min.css"/>" />
-    <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
+    <link rel="stylesheet" href="<c:url value="/resources/css/slicknav.min.css" />" />
+    <link rel="stylesheet" href="<c:url value="/resources/css/style.css" />" />
+    <link rel="stylesheet" href="<c:url value="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"/>" />
   </head>
 
   <body>
-
+  
     <!-- Header Section Begin -->
     <header class="header">
       <div class="header__top">
@@ -72,9 +73,9 @@
       </div>
     </header>
     <!-- Header Section End -->
-
+    
     <!-- Hero Section Begin -->
-    <section class="hero">
+	<section class="hero">
       <div class="container">
         <div class="row">
           <div class="col-lg-3">
@@ -84,24 +85,15 @@
                 <span></span>
               </div>
               <ul>
-                <li><a href="#">Fresh Meat</a></li>
-                <li><a href="#">Vegetables</a></li>
-                <li><a href="#">Fruit & Nut Gifts</a></li>
-                <li><a href="#">Fresh Berries</a></li>
-                <li><a href="#">Ocean Foods</a></li>
-                <li><a href="#">Butter & Eggs</a></li>
-                <li><a href="#">Fastfood</a></li>
-                <li><a href="#">Fresh Onion</a></li>
-                <li><a href="#">Papayaya & Crisps</a></li>
-                <li><a href="#">Oatmeal</a></li>
-                <li><a href="#">Fresh Bananas</a></li>
+                <li><a href="#">내 일기 목록</a></li>
+                <li><a href="#">추천</a></li>
+                <li><a href="#">알림</a></li>
               </ul>
             </div>
           </div>
-          <div class="col-lg-9">
+         <div class="col-lg-9">
             <div class="hero__search">
               <div class="hero__search__form">
-              
                 <button class="site-btn" onclick="login()";>login</button>
                 <script type="text/javascript">
                 	function login(){
@@ -111,15 +103,7 @@
                 	    document.body.appendChild(form);
                 	    form.submit();
 					}
-				</script>             
-              </div>
-            </div>
-            <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
-              <div class="hero__text">
-                <span>FRUIT FRESH</span>
-                <h2>Vegetable <br />100% Organic</h2>
-                <p>Free Pickup and Delivery Available</p>
-                <a href="#" class="primary-btn">SHOP NOW</a>
+				</script>         
               </div>
             </div>
           </div>

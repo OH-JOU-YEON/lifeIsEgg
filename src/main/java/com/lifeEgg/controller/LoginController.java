@@ -1,21 +1,25 @@
 package com.lifeEgg.controller;
 
-//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import com.lifeEgg.dao.UserDAO;
-import com.lifeEgg.login.google.GoogleRequest;
-import com.lifeEgg.login.google.GoogleResponse;
+import com.lifeEgg.dto.UserDTO;
+import com.lifeEgg.login.google.GoogleTokenResponse;
 
 import lombok.RequiredArgsConstructor;
-
 
 
 @Controller
@@ -28,46 +32,86 @@ public class LoginController {
     @Value("${google.client.pw}")
     private String googleClientPw;
     
+
 //	
 	private final UserDAO userDao;
 
 	
-	
-    @RequestMapping(value="/oauth2/google", method = RequestMethod.POST)
+	@PostMapping("/oauth2/google")
     public String loginUrlGoogle(){
 
         String reqUrl = "https://accounts.google.com/o/oauth2/v2/auth?client_id=" + googleClientId
                 + "&redirect_uri=http://localhost:8090/lifeEgg/oauth2/google"
                 + "&response_type=code"
                 + "&scope=email profile"
-//                + " https://www.googleapis.com/auth/user.birthday.read"
+                + " https://www.googleapis.com/auth/user.birthday.read"
                 + "&access_type=offline";
-        return "redirect:" + reqUrl;
-    }
-    
-    @RequestMapping(value="/oauth2/google", method = RequestMethod.GET)
-    public String loginGoogle(@RequestParam(value = "code") String authCode) throws Exception{
-        RestTemplate restTemplate = new RestTemplate();
-        GoogleRequest googleOAuthRequestParam = GoogleRequest
-                .builder()
-                .clientId(googleClientId)
-                .clientSecret(googleClientPw)
-                .code(authCode)
-                .redirectUri("http://localhost:8090/lifeEgg/oauth2/google")
-                .grantType("authorization_code").build();
-        ResponseEntity<GoogleResponse> resultEntity = restTemplate.postForEntity("https://oauth2.googleapis.com/token",
-                googleOAuthRequestParam, GoogleResponse.class);
-        String jwtToken=resultEntity.getBody().getId_token();
-//        Map<String, String> map=new HashMap<>();
-//        map.put("id_token",jwtToken);
-//        ResponseEntity<GoogleInfResponse> resultEntity2 = restTemplate.postForEntity("https://oauth2.googleapis.com/tokeninfo",
-//                map, GoogleInfResponse.class);
-//        String email = resultEntity2.getBody().getEmail();    
-//        String name = resultEntity2.getBody().getName();
-//    	System.out.println(email);
-//    	System.out.println(name);
 
-        return "redirect:/home";
+        return "redirect:" + reqUrl;
+    } 
+    
+    @GetMapping("/oauth2/google")
+    public String loginGoogle(@RequestParam(value = "code") String code){
+
+        RestTemplate restTemplate = new RestTemplate();
+        
+        //액세스 토큰 받아오기
+        MultiValueMap<String, Object> tokenParams = new LinkedMultiValueMap<>();
+        tokenParams.add("code", code);
+        tokenParams.add("client_id", googleClientId);
+        tokenParams.add("client_secret", googleClientPw);
+        tokenParams.add("redirect_uri", "http://localhost:8090/lifeEgg/oauth2/google");
+        tokenParams.add("grant_type", "authorization_code");
+        ResponseEntity<GoogleTokenResponse> responseEntity = restTemplate.postForEntity("https://oauth2.googleapis.com/token",
+                tokenParams, GoogleTokenResponse.class);
+
+        if (responseEntity.getStatusCode() == HttpStatus.OK) { //접속 확인
+
+            String token = responseEntity.getBody().getAccess_token();            
+            
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setBearerAuth(token);
+            HttpEntity<String> httpEntity = new HttpEntity<>(httpHeaders);
+            
+            ResponseEntity<UserDTO> userResponseEntity = restTemplate.exchange(
+            		"https://www.googleapis.com/userinfo/v2/me",
+                    HttpMethod.GET, httpEntity, UserDTO.class); //사용자 정보
+            
+            if (userResponseEntity.getStatusCode() == HttpStatus.OK) { //접속 확인
+            	
+                UserDTO user = userResponseEntity.getBody();
+                
+				try {
+					Integer userId = userDao.findUserIdByEmail(user.getEmail());
+					
+	            	if (userId != null) { //유저 존재 - 로그인
+	            		user = userDao.findUserById(userId);
+	            		
+	            		return "redirect:/home";
+	            		
+	            	} else { //유저 없음 - 회원가입
+	            		
+	            		//사용자 정보 받아와서 넣기
+	            		
+	                    //People API에서 연령 받아오기
+	                    ResponseEntity<String> birthResponseEntity = restTemplate.exchange("https://people.googleapis.com/v1/people/me?"
+	                    		+ "personFields=birthdays",HttpMethod.GET, httpEntity, String.class); //사용자 정보
+	                    
+	                    //연령 받기 미구현
+	                    
+	                    userDao.insertUser(user);
+	                    
+	            		return "redirect:/home";
+	            	}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+            
+            }
+            return "구글 로그인 요청 처리 실패"; // 처리 확인용 임시
+
+        }
+        return "구글 로그인 요청 처리 실패";
     }
 	
 

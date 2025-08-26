@@ -10,7 +10,7 @@ import com.lifeEgg.dto.CheerDTO;
 
 @Mapper 
 public interface CheerDAO {
-	
+  
 public void create(CheerDTO cheer) throws Exception;
     
     public List<CheerDTO> readByUserId(Long userId);
@@ -20,6 +20,5 @@ public void create(CheerDTO cheer) throws Exception;
     public void delete(Long id) throws Exception;
     
     public void deleteByUuid(String uuid) throws Exception;
-
 
 }
