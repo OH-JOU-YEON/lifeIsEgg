@@ -47,7 +47,7 @@ public class CheerService {
 		
 		Optional<CheerDTO> optionalCheer = cheerDAO.readByUuid(uuid);
 		
-		return optionalCheer.orElseThrow(() -> new IllegalArgumentException("alarm who has uuid doesn't exist"));
+		return optionalCheer.orElseThrow(() -> new IllegalArgumentException("cheer who has uuid doesn't exist"));
 	}
 
 }
