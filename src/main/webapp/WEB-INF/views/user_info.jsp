@@ -113,18 +113,20 @@
                 <p>내 정보는 다른 사용자에게 노출되지 않습니다.</p>
                 <div class="row" style="position:relative; left:20px;">
                   <label for="name">이름</label>
-                  <input type="text" id="name" placeholder="기존 이름" maxlength="15" size="17" style="margin-left:auto;">
+                  <input type="text" id="name" placeholder="${user.name}" value="${user.name}"
+                  maxlength="15" size="17" style="margin-left:auto;">
                 </div>
                 
                 <br>
 				<div class="row" style="position:relative; left:20px;">
                   <label for="age">나이</label>
-                  <input type="number" id="age" placeholder="기존 나이" min=0 max=99 size="2" style="margin-left:auto;">
+                  <input type="number" id="age" placeholder="${user.age}" value="${user.age}"
+                  min=0 max=99 size="2" style="margin-left:auto;">
                 </div>
                 <br>
                 <div class="row" style="position:relative; left:20px;">
                   <label>연결된 이메일</label>
-                  <p style="margin-left:auto;">@gmail.com</p>
+                  <p style="margin-left:auto;">${user.email}</p>
                 </div>
                 <br>
                 <div class="row" style="position:relative; left:20px;">

@@ -1,5 +1,8 @@
 package com.lifeEgg.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpEntity;
@@ -15,9 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
-import com.lifeEgg.dao.UserDAO;
+import com.lifeEgg.dto.GoogleTokenDTO;
 import com.lifeEgg.dto.UserDTO;
-import com.lifeEgg.login.google.GoogleTokenResponse;
+import com.lifeEgg.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,7 +37,7 @@ public class LoginController {
     
 
 //	
-	private final UserDAO userDao;
+	private final UserService userService;
 
 	
 	@PostMapping("/oauth2/google")
@@ -51,7 +54,7 @@ public class LoginController {
     } 
     
     @GetMapping("/oauth2/google")
-    public String loginGoogle(@RequestParam(value = "code") String code){
+    public String loginGoogle(@RequestParam(value = "code") String code, HttpServletRequest request){
 
         RestTemplate restTemplate = new RestTemplate();
         
@@ -62,14 +65,14 @@ public class LoginController {
         tokenParams.add("client_secret", googleClientPw);
         tokenParams.add("redirect_uri", "http://localhost:8090/lifeEgg/oauth2/google");
         tokenParams.add("grant_type", "authorization_code");
-        ResponseEntity<GoogleTokenResponse> responseEntity = restTemplate.postForEntity("https://oauth2.googleapis.com/token",
-                tokenParams, GoogleTokenResponse.class);
+        ResponseEntity<GoogleTokenDTO> responseEntity = restTemplate.postForEntity("https://oauth2.googleapis.com/token",
+                tokenParams, GoogleTokenDTO.class);
 
         if (responseEntity.getStatusCode() == HttpStatus.OK) { //접속 확인
 
             String token = responseEntity.getBody().getAccess_token();            
             
-            HttpHeaders httpHeaders = new HttpHeaders();
+            HttpHeaders httpHeaders = new HttpHeaders(); //헤더 설정
             httpHeaders.setBearerAuth(token);
             HttpEntity<String> httpEntity = new HttpEntity<>(httpHeaders);
             
@@ -82,11 +85,14 @@ public class LoginController {
                 UserDTO user = userResponseEntity.getBody();
                 
 				try {
-					Integer userId = userDao.findUserIdByEmail(user.getEmail());
+					Integer userId = userService.findUserIdByEmail(user.getEmail());
 					
 	            	if (userId != null) { //유저 존재 - 로그인
-	            		user = userDao.findUserById(userId);
+	            		user = userService.findUserById(userId);
 	            		
+	                    HttpSession session = request.getSession();
+	                    session.setAttribute("loginUser", user);
+	                    
 	            		return "redirect:/home";
 	            		
 	            	} else { //유저 없음 - 회원가입
@@ -99,7 +105,10 @@ public class LoginController {
 	                    
 	                    //연령 받기 미구현
 	                    
-	                    userDao.insertUser(user);
+	                    userService.insertUser(user);
+	                    
+	                    HttpSession session = request.getSession();
+	                    session.setAttribute("loginUser", user);
 	                    
 	            		return "redirect:/home";
 	            	}

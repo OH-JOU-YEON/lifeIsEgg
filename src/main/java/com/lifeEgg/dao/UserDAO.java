@@ -1,5 +1,7 @@
 package com.lifeEgg.dao;
 
+import java.util.Optional;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.lifeEgg.dto.UserDTO;
@@ -7,15 +9,14 @@ import com.lifeEgg.dto.UserDTO;
 @Mapper
 public interface UserDAO {
 
-    public void insertUser(UserDTO user) throws Exception;
+    public void insertUser(UserDTO user);
     
-    public UserDTO findUserById(int id) throws Exception;
+    public Optional<UserDTO> findUserById(int id);
     
-    //null 처리용
-    public Integer findUserIdByEmail(String email) throws Exception;
+    public Integer findUserIdByEmail(String email);
 
-    public void updateUser(UserDTO user) throws Exception;
+    public void updateUser(UserDTO user);
 
-    public void deleteUser(int id) throws Exception;
+    public void deleteUser(int id);
 
 }
