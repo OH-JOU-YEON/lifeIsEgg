@@ -3,6 +3,9 @@ package com.lifeEgg.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.lifeEgg.dao.PostDAO;
@@ -64,11 +67,13 @@ public class PostService {
 	}
 	
 	
-	public List<PostDTO> getPostsByUserId(Long userId) {
+	public Page<PostDTO> getPostsByUserId(Long userId, Pageable pageable) {
 		
 		List<PostDTO> postList = postDAO.readByUserId(userId);
 		
-		return postList;
+		Page<PostDTO> postPages = new PageImpl<>(postList, pageable, postList.size());
+		
+		return postPages;
 	}
 
 	

@@ -3,6 +3,9 @@ package com.lifeEgg.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.lifeEgg.dao.AlarmDAO;
@@ -48,12 +51,15 @@ public class AlarmService {
 	
 	//유저 아이디 별 알람 읽어오는 메서드 
 	
-	public List<AlarmDTO> getAlarmsByUserId(Long userId) {
+	public Page<AlarmDTO> getAlarmsByUserId(Long userId,Pageable pageable) {
 		
 		List<AlarmDTO> alarmList = alarmDAO.readByUserId(userId);
 		
-		return alarmList;
+		Page<AlarmDTO> alarmPages = new PageImpl<>(alarmList, pageable, alarmList.size());
+		
+		return alarmPages;
 	}
+	
 	
 	public AlarmDTO getAlarmByUuid(String uuid) {
 		
