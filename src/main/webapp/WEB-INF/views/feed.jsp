@@ -9,7 +9,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>LifeIsEgg</title>
+    <title>Ogani | Template</title>
 
     <!-- Google Font -->
     <link
@@ -26,11 +26,11 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/owl.carousel.min.css"/>" />
     <link rel="stylesheet" href="<c:url value="/resources/css/slicknav.min.css" />" />
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css" />" />
+    
   </head>
 
   <body>
-  
-    <!-- Header Section Begin -->
+   <!-- Header Section Begin -->
     <header class="header">
       <div class="header__top">
         <div class="container">
@@ -44,23 +44,7 @@
         <div class="row">
           <div class="col-lg-3">
             <div class="header__logo">
-              <a href="./index.html"
-                ><div
-                  class="logo"
-                  style="
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                  "
-                >
-                  <img
-                    src="<c:url value='resources/img/boiled-egg.png'/>"
-                    style="width: 50px; height: 50px; margin-right: 8px"
-                    alt=""
-                  />
-                  <h2>Life is Egg...</h2>
-                </div>
-              </a>
+              <a href="./index.html"><img src="img/logo.png" alt="" /></a>
             </div>
           </div>
           <div class="col-lg-6"></div>
@@ -72,9 +56,9 @@
       </div>
     </header>
     <!-- Header Section End -->
-    
+
     <!-- Hero Section Begin -->
-	<section class="hero">
+    <section class="hero">
       <div class="container">
         <div class="row">
           <div class="col-lg-3">
@@ -89,51 +73,41 @@
                 <li><a href="#">알림</a></li>
               </ul>
             </div>
-           </div>
+          </div>
           <div class="col-lg-9">
-            <div class="hero__search">
-              <div style="display: flex">
-                <button class="site-btn" onclick="logout()" style="margin-left: auto">로그아웃</button>
-                <script type="text/javascript">
-                	function logout(){
-                 		const form = document.createElement("form");
-                	    form.method = "GET";
-                	    form.action = "http://localhost:8090/lifeEgg/logout";
-                	    document.body.appendChild(form);
-                	    form.submit(); 
-					}
-				</script>   
-              </div>
+            <div class="section-title product__discount__title">
+              <h2>추천</h2>
             </div>
-            <div class="product__details__text">
-              <div class="col" style="position:relative; left:30px; width:75%">
-                <br>
-                <h4>내 정보</h4>
-                <br>
-                <p>내 정보는 다른 사용자에게 노출되지 않습니다.</p>
-                <div class="row" style="position:relative; left:20px;">
-                  <label for="name">이름</label>
-                  <input type="text" id="name" placeholder="${user.name}" value="${user.name}"
-                  maxlength="15" size="17" style="margin-left:auto;">
-                </div>
-                
-                <br>
-				<div class="row" style="position:relative; left:20px;">
-                  <label for="age">나이</label>
-                  <input type="number" id="age" placeholder="${user.age}" value="${user.age}"
-                  min=0 max=99 size="2" style="margin-left:auto;">
-                </div>
-                <br>
-                <div class="row" style="position:relative; left:20px;">
-                  <label>연결된 이메일</label>
-                  <p style="margin-left:auto;">${user.email}</p>
-                </div>
-                <br>
-                <div class="row" style="position:relative; left:20px;">
-                  <button class="last-btn" style="margin-left: auto">저장</button>
-                </div>
-                
-              </div>
+
+            <div class="shoping__cart__table">
+              <table>
+                <tbody>
+                  <tr>
+                    <td class="shoping__cart__item">
+                      <h5>Vegetable’s Package</h5>
+                      <br />
+                      <p>날짜</p>
+                      <p>일기 내용</p>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="shoping__cart__item">
+                      <h5>Vegetable’s Package</h5>
+                      <br />
+                      <p>날짜</p>
+                      <p>일기 내용</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="product__pagination">
+              <a href="#">1</a>
+              <a href="#">2</a>
+              <a href="#">3</a>
+              <a href="#"><i class="fa fa-long-arrow-right"></i></a>
             </div>
           </div>
         </div>
@@ -142,6 +116,15 @@
     <!-- Hero Section End -->
 
     <!-- Js Plugins -->
+
+    <script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"/></script>
+    <script src="<c:url value="/resources/js/bootstrap.min.js"/>"/></script>
+    <script src="<c:url value="/resources/js/jquery.nice-select.min.js"/>"/></script>
+    <script src="<c:url value="/resources/js/jquery-ui.min.js"/>"/></script>
+    <script src="<c:url value="/resources/js/jquery.slicknav.js"/>"/></script>
+    <script src="<c:url value="/resources/js/mixitup.min.js"/>"/></script>
+    <script src="<c:url value="/resources/js/owl.carousel.min.js"/>"/></script>
+    <script src="<c:url value="/resources/js/main.js"/>"/></script>
    
   </body>
 </html>
