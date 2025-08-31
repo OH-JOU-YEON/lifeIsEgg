@@ -1,7 +1,5 @@
 package com.lifeEgg.controller;
 
-
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,12 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.lifeEgg.dto.UserDTO;
 
-
 @Controller 
-public class WriteDiaryController {
+public class CheerController {
 	
-	@GetMapping(value = "/write")
-	public String writeDiary( Model model, HttpSession session) {
+	@GetMapping(value = "/cheer")
+	public String home( Model model, HttpSession session) {
 		
 		 UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
 	        if (loginUser == null) {
@@ -28,12 +25,11 @@ public class WriteDiaryController {
 	        model.addAttribute("user", loginUser);
 		
 		
-		return "diary-write";
+		return "cheer-write";
 	}
 	
-	
-	@PostMapping("/create/diary")
-	public void createDiary(HttpServletRequest request) {
+	@PostMapping("/create/cheer")
+	public void createCheer(HttpServletRequest request) {
 		
 		
 	}
