@@ -95,6 +95,7 @@ public class LoginController {
 	            		user = userService.findUserById(userId);
 	            		
 	                    HttpSession session = request.getSession();
+	                    request.changeSessionId();
 	                    session.setAttribute("loginUser", user);
 	                    
 	            		return "redirect:/home";
@@ -127,6 +128,7 @@ public class LoginController {
 	                    userService.insertUser(user);
 	                    
 	                    HttpSession session = request.getSession();
+	                    request.changeSessionId();
 	                    session.setAttribute("loginUser", user);
 	                    
 	            		return "redirect:/home";
