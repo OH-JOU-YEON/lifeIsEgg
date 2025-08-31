@@ -102,7 +102,7 @@
                 	    document.body.appendChild(form);
                 	    form.submit(); 
 					}
-				</script>   
+				</script>
               </div>
             </div>
             <div class="product__details__text">

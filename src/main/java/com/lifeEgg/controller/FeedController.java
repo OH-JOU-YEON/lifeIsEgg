@@ -13,7 +13,7 @@ import com.lifeEgg.dto.UserDTO;
 public class FeedController {
     
     @RequestMapping(value="/feed")
-    public String home(HttpSession session, Model model){
+    public String feed(HttpSession session, Model model){
     	
         UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
         if (loginUser == null) {

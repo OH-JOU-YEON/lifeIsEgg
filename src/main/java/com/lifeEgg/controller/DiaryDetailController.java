@@ -14,7 +14,7 @@ import com.lifeEgg.dto.UserDTO;
 public class DiaryDetailController {
     
     @RequestMapping(value="/diary/{uuid}")
-    public String home(@PathVariable String uuid, HttpSession session, Model model){
+    public String diaryDetail(@PathVariable String uuid, HttpSession session, Model model){
     	
         UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
         if (loginUser == null) {
