@@ -44,8 +44,8 @@
         <div class="row">
           <div class="col-lg-3">
             <div class="header__logo">
-              <a href="./index.html"
-                ><div
+              <a href="./home">
+                <div
                   class="logo"
                   style="
                     display: flex;
@@ -85,8 +85,8 @@
               </div>
               <ul>
                 <li><a href="#">내 일기 목록</a></li>
-                <li><a href="#">추천</a></li>
-                <li><a href="#">알림</a></li>
+                <li><a href="./feed">추천</a></li>
+                <li><a href="./cheer">알림</a></li>
               </ul>
             </div>
            </div>

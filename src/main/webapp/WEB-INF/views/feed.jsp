@@ -1,6 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ page import="
+	com.lifeEgg.dto.PostDTO,
+	
+	java.util.List,
+	java.util.ArrayList"%>
+<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
+
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -9,7 +17,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Ogani | Template</title>
+    <title>feed</title>
 
     <!-- Google Font -->
     <link
@@ -43,9 +51,9 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-3">
-            <div class="headerlogo">
-           <a href="./index.html"
-                ><div
+            <div class="header__logo">
+              <a href="./home">
+                <div
                   class="logo"
                   style="
                     display: flex;
@@ -82,8 +90,8 @@
               </div>
               <ul>
                 <li><a href="#">내 일기 목록</a></li>
-                <li><a href="#">추천</a></li>
-                <li><a href="#">알림</a></li>
+                <li><a href="./feed">추천</a></li>
+                <li><a href="./cheer">알림</a></li>
               </ul>
             </div>
           </div>
@@ -95,23 +103,18 @@
             <div class="shoping__cart__table">
               <table>
                 <tbody>
-                  <tr>
-                    <td class="shoping__cart__item">
-                      <h5>Vegetable’s Package</h5>
-                      <br />
-                      <p>날짜</p>
-                      <p>일기 내용</p>
-                    </td>
-                  </tr>
+                  <c:forEach items="${postList}" var="post">
 
                   <tr>
                     <td class="shoping__cart__item">
                       <h5>Vegetable’s Package</h5>
                       <br />
-                      <p>날짜</p>
-                      <p>일기 내용</p>
+                      <p>${post.created_at}</p>
+                      <p>${post.content}</p>
                     </td>
                   </tr>
+                  
+                  </c:forEach>
                 </tbody>
               </table>
             </div>

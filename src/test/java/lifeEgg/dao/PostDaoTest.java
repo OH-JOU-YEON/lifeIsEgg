@@ -1,5 +1,6 @@
 package lifeEgg.dao;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -55,6 +56,8 @@ public class PostDaoTest {
 		PostDTO post = new PostDTO();
 		post.setUser_id((long) 1);
 		post.setUuid(UUID.randomUUID().toString());
+		post.setContent("테스트"+i);
+		post.setCreated_at(LocalDateTime.now());
 		
 		try {
 			postDAO.create(post);
