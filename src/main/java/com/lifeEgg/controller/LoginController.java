@@ -1,5 +1,7 @@
 package com.lifeEgg.controller;
 
+import java.time.LocalDate;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,10 +17,12 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import com.lifeEgg.dto.GoogleTokenDTO;
+import com.lifeEgg.dto.UserAgeDTO;
 import com.lifeEgg.dto.UserDTO;
 import com.lifeEgg.service.UserService;
 
@@ -82,7 +86,7 @@ public class LoginController {
             
             if (userResponseEntity.getStatusCode() == HttpStatus.OK) { //접속 확인
             	
-                UserDTO user = userResponseEntity.getBody();
+                UserDTO user = userResponseEntity.getBody(); //유저 정보 받아오기
                 
 				try {
 					Integer userId = userService.findUserIdByEmail(user.getEmail());
@@ -96,14 +100,29 @@ public class LoginController {
 	            		return "redirect:/home";
 	            		
 	            	} else { //유저 없음 - 회원가입
-	            		
-	            		//사용자 정보 받아와서 넣기
-	            		
+	            			            		
 	                    //People API에서 연령 받아오기
-	                    ResponseEntity<String> birthResponseEntity = restTemplate.exchange("https://people.googleapis.com/v1/people/me?"
-	                    		+ "personFields=birthdays",HttpMethod.GET, httpEntity, String.class); //사용자 정보
+	                    ResponseEntity<UserAgeDTO> birthResponseEntity = restTemplate.exchange("https://people.googleapis.com/v1/people/me?"
+	                    		+ "personFields=birthdays",HttpMethod.GET, httpEntity, UserAgeDTO.class);
 	                    
-	                    //연령 받기 미구현
+	                    Integer birthYear = null;
+	                    if (birthResponseEntity.getStatusCode() == HttpStatus.OK) {
+	                    	birthYear = birthResponseEntity.getBody().getBirthdays().get(0).getDate().getYear();
+	                    	System.out.println("birthYear: " + birthYear);
+	                    }
+	                    
+	                    int age = 0;
+	                    
+	                    if (birthYear != null) {
+	                    	int nowYear = LocalDate.now().getYear();
+	                    	System.out.println("nowYear: " + nowYear);
+	                    	if (nowYear > birthYear) {
+	                    		age = nowYear - birthYear;
+		                    	System.out.println("age: " + age);
+	                    	}
+	                    }
+	                    
+	                    user.setAge(age);
 	                    
 	                    userService.insertUser(user);
 	                    
@@ -121,6 +140,15 @@ public class LoginController {
 
         }
         return "구글 로그인 요청 처리 실패";
+    }
+    
+    
+    @GetMapping(value="/logout")
+    public String logout(HttpSession session){
+
+        session.invalidate();
+
+        return "redirect:/home";
     }
 	
 

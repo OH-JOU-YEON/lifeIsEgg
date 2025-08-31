@@ -4,7 +4,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.lifeEgg.dto.UserDTO;
 
@@ -13,17 +14,22 @@ import com.lifeEgg.dto.UserDTO;
 public class UserInfoController {
 
 	
-    @RequestMapping(value="/user")
+    @GetMapping(value="/user")
     public String userInfo(HttpSession session, Model model){
         UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
         if (loginUser == null) {
             // 로그인 안됨
-            return "home";
+            return "redirect:/home";
         }
 
         // 로그인
         model.addAttribute("user", loginUser);
         return "user_info";
+    }
+    
+    @PostMapping(value="/userUpdate")
+    public String userUpdate() {
+    	return "";
     }
     
     
