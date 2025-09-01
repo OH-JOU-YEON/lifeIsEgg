@@ -1,6 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ page import="
+	com.lifeEgg.dto.PostDTO,
+	
+	java.util.List,
+	java.util.ArrayList"%>
+<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
+
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -9,7 +17,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Ogani | Template</title>
+    <title>feed</title>
 
     <!-- Google Font -->
     <link
@@ -30,9 +38,9 @@
   </head>
 
   <body>
-   <!-- Header Section Begin -->
+    <!-- Header Section Begin -->
     <header class="header">
-      <div class="header__top">
+      <div class="headertop">
         <div class="container">
           <div class="row">
             <div class="col-lg-6 col-md-6"></div>
@@ -44,14 +52,27 @@
         <div class="row">
           <div class="col-lg-3">
             <div class="header__logo">
-              <a href="./index.html"><img src="img/logo.png" alt="" /></a>
+              <a href="./home">
+                <div
+                  class="logo"
+                  style="
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                  "
+                >
+                  <img
+                    src="<c:url value='resources/img/boiled-egg.png'/>"
+                    style="width: 50px; height: 50px; margin-right: 8px"
+                    alt=""
+                  />
+                  <h2>Life is Egg...</h2>
+                </div>
+              </a>
             </div>
           </div>
           <div class="col-lg-6"></div>
           <div class="col-lg-3"></div>
-        </div>
-        <div class="humberger__open">
-          <i class="fa fa-bars"></i>
         </div>
       </div>
     </header>
@@ -69,8 +90,8 @@
               </div>
               <ul>
                 <li><a href="#">내 일기 목록</a></li>
-                <li><a href="#">추천</a></li>
-                <li><a href="#">알림</a></li>
+                <li><a href="./feed">추천</a></li>
+                <li><a href="./cheer">알림</a></li>
               </ul>
             </div>
           </div>
@@ -82,23 +103,18 @@
             <div class="shoping__cart__table">
               <table>
                 <tbody>
-                  <tr>
-                    <td class="shoping__cart__item">
-                      <h5>Vegetable’s Package</h5>
-                      <br />
-                      <p>날짜</p>
-                      <p>일기 내용</p>
-                    </td>
-                  </tr>
+                  <c:forEach items="${postList}" var="post">
 
                   <tr>
                     <td class="shoping__cart__item">
                       <h5>Vegetable’s Package</h5>
                       <br />
-                      <p>날짜</p>
-                      <p>일기 내용</p>
+                      <p>${post.created_at}</p>
+                      <p>${post.content}</p>
                     </td>
                   </tr>
+                  
+                  </c:forEach>
                 </tbody>
               </table>
             </div>
