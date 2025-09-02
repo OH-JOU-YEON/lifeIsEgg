@@ -14,7 +14,7 @@ import com.lifeEgg.dto.UserDTO;
 public class CheerController {
 	
 	@GetMapping(value = "/cheer")
-	public String home( Model model, HttpSession session) {
+	public String writeCheer( Model model, HttpSession session) {
 		
 		 UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
 	        if (loginUser == null) {

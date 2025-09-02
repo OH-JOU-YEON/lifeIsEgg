@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,7 +29,7 @@
   </head>
 
   <body>
-     <!-- Header Section Begin -->
+    <!-- Header Section Begin -->
     <header class="header">
       <div class="header__top">
         <div class="container">
@@ -43,14 +43,27 @@
         <div class="row">
           <div class="col-lg-3">
             <div class="header__logo">
-              <a href="./index.html"><img src="img/logo.png" alt="" /></a>
+           <a href="./index.html"
+                ><div
+                  class="logo"
+                  style="
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                  "
+                >
+                  <img
+                    src="<c:url value='resources/img/boiled-egg.png'/>"
+                    style="width: 50px; height: 50px; margin-right: 8px"
+                    alt=""
+                  />
+                  <h2>Life is Egg...</h2>
+                </div>
+              </a>
             </div>
           </div>
           <div class="col-lg-6"></div>
           <div class="col-lg-3"></div>
-        </div>
-        <div class="humberger__open">
-          <i class="fa fa-bars"></i>
         </div>
       </div>
     </header>
@@ -81,32 +94,61 @@
             <div class="shoping__cart__table">
               <table>
                 <tbody>
-                  <tr>
-                    <td class="shoping__cart__item">
-                      <h5>Vegetable’s Package</h5>
-                      <br />
-                      <p>날짜</p>
-                      <p>일기 내용</p>
-                    </td>
-                  </tr>
+               <c:forEach items=”alarm” var=”${alarms}”>
 
                   <tr>
                     <td class="shoping__cart__item">
-                      <h5>Vegetable’s Package</h5>
+                      <h5>${alarm.content}</h5>
                       <br />
                       <p>날짜</p>
-                      <p>일기 내용</p>
                     </td>
                   </tr>
+				</c:forEach>
+              
                 </tbody>
               </table>
             </div>
 
             <div class="product__pagination">
-              <a href="#">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+            
+            <!-- 페이징 영역 시작 -->
+	<div class="text-xs-center">
+		<ul class="pagination justify-content-center">
+		
+			<!-- 이전 -->
+			<c:choose>
+				<c:when test="${alarms.first}"></c:when>
+				<c:otherwise>
+					<li class="page-item"><a href="/alarms/?page=0">처음</a></li>
+					<li class="page-item"><a href="/alarms/?page=${alarms.number-1}">&larr;</a></li>
+				</c:otherwise>
+			</c:choose>
+
+			<!-- 페이지 그룹 -->
+			<c:forEach begin="${startBlockPage}" end="${endBlockPage}" var="i">
+				<c:choose>
+					<c:when test="${alarms.pageable.pageNumber+1 == i}">
+						<li><a href="/alarms/?page=${i-1}">${i}</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="/alarms/?page=${i-1}">${i}</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			
+			<!-- 다음 -->
+			<c:choose>
+				<c:when test="${alarms.last}"></c:when>
+				<c:otherwise>
+					<li ><a href="/admin/userlist/?page=${alarms.number+1}">&rarr;</a></li>
+					<li ><a href="/admin/userlist/?page=${alarms.totalPages-1}">마지막</a></li>
+				</c:otherwise>
+			</c:choose>
+		</ul>
+	</div>
+	<!-- 페이징 영역 끝 -->
+
+              
             </div>
           </div>
         </div>
