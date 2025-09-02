@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -94,16 +95,15 @@
             <div class="shoping__cart__table">
               <table>
                 <tbody>
-               <c:forEach items=”alarm” var=”${alarms}”>
+              
 
                   <tr>
                     <td class="shoping__cart__item">
                       <h5>${alarm.content}</h5>
                       <br />
-                      <p>날짜</p>
                     </td>
                   </tr>
-				</c:forEach>
+				
               
                 </tbody>
               </table>
@@ -112,41 +112,29 @@
             <div class="product__pagination">
             
             <!-- 페이징 영역 시작 -->
-	<div class="text-xs-center">
-		<ul class="pagination justify-content-center">
-		
-			<!-- 이전 -->
-			<c:choose>
-				<c:when test="${alarms.first}"></c:when>
-				<c:otherwise>
-					<li class="page-item"><a href="/alarms/?page=0">처음</a></li>
-					<li class="page-item"><a href="/alarms/?page=${alarms.number-1}">&larr;</a></li>
-				</c:otherwise>
-			</c:choose>
-
-			<!-- 페이지 그룹 -->
-			<c:forEach begin="${startBlockPage}" end="${endBlockPage}" var="i">
-				<c:choose>
-					<c:when test="${alarms.pageable.pageNumber+1 == i}">
-						<li><a href="/alarms/?page=${i-1}">${i}</a></li>
-					</c:when>
-					<c:otherwise>
-						<li><a href="/alarms/?page=${i-1}">${i}</a></li>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			
-			<!-- 다음 -->
-			<c:choose>
-				<c:when test="${alarms.last}"></c:when>
-				<c:otherwise>
-					<li ><a href="/admin/userlist/?page=${alarms.number+1}">&rarr;</a></li>
-					<li ><a href="/admin/userlist/?page=${alarms.totalPages-1}">마지막</a></li>
-				</c:otherwise>
-			</c:choose>
-		</ul>
-	</div>
-	<!-- 페이징 영역 끝 -->
+             <c:choose>
+        <c:when test="${alarmPages.hasPrev}"><c:set var="url" value="${alarmPages.getUrl('/alarms', alarmPages.page - 1)}" /></c:when>
+        <c:otherwise><c:set var="url" value="/alarms" /></c:otherwise>
+    </c:choose>
+    <a href="${url}"<c:if test="${!alarmPages.hasPrev}"> class="disabled"</c:if>>
+        <span class="sr-only">Previous</span>
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+        </svg>
+    </a>
+    <c:forEach var="i" begin="${alarmPages.firstPage}" end="${alarmPages.lastPage}" step="1">
+    <a href="${alarmPages.getUrl('/alarms', i)}"<c:if test="${alarmPages.page eq i}">aria-current="page" class="active"</c:if>>${i}</a>
+    </c:forEach>
+    <c:choose>
+        <c:when test="${alarmPages.hasNext}"><c:set var="url" value="${alarmPages.getUrl('/alarms', pageInfo.page + 1)}" /></c:when>
+        <c:otherwise><c:set var="url" value="#" /></c:otherwise>
+    </c:choose>
+    <a href="${url}"<c:if test="${!alarmPages.hasNext}"> class="disabled"</c:if>>
+        <span class="sr-only">Next</span>
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+        </svg>
+    </a>
 
               
             </div>

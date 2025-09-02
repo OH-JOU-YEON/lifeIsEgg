@@ -1,7 +1,5 @@
 package com.lifeEgg.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -9,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.lifeEgg.dto.AlarmDTO;
+import com.lifeEgg.dto.AlarmPageDTO;
 import com.lifeEgg.dto.UserDTO;
 import com.lifeEgg.service.AlarmService;
 
@@ -31,8 +30,9 @@ public class AlarmController {
 
 	        model.addAttribute("user", loginUser);
 	        
-	       List<AlarmDTO> alarms = alarmService.getAlarmsByUserId((long) loginUser.getId() );
-	        model.addAttribute("alarms",alarms);
+	       AlarmPageDTO<AlarmDTO> alarms = alarmService.getAlarmsByUserId((long) loginUser.getId() );
+	        model.addAttribute("alarmPages",alarms);
+	        model.addAttribute("alarms",alarms.getContentList());
 	        
 	        
 

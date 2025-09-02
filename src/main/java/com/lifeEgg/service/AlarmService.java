@@ -3,11 +3,11 @@ package com.lifeEgg.service;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.springframework.stereotype.Service;
 
 import com.lifeEgg.dao.AlarmDAO;
 import com.lifeEgg.dto.AlarmDTO;
+import com.lifeEgg.dto.AlarmPageDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -49,13 +49,18 @@ public class AlarmService {
 	
 	//유저 아이디 별 알람 읽어오는 메서드 
 	
-	public List<AlarmDTO> getAlarmsByUserId(Long userId) {
+	public AlarmPageDTO<AlarmDTO> getAlarmsByUserId(Long userId) {
 		
 		List<AlarmDTO> alarmList = alarmDAO.readByUserId(userId);
 		
+		AlarmPageDTO<AlarmDTO> alarmPages = new AlarmPageDTO<>();
+		alarmPages.setContentList(alarmList);
+		alarmPages.setTotalSize(alarmList.size());
 		
 		
-		return alarmList;
+		
+		
+		return alarmPages;
 	}
 	
 	
