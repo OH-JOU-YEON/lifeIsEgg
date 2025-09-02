@@ -1,6 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -29,7 +30,7 @@
   </head>
 
   <body>
-     <!-- Header Section Begin -->
+    <!-- Header Section Begin -->
     <header class="header">
       <div class="header__top">
         <div class="container">
@@ -43,14 +44,27 @@
         <div class="row">
           <div class="col-lg-3">
             <div class="header__logo">
-              <a href="./index.html"><img src="img/logo.png" alt="" /></a>
+           <a href="./index.html"
+                ><div
+                  class="logo"
+                  style="
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                  "
+                >
+                  <img
+                    src="<c:url value='resources/img/boiled-egg.png'/>"
+                    style="width: 50px; height: 50px; margin-right: 8px"
+                    alt=""
+                  />
+                  <h2>Life is Egg...</h2>
+                </div>
+              </a>
             </div>
           </div>
           <div class="col-lg-6"></div>
           <div class="col-lg-3"></div>
-        </div>
-        <div class="humberger__open">
-          <i class="fa fa-bars"></i>
         </div>
       </div>
     </header>
@@ -81,32 +95,48 @@
             <div class="shoping__cart__table">
               <table>
                 <tbody>
-                  <tr>
-                    <td class="shoping__cart__item">
-                      <h5>Vegetable’s Package</h5>
-                      <br />
-                      <p>날짜</p>
-                      <p>일기 내용</p>
-                    </td>
-                  </tr>
+              
 
                   <tr>
                     <td class="shoping__cart__item">
-                      <h5>Vegetable’s Package</h5>
+                      <h5>${alarm.content}</h5>
                       <br />
-                      <p>날짜</p>
-                      <p>일기 내용</p>
                     </td>
                   </tr>
+				
+              
                 </tbody>
               </table>
             </div>
 
             <div class="product__pagination">
-              <a href="#">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+            
+            <!-- 페이징 영역 시작 -->
+             <c:choose>
+        <c:when test="${alarmPages.hasPrev}"><c:set var="url" value="${alarmPages.getUrl('/alarms', alarmPages.page - 1)}" /></c:when>
+        <c:otherwise><c:set var="url" value="/alarms" /></c:otherwise>
+    </c:choose>
+    <a href="${url}"<c:if test="${!alarmPages.hasPrev}"> class="disabled"</c:if>>
+        <span class="sr-only">Previous</span>
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+        </svg>
+    </a>
+    <c:forEach var="i" begin="${alarmPages.firstPage}" end="${alarmPages.lastPage}" step="1">
+    <a href="${alarmPages.getUrl('/alarms', i)}"<c:if test="${alarmPages.page eq i}">aria-current="page" class="active"</c:if>>${i}</a>
+    </c:forEach>
+    <c:choose>
+        <c:when test="${alarmPages.hasNext}"><c:set var="url" value="${alarmPages.getUrl('/alarms', pageInfo.page + 1)}" /></c:when>
+        <c:otherwise><c:set var="url" value="#" /></c:otherwise>
+    </c:choose>
+    <a href="${url}"<c:if test="${!alarmPages.hasNext}"> class="disabled"</c:if>>
+        <span class="sr-only">Next</span>
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+        </svg>
+    </a>
+
+              
             </div>
           </div>
         </div>

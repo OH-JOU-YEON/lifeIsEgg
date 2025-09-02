@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.lifeEgg.dto.PostDTO;
 import com.lifeEgg.dto.UserDTO;
 import com.lifeEgg.service.PostService;
-import com.lifeEgg.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
