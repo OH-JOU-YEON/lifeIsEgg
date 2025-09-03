@@ -84,6 +84,8 @@
                 <li><a href="#">내 일기 목록</a></li>
                 <li><a href="#">추천</a></li>
                 <li><a href="#">알림</a></li>
+                <li><a href="#">로그아웃</a></li>
+                
               </ul>
             </div>
           </div>
