@@ -1,13 +1,13 @@
 package com.lifeEgg.service;
 
 import java.util.List;
-
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.lifeEgg.dao.PostDAO;
 import com.lifeEgg.dto.PostDTO;
+import com.lifeEgg.dto.PostPageDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -65,13 +65,17 @@ public class PostService {
 	}
 	
 	
-	public List<PostDTO> getPostsByUserId(Long userId) {
+	public PostPageDTO<PostDTO> getPostsByUserId(Long userId) {
 		
 		List<PostDTO> postList = postDAO.readByUserId(userId);
 		
+		PostPageDTO<PostDTO> postPages = new PostPageDTO<>();
+		postPages.setContentList(postList);
+		postPages.setTotalSize(postList.size());
 		
 		
-		return postList;
+		
+		return postPages;
 	}
 
 	

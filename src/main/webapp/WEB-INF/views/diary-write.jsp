@@ -9,7 +9,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Ogani | Template</title>
+    <title>Life is Egg... | Write</title>
 
     <!-- Google Font -->
     <link
@@ -89,13 +89,14 @@
                 <li><a href="#">내 일기 목록</a></li>
                 <li><a href="#">추천</a></li>
                 <li><a href="#">알림</a></li>
+                <li><a href="#">로그아웃</a></li>
               </ul>
             </div>
           </div>
          <div class="col-lg-9">
             <div class="hero__search">
               <div class="hero__search__form">
-                <button class="site-btn">login</button>
+                <button class="site-btn">글 공개하기</button>
               </div>
             </div>
             <input type="date" />
