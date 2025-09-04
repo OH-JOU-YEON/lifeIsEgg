@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 public class PageDTO <T> {
     
-    private static final long pageSize = 10;
+    private static final long pageSize = 6;
     
     private long page;
     private long size = 10;
