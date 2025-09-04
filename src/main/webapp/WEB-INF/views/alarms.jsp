@@ -128,7 +128,7 @@
     <a href="${alarmPages.getUrl('/lifeEgg/alarms', i)}"<c:if test="${alarmPages.page eq i}">aria-current="page" class="active"</c:if>>${i}</a>
     </c:forEach>
     <c:choose>
-        <c:when test="${alarmPages.hasNext}"><c:set var="url" value="${alarmPages.getUrl('/lifeEgg/alarms', pageInfo.page + 1)}" /></c:when>
+        <c:when test="${alarmPages.hasNext}"><c:set var="url" value="${alarmPages.getUrl('/lifeEgg/alarms', alarmPages.page + 1)}" /></c:when>
         <c:otherwise><c:set var="url" value="#" /></c:otherwise>
     </c:choose>
     <a href="${url}"<c:if test="${!alarmPages.hasNext}"> class="disabled"</c:if>>

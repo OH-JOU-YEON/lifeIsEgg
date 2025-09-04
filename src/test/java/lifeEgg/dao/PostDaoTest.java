@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.lifeEgg.dao.PostDAO;
 import com.lifeEgg.dao.UserDAO;
 import com.lifeEgg.dto.PostDTO;
+import com.lifeEgg.dto.PostPageDTO;
 import com.lifeEgg.dto.UserDTO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -67,7 +68,7 @@ public class PostDaoTest {
 		}
 		}
 		
-		List<PostDTO> postList = postDAO.readByUserId((long)1);
+		List<PostDTO> postList = postDAO.readByUserId((long)1, new PostPageDTO<PostDTO>());
 		
 		log.info(postList.toString());
 		
