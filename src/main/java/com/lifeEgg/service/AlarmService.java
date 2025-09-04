@@ -51,11 +51,12 @@ public class AlarmService {
 	
 	public AlarmPageDTO<AlarmDTO> getAlarmsByUserId(Long userId) {
 		
-		List<AlarmDTO> alarmList = alarmDAO.readByUserId(userId);
+		
 		
 		AlarmPageDTO<AlarmDTO> alarmPages = new AlarmPageDTO<>();
+		List<AlarmDTO> alarmList = alarmDAO.readByUserId(userId,alarmPages);
 		alarmPages.setContentList(alarmList);
-		alarmPages.setTotalSize(alarmList.size());
+		alarmPages.setTotalSize(alarmDAO.getAlarmsCountByUserId(userId));
 		
 		
 		

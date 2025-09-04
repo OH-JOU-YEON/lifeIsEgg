@@ -6,14 +6,14 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
-public class AlarmPageDTO <T> {
+@Setter
+public class PostPageDTO <T> {
     
     private static final long pageSize = 10;
     
     private long page;
-    private long size = 5;
+    private long size = 2;
     private long totalSize;
     
     private List<T> contentList = new ArrayList<T>();

@@ -16,8 +16,20 @@ select * from alarm where uuid = #{uuid}
 </select>
 
 
-<select id="readByUserId" resultType="hashmap">
-select * from alarm where user_id = #{userId}
+<select id="readByUserId" resultType="hashmap" parameterType="hashMap"
+
+>
+
+<![CDATA[
+select * 
+from alarm
+where user_id = #{userId}
+limit #{alarmPage.first}, #{alarmPage.size}
+]]>
+</select>
+
+<select id="getAlarmsCountByUserId" resultType="long">
+select count(*) from alarm where user_id = #{userId}
 </select>
 
 <delete id="delete"> 

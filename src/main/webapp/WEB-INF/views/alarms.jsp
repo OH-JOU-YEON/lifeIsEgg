@@ -84,6 +84,8 @@
                 <li><a href="#">내 일기 목록</a></li>
                 <li><a href="#">추천</a></li>
                 <li><a href="#">알림</a></li>
+                <li><a href="#">로그아웃</a></li>
+                
               </ul>
             </div>
           </div>
@@ -95,7 +97,7 @@
             <div class="shoping__cart__table">
               <table>
                 <tbody>
-              
+              	<c:forEach var="alarm" items="${alarms}" step = "1" varStatus="status" >
 
                   <tr>
                     <td class="shoping__cart__item">
@@ -103,7 +105,7 @@
                       <br />
                     </td>
                   </tr>
-				
+				</c:forEach>
               
                 </tbody>
               </table>
@@ -113,7 +115,7 @@
             
             <!-- 페이징 영역 시작 -->
              <c:choose>
-        <c:when test="${alarmPages.hasPrev}"><c:set var="url" value="${alarmPages.getUrl('/alarms', alarmPages.page - 1)}" /></c:when>
+        <c:when test="${alarmPages.hasPrev}"><c:set var="url" value="${alarmPages.getUrl('/lifeEgg/alarms', alarmPages.page - 1)}" /></c:when>
         <c:otherwise><c:set var="url" value="/alarms" /></c:otherwise>
     </c:choose>
     <a href="${url}"<c:if test="${!alarmPages.hasPrev}"> class="disabled"</c:if>>
@@ -123,10 +125,10 @@
         </svg>
     </a>
     <c:forEach var="i" begin="${alarmPages.firstPage}" end="${alarmPages.lastPage}" step="1">
-    <a href="${alarmPages.getUrl('/alarms', i)}"<c:if test="${alarmPages.page eq i}">aria-current="page" class="active"</c:if>>${i}</a>
+    <a href="${alarmPages.getUrl('/lifeEgg/alarms', i)}"<c:if test="${alarmPages.page eq i}">aria-current="page" class="active"</c:if>>${i}</a>
     </c:forEach>
     <c:choose>
-        <c:when test="${alarmPages.hasNext}"><c:set var="url" value="${alarmPages.getUrl('/alarms', pageInfo.page + 1)}" /></c:when>
+        <c:when test="${alarmPages.hasNext}"><c:set var="url" value="${alarmPages.getUrl('/lifeEgg/alarms', alarmPages.page + 1)}" /></c:when>
         <c:otherwise><c:set var="url" value="#" /></c:otherwise>
     </c:choose>
     <a href="${url}"<c:if test="${!alarmPages.hasNext}"> class="disabled"</c:if>>

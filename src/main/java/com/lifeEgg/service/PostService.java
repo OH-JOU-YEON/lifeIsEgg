@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import java.util.Optional;
 import java.util.Random;
 
@@ -14,6 +15,7 @@ import com.lifeEgg.dao.PostDAO;
 import com.lifeEgg.dto.FeedPageDTO;
 import com.lifeEgg.dto.PostDTO;
 import com.lifeEgg.dto.UserDTO;
+import com.lifeEgg.dto.PostPageDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -71,13 +73,18 @@ public class PostService {
 	}
 	
 	
-	public List<PostDTO> getPostsByUserId(Long userId) {
-		
-		List<PostDTO> postList = postDAO.readByUserId(userId);
+	public PostPageDTO<PostDTO> getPostsByUserId(Long userId) {
 		
 		
 		
-		return postList;
+		PostPageDTO<PostDTO> postPage = new PostPageDTO<>();
+		List<PostDTO> postList = postDAO.readByUserId(userId,postPage);
+		postPage.setContentList(postList);
+		postPage.setTotalSize(postList.size());
+		
+		
+		
+		return postPage;
 	}
 
 	
