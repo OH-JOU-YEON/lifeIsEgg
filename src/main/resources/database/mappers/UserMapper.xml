@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.lifeEgg.dao.UserDAO">
 
 	
-	<insert id="insertUser" parameterType="UserDTO">
+	<insert id="insertUser" parameterType="UserDTO" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
 		insert into user (name, age, email)
 		values (#{name}, #{age}, #{email});
 	</insert>

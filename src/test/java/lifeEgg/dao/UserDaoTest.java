@@ -18,6 +18,7 @@ public class UserDaoTest {
 	@Autowired
 	private UserDAO userDao;
 	
+	//삽입은 1회만 할 것
 //	@Test
 //    public void insertDataTest() throws Exception {
 //		UserDTO user = new UserDTO();
@@ -25,6 +26,7 @@ public class UserDaoTest {
 //		user.setName("테스트");
 //		user.setAge(99);
 //		userDao.insertUser(user);
+//		System.out.println(user.getId()); //insert와 동시에 id값 받아오는것 확인
 //    }
 	
 	@Test

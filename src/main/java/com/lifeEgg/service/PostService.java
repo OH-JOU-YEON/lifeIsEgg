@@ -99,7 +99,7 @@ public class PostService {
 //		return postPages;
 //	}
 	
-    public List<PostDTO> getPostsByAgeRange(UserDTO user){
+    public List<PostDTO> getPostsByAgeRange(UserDTO user){ //나이별+나잇대별로 가져오기
     	List<PostDTO> posts = new ArrayList<>();
         Random random = new Random();
         
