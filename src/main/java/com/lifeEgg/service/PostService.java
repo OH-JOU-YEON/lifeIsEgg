@@ -81,16 +81,16 @@ public class PostService {
 	}
 
 	
-	public FeedPageDTO<PostDTO> getPostsByAge(UserDTO user) {
-		
-		List<PostDTO> postList = postDAO.readByAge(user.getAge());
-		
-		FeedPageDTO<PostDTO> postPages = new FeedPageDTO<>();
-		postPages.setContentList(postList);
-		postPages.setTotalSize(postList.size());
-		
-		return postPages;
-	}
+//	public FeedPageDTO<PostDTO> getPostsByAge(UserDTO user) {
+//		
+//		List<PostDTO> postList = postDAO.readByAge(user.getAge());
+//		
+//		FeedPageDTO<PostDTO> postPages = new FeedPageDTO<>();
+//		postPages.setContentList(postList);
+//		postPages.setTotalSize(postList.size());
+//		
+//		return postPages;
+//	}
 	
     public List<PostDTO> getPostsByAgeRange(UserDTO user){
     	List<PostDTO> posts = new ArrayList<>();
