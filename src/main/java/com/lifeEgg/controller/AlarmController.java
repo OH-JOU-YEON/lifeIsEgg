@@ -30,7 +30,7 @@ public class AlarmController {
 
 	        model.addAttribute("user", loginUser);
 	        
-	       AlarmPageDTO<AlarmDTO> alarms = alarmService.getAlarmsByUserId((long) loginUser.getId() );
+	        AlarmPageDTO<AlarmDTO> alarms = alarmService.getAlarmsByUserId(loginUser.getId() );
 	        model.addAttribute("alarmPages",alarms);
 	        model.addAttribute("alarms",alarms.getContentList());
 	        

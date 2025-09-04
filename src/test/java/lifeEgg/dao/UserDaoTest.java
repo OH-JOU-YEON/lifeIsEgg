@@ -31,7 +31,7 @@ public class UserDaoTest {
     public void findByUserIdSuccssesTest() throws Exception {
 		
 		UserDTO user = new UserDTO();
-		Integer id = userDao.findUserIdByEmail("이메일");
+		Long id = userDao.findUserIdByEmail("이메일");
     	System.out.println(id);
     	Optional<UserDTO> optionalUser = userDao.findUserById(id);
     	user = optionalUser.orElseThrow(() -> new IllegalArgumentException("id: "+ id + "user not exist"));
@@ -44,7 +44,7 @@ public class UserDaoTest {
 	
 	@Test
     public void findByUserIdFailTest() throws Exception {	
-		Integer id = userDao.findUserIdByEmail("aaa");
+		Long id = userDao.findUserIdByEmail("aaa");
     	System.out.println(id);
     	
     }

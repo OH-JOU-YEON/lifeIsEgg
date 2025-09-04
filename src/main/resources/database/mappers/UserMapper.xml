@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id = #{id}
 	</select>
 
-    <select id="findUserIdByEmail" parameterType="string" resultType="Integer">
+    <select id="findUserIdByEmail" parameterType="string" resultType="Long">
 		select COALESCE(id, 0)
         from user 
         where email =#{email}

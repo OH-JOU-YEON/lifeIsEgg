@@ -1,6 +1,7 @@
 package com.lifeEgg.dao;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -26,6 +27,8 @@ public interface PostDAO {
 	    //동일한 나이 게시물들을 불러오는 메서드
 	    
 	    public List<PostDTO> readByAge(int age);
+	    
+	    public List<PostDTO> findByAgeRange(Map<String, Object> params);
 
 	    public void update(PostDTO post) throws Exception;
 

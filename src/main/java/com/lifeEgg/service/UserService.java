@@ -26,14 +26,14 @@ public class UserService {
     	}
     }
     
-    public UserDTO findUserById(int id) {
+    public UserDTO findUserById(Long id) {
     	Optional<UserDTO> user = userDao.findUserById(id);
 		return user.orElseThrow(() -> new IllegalArgumentException("id: "+ id + "user not exist"));
     }
     
     //로그인 시도 시 회원가입 여부 확인
-    public Integer findUserIdByEmail(String email) { //Integer 이용하면 null 반환해도 오류 나지 않음
-    	Integer userId = userDao.findUserIdByEmail(email);
+    public Long findUserIdByEmail(String email) {
+    	Long userId = userDao.findUserIdByEmail(email);
     	return userId;
     }
 
@@ -47,7 +47,7 @@ public class UserService {
     	}
     }
 
-    public void deleteUser(int id) {
+    public void deleteUser(Long id) {
     	try {
     		userDao.deleteUser(id);
 

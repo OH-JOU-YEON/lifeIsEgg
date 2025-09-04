@@ -1,13 +1,12 @@
 package com.lifeEgg.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.lifeEgg.dto.FeedPageDTO;
 import com.lifeEgg.dto.PostDTO;
 import com.lifeEgg.dto.UserDTO;
 import com.lifeEgg.service.PostService;
@@ -32,8 +31,12 @@ public class FeedController {
 
         model.addAttribute("user", loginUser);
         
-        List<PostDTO> postList = postService.getPostsByAge(0);
-        model.addAttribute("postList", postList);
+//        FeedPageDTO<PostDTO> posts = postService.getPostsByAge(0);
+////        FeedPageDTO<PostDTO> posts = postService.getPostsByAge(loginUser.getAge());
+//        System.out.println(posts.getContentList().get(0).getContent());
+//        model.addAttribute("postPages", posts);
+//        model.addAttribute("postList", posts.getContentList());
+        
         
         return "feed";
     }
