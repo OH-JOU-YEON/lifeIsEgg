@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.lifeEgg.dto.PostDTO;
+import com.lifeEgg.dto.PostPageDTO;
 
 
 @Mapper 
@@ -21,7 +23,7 @@ public interface PostDAO {
 	    
 	    //글쓴이의 포스트 불러오는 메서드
 	    
-	    public List<PostDTO> readByUserId(Long userId); 
+	    public List<PostDTO> readByUserId(@Param("userId") Long userId,@Param("postPage") PostPageDTO<PostDTO> postPage); 
 	    
 	    //동일한 나이 게시물들을 불러오는 메서드
 	    

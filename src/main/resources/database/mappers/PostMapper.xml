@@ -15,7 +15,12 @@ select * from post where uuid = #{uuid}
 </select>
 
 <select id="readByUserId" resultType="hashmap">
-select * from post where user_id = #{userId}
+<![CDATA[
+select * 
+from post
+where user_id = #{userId}
+limit #{postPage.first}, #{postPage.size}
+]]>
 </select>
 
 <select id="readByAge" resultType="hashmap">
