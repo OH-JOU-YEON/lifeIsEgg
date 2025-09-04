@@ -103,7 +103,7 @@
             <div id="content" data-name="main-content"></div>
             <br />
             <div style="display: flex">
-              <button class="last-btn" style="margin-left: auto">
+              <button class="last-btn" style="margin-left: auto" onclick = createDiary()>
                 작성하기
               </button>
             </div>
@@ -115,7 +115,7 @@
 
     <!-- Js Plugins -->
     <script src="<c:url value="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"/>"/></script>
-    <script src="<c:url value="/resources/js/editor.js"/>"/></script>
+    <script src="<c:url value="/resources/js/diary.js"/>"/></script>
     <script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/jquery.nice-select.min.js"/>"/></script>
