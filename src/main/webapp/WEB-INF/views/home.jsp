@@ -83,7 +83,7 @@
               <ul>
                 <li><a href="#">내 일기 목록</a></li>
                 <li><a href="./feed">추천</a></li>
-                <li><a href="./cheer">알림</a></li>
+                <li><a href="./alarms">알림</a></li>
               </ul>
             </div>
           </div>
