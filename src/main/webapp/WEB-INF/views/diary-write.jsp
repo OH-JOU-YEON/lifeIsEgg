@@ -96,10 +96,10 @@
          <div class="col-lg-9">
             <div class="hero__search">
               <div class="hero__search__form">
-                <button class="site-btn">글 공개하기</button>
+                <button class="site-btn" id = "publicOrNot" onclick = publicOrNot()>일기 공개하기</button>
               </div>
             </div>
-            <input type="date" />
+            <input type="date" id = "created_at"/>
             <div id="content" data-name="main-content"></div>
             <br />
             <div style="display: flex">
@@ -114,6 +114,14 @@
     <!-- Hero Section End -->
 
     <!-- Js Plugins -->
+    <script>
+ // javascript에서 jstl 단일값 사용
+    const userAge = '<c:out value="${user.age}"/>';
+    const userId = '<c:out value="${user.id}"/>';
+
+
+</script>
+
     <script src="<c:url value="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/diary.js"/>"/></script>
     <script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"/></script>

@@ -1,4 +1,37 @@
+
+
+function publicOrNot() {
+
+
+const publicParam = document.querySelector("#publicOrNot"); 
+
+if(publicParam.innerText == '일기 공개하기') {
+
+publicParam.innerText = '일기 비공개하기'; 
+
+} else {
+
+publicParam.innerText = '일기 공개하기'; 
+}
+
+
+
+}
+
+
+
+
 function createDiary() {
+
+ const params = {
+          created_at: document.querySelector("#created_at").value,
+          status: document.querySelector("#publicOrNot").innerText,
+          age: userAge,
+          userId: userId, 
+          content: editor.getHTML(),
+        };
+ 
+ console.log(params); 
 
 
 $.ajax({
@@ -10,11 +43,7 @@ $.ajax({
       "X-HTTP-Method-Override" : "POST"
     },
     dataType : 'text',       // 데이터 타입 (html, xml, json, text 등등)
-    data : JSON.stringify({  // 보낼 데이터 (Object , String, Array)
-      "no" : no,
-      "name" : name,
-      "nick" : nick
-    }),
+    data : JSON.stringify(params),
     success : function(result) { // 결과 성공 콜백함수
         console.log(result);
     },
