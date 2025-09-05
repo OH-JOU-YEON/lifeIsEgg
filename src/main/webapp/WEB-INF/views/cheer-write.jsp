@@ -107,6 +107,13 @@
     <!-- Hero Section End -->
 
     <!-- Js Plugins -->
+        <script>
+ // javascript에서 jstl 단일값 사용
+    const userAge = '<c:out value="${user.age}"/>';
+    const userId = '<c:out value="${user.id}"/>';
+
+
+</script>
     <script src="<c:url value="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/cheer.js"/>"/></script>
     <script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"/></script>

@@ -1,5 +1,14 @@
 function createCheer() {
 
+ const params = {
+          created_at: document.querySelector("#created_at").value,
+          age: userAge,
+          userId: userId, 
+          content: editor.getHTML(),
+        };
+ 
+ console.log(params); 
+
 
 $.ajax({
     type : 'post',           // 타입 (get, post, put 등등)
@@ -10,11 +19,7 @@ $.ajax({
       "X-HTTP-Method-Override" : "POST"
     },
     dataType : 'text',       // 데이터 타입 (html, xml, json, text 등등)
-    data : JSON.stringify({  // 보낼 데이터 (Object , String, Array)
-      "no" : no,
-      "name" : name,
-      "nick" : nick
-    }),
+    data : JSON.stringify(params),
     success : function(result) { // 결과 성공 콜백함수
         console.log(result);
     },
