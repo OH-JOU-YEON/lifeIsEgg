@@ -89,9 +89,10 @@
                 <span></span>
               </div>
               <ul>
-                <li><a href="#">내 일기 목록</a></li>
+                <li><a href="./diaries">내 일기 목록</a></li>
                 <li><a href="./feed">추천</a></li>
                 <li><a href="./alarms">알림</a></li>
+                <li><a href="./logout">로그아웃</a></li>
               </ul>
             </div>
           </div>
@@ -99,7 +100,9 @@
             <div class="section-title product__discount__title">
               <h2>추천</h2>
             </div>
-
+            
+            
+            
             <div class="shoping__cart__table">
               <table>
                 <tbody>
@@ -119,12 +122,48 @@
               </table>
             </div>
 
+
+            <!-- 페이징 영역 시작 -->
             <div class="product__pagination">
-              <a href="#">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-            </div>
+              <c:choose>
+        	    <c:when test="${postPages.hasPrev}">
+        		  <c:set var="url" value="${postPages.getUrl('./feed', postPages.page - 1)}" />
+        	    </c:when>
+        	    <c:otherwise><c:set var="url" value="./feed" /></c:otherwise>
+    		  </c:choose>
+    		
+    		  <a href="${url}"<c:if test="${!postPages.hasPrev}"> class="disabled"</c:if>>
+        	    <span class="sr-only">Previous</span>
+        	    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+           	  	  <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+        	    </svg>
+    		  </a>
+    		
+    		  <c:forEach var="i" begin="${postPages.firstPage}" end="${postPages.lastPage}" step="1">
+    		  <a href="${postPages.getUrl('./feed', i)}"
+    		    <c:if test="${postPages.page eq i}">
+    		  	  aria-current="page" class="active"
+    		    </c:if>>${i}</a>
+    		  </c:forEach>
+    		
+    		  <c:choose>
+        	    <c:when test="${postPages.hasNext}">
+        		  <c:set var="url" value="${postPages.getUrl('./feed', pageInfo.page + 1)}" />
+        	    </c:when>
+        	    <c:otherwise><c:set var="url" value="#" /></c:otherwise>
+    		  </c:choose>
+    		
+    		  <a href="${url}"<c:if test="${!postPages.hasNext}"> class="disabled"</c:if>>
+        	    <span class="sr-only">Next</span>
+        	    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              	  <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+        	    </svg>
+    		  </a>
+    		</div>
+
+<!--  
+            
+-->            
           </div>
         </div>
       </div>

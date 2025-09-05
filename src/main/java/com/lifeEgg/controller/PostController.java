@@ -20,8 +20,8 @@ public class PostController {
 	
 	private final PostService postService; 
 	
-	@GetMapping(value = "/{useremailsId}/diaries")
-	public String getMyPages(Model model,@PathVariable String useremailsId,HttpSession session) {
+	@GetMapping(value = "/diaries")
+	public String getMyPages(Model model, HttpSession session) {
 		
 		 UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
 	        if (loginUser == null) {
@@ -29,12 +29,10 @@ public class PostController {
 	            return "redirect:/home";
 	        }
 
-	        model.addAttribute("user", loginUser);
-	        model.addAttribute("emailId",useremailsId);
-	        
+	        model.addAttribute("user", loginUser);	        
 	        
 	     //임시로 포스트 컨텐츠 전부를 던짐. 뒤에 미리보기 추가할 것 
-	        PostPageDTO<PostDTO> postPages = postService.getPostsByUserId((long) loginUser.getId() );
+	        PostPageDTO<PostDTO> postPages = postService.getPostsByUserId(loginUser.getId());
 	        model.addAttribute("postPages",postPages);
 	        model.addAttribute("posts",postPages.getContentList());
 		

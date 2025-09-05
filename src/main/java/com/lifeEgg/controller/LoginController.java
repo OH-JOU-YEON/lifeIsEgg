@@ -17,7 +17,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
@@ -89,7 +88,7 @@ public class LoginController {
                 UserDTO user = userResponseEntity.getBody(); //유저 정보 받아오기
                 
 				try {
-					Integer userId = userService.findUserIdByEmail(user.getEmail());
+					Long userId = userService.findUserIdByEmail(user.getEmail());
 					
 	            	if (userId != null) { //유저 존재 - 로그인
 	            		user = userService.findUserById(userId);

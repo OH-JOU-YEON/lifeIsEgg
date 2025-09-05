@@ -11,12 +11,12 @@ public interface UserDAO {
 
     public void insertUser(UserDTO user);
     
-    public Optional<UserDTO> findUserById(int id);
+    public Optional<UserDTO> findUserById(Long id);
     
-    public Integer findUserIdByEmail(String email);
+    public Long findUserIdByEmail(String email);
 
     public void updateUser(UserDTO user);
 
-    public void deleteUser(int id);
+    public void deleteUser(Long id);
 
 }

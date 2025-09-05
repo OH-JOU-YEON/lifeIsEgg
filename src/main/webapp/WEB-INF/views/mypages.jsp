@@ -81,10 +81,10 @@
                 <span></span>
               </div>
               <ul>
-                <li><a href="#">내 일기 목록</a></li>
-                <li><a href="#">추천</a></li>
-                <li><a href="#">알림</a></li>
-                <li><a href="#">로그아웃</a></li>
+                <li><a href="./diaries">내 일기 목록</a></li>
+                <li><a href="./feed">추천</a></li>
+                <li><a href="./alarms">알림</a></li>
+                <li><a href="./logout">로그아웃</a></li>
               </ul>
             </div>
           </div>
@@ -120,8 +120,8 @@
             <div class="product__pagination">
               <!-- 페이징 영역 시작 -->
              <c:choose>
-        <c:when test="${postPages.hasPrev}"><c:set var="url" value="${postPages.getUrl('/lifeEgg/${emailsId}/diaries', postPages.page - 1)}" /></c:when>
-        <c:otherwise><c:set var="url" value='/lifeEgg/${emailsId}/diaries' /></c:otherwise>
+        <c:when test="${postPages.hasPrev}"><c:set var="url" value="${postPages.getUrl('/lifeEgg/diaries', postPages.page - 1)}" /></c:when>
+        <c:otherwise><c:set var="url" value='/lifeEgg/diaries' /></c:otherwise>
     </c:choose>
     <a href="${url}"<c:if test="${!postPages.hasPrev}"> class="disabled"</c:if>>
         <span class="sr-only">Previous</span>
@@ -130,10 +130,10 @@
         </svg>
     </a>
     <c:forEach var="i" begin="${postPages.firstPage}" end="${alarmPages.lastPage}" step="1">
-    <a href="${postPages.getUrl('/lifeEgg/${emailsId}/diaries', i)}"<c:if test="${postPages.page eq i}">aria-current="page" class="active"</c:if>>${i}</a>
+    <a href="${postPages.getUrl('/lifeEgg/diaries', i)}"<c:if test="${postPages.page eq i}">aria-current="page" class="active"</c:if>>${i}</a>
     </c:forEach>
     <c:choose>
-        <c:when test="${postPages.hasNext}"><c:set var="url" value="${postPages.getUrl('/lifeEgg/${emailsId}/diaries', postPages.page + 1)}" /></c:when>
+        <c:when test="${postPages.hasNext}"><c:set var="url" value="${postPages.getUrl('/lifeEgg/diaries', postPages.page + 1)}" /></c:when>
         <c:otherwise><c:set var="url" value="#" /></c:otherwise>
     </c:choose>
     <a href="${url}"<c:if test="${!postPages.hasNext}"> class="disabled"</c:if>>

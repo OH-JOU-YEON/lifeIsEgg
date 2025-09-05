@@ -18,6 +18,7 @@ public class UserDaoTest {
 	@Autowired
 	private UserDAO userDao;
 	
+	//삽입은 1회만 할 것
 //	@Test
 //    public void insertDataTest() throws Exception {
 //		UserDTO user = new UserDTO();
@@ -25,13 +26,14 @@ public class UserDaoTest {
 //		user.setName("테스트");
 //		user.setAge(99);
 //		userDao.insertUser(user);
+//		System.out.println(user.getId()); //insert와 동시에 id값 받아오는것 확인
 //    }
 	
 	@Test
     public void findByUserIdSuccssesTest() throws Exception {
 		
 		UserDTO user = new UserDTO();
-		Integer id = userDao.findUserIdByEmail("이메일");
+		Long id = userDao.findUserIdByEmail("이메일");
     	System.out.println(id);
     	Optional<UserDTO> optionalUser = userDao.findUserById(id);
     	user = optionalUser.orElseThrow(() -> new IllegalArgumentException("id: "+ id + "user not exist"));
@@ -44,7 +46,7 @@ public class UserDaoTest {
 	
 	@Test
     public void findByUserIdFailTest() throws Exception {	
-		Integer id = userDao.findUserIdByEmail("aaa");
+		Long id = userDao.findUserIdByEmail("aaa");
     	System.out.println(id);
     	
     }

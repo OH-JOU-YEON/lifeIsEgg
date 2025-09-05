@@ -5,36 +5,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.lifeEgg.dao.PostDAO">
 	
-<insert id="create">
-insert into post (content, status, created_at, user_id, uuid, age) values (#{content}, #{status},
-		#{created_at}, #{user_id}, #{uuid}, #{age})
-</insert>
-
-<select id="readByUuid" resultType="PostDTO">
-select * from post where uuid = #{uuid}
-</select>
-
-<select id="readByUserId" resultType="hashmap">
-<![CDATA[
-select * 
-from post
-where user_id = #{userId}
-limit #{postPage.first}, #{postPage.size}
-]]>
-</select>
-
-<select id="readByAge" resultType="hashmap">
-select * from post where age = #{age}
-</select>
-
-<update id="update">
-update post set content=#{content}, status=#{status}, created_at = #{created_at},
-		 where uuid = #{uuid}
-</update>
-
-<delete id="delete"> 
-delete from Post where uuid = #{uuid} 
-</delete>
+	<insert id="create">
+		insert into post (content, status, created_at, user_id, uuid, age) values (#{content}, #{status},
+			#{created_at}, #{user_id}, #{uuid}, #{age})
+	</insert>
+	
+	<select id="readByUuid" resultType="PostDTO">
+		select * from post where uuid = #{uuid}
+	</select>
+	
+	<select id="readByUserId" resultType="hashmap">
+		<![CDATA[
+			select * 
+			from post
+			where user_id = #{userId}
+			limit #{postPage.first}, #{postPage.size}
+		]]>
+	</select>
+	
+	<select id="readByAge" resultType="PostDTO">
+		select * from post where age = #{age}
+	</select>
+	
+	<select id="findByAgeRange" parameterType="hashmap" resultType="PostDTO">
+		SELECT *
+        FROM post
+        WHERE user_id != #{user_id}
+          AND status = 0
+          AND age BETWEEN #{minAge} AND #{maxAge}
+	</select>
+	
+	<update id="update">
+		update post set content=#{content}, status=#{status}, created_at = #{created_at},
+			 where uuid = #{uuid}
+	</update>
+	
+	<delete id="delete"> 
+		delete from Post where uuid = #{uuid} 
+	</delete>
 
 
 </mapper>
