@@ -72,6 +72,11 @@ public class PostService {
 		
 	}
 	
+	public Long getPostIdByUuid(String uuid) {
+		
+		return postDAO.readPostIdByUuid(uuid); 
+	}
+	
 	
 	public PostPageDTO<PostDTO> getPostsByUserId(Long userId) {
 		

@@ -4,6 +4,7 @@ function createCheer() {
           userId: userId, 
           content: editor.getHTML(),
           diaryUuid: diaryUuid, 
+          cheerUuid: cheerUuid,
         };
  
  console.log(params); 

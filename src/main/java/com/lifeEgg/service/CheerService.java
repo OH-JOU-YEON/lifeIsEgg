@@ -36,11 +36,18 @@ public class CheerService {
 		}
 	}
 	
+	
+	
 	public List<CheerDTO> getCheersByUserId(Long userId) {
 		
 		List<CheerDTO> cheerList = cheerDAO.readByUserId(userId);
 		
 		return cheerList;
+	}
+	
+	public Long getCheerIdByUuid(String uuid) {
+		
+		return cheerDAO.readIdByUuid(uuid); 
 	}
 	
 	public CheerDTO getCheerByUuid(String uuid) {

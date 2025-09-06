@@ -16,6 +16,8 @@ public void create(CheerDTO cheer) throws Exception;
     public List<CheerDTO> readByUserId(Long userId);
     
     public Optional<CheerDTO> readByUuid(String uuid);
+   
+    public Long readIdByUuid(String uuid); 
 
     public void delete(Long id) throws Exception;
     
