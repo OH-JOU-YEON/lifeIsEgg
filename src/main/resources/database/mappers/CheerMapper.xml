@@ -17,6 +17,10 @@ select * from cheer where user_id = #{userId}
 select * from cheer where uuid = #{uuid}
 </select>
 
+<select id="readIdByUuid" resultType="Long">
+select id from cheer where uuid = #{uuid}
+</select>
+
 
 <delete id="delete"> 
 delete from cheer where id = #{id} 

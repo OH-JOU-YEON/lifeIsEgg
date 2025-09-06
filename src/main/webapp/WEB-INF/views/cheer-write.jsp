@@ -49,7 +49,7 @@
         <div class="row">
           <div class="col-lg-3">
             <div class="header__logo">
-           <a href="./index.html"
+           <a href="./home"
                 ><div
                   class="logo"
                   style="
@@ -59,7 +59,7 @@
                   "
                 >
                   <img
-                    src="<c:url value='resources/img/boiled-egg.png'/>"
+                    src="<c:url value='/resources/img/boiled-egg.png'/>"
                     style="width: 50px; height: 50px; margin-right: 8px"
                     alt=""
                   />
@@ -96,7 +96,7 @@
           <div class="col-lg-9">
             <div class="hero__search">
               <div class="hero__search__form">
-                <button class="site-btn">응원 보내기</button>
+                <button class="site-btn" onclick=createCheer()>응원 보내기</button>
               </div>
             </div>
             <div id="content" data-name="main-content"></div>
@@ -114,6 +114,7 @@
     //응원을 보낼 때 응원을 보내는 일기의 uuid를 파라미터로 받음 
     //cheer의 uuid는 별개임!!! 
     const diaryUuid = '<c:out value="${diaryUuid}"/>'
+    const cheerUuid = '<c:out value="${cheerUuid}"/>'
 
 
 </script>
