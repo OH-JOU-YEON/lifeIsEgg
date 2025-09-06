@@ -106,7 +106,7 @@
             <div class="shoping__cart__table">
               <table>
                 <tbody>
-                  <c:forEach items="${postList}" var="post">
+                  <c:forEach items="${postList}" var="post" step="1" varStatus="status">
 
                   <tr>
                     <td class="shoping__cart__item">
@@ -160,10 +160,7 @@
         	    </svg>
     		  </a>
     		</div>
-
-<!--  
-            
--->            
+    
           </div>
         </div>
       </div>

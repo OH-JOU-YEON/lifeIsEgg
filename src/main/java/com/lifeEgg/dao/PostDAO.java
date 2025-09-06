@@ -30,7 +30,8 @@ public interface PostDAO {
 	    
 	    public List<PostDTO> readByAge(int age);
 	    
-	    public List<PostDTO> findByAgeRange(Map<String, Object> params);
+	    public List<PostDTO> findByAgeRange(
+	    		@Param("user_id")Long userId, @Param("min_age")int minAge, @Param("max_age")int maxAge);
 
 	    public void update(PostDTO post) throws Exception;
 

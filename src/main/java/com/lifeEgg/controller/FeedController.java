@@ -1,5 +1,7 @@
 package com.lifeEgg.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -31,11 +33,11 @@ public class FeedController {
 
         model.addAttribute("user", loginUser);
         
-//        FeedPageDTO<PostDTO> posts = postService.getPostsByAge(0);
-////        FeedPageDTO<PostDTO> posts = postService.getPostsByAge(loginUser.getAge());
-//        System.out.println(posts.getContentList().get(0).getContent());
-//        model.addAttribute("postPages", posts);
-//        model.addAttribute("postList", posts.getContentList());
+        
+        List<PostDTO> postList = postService.getPostsByAgeRange(loginUser);
+
+        model.addAttribute("postPages", postService.toPostPageDTO(postList));
+        model.addAttribute("postList", postList);
         
         
         return "feed";

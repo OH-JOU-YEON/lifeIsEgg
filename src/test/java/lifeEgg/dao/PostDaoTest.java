@@ -1,7 +1,9 @@
 package lifeEgg.dao;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.junit.Test;
@@ -54,23 +56,60 @@ public class PostDaoTest {
 		 
 		 
 		for(int i=0; i<10; i++) {
-		PostDTO post = new PostDTO();
-		post.setUser_id((long) 1);
-		post.setUuid(UUID.randomUUID().toString());
-		post.setContent("테스트"+i);
-		post.setCreated_at(LocalDateTime.now());
-		
-		try {
-			postDAO.create(post);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			PostDTO post = new PostDTO();
+			post.setUser_id((long) 1);
+			post.setUuid(UUID.randomUUID().toString());
+			post.setContent("테스트"+i);
+			post.setCreated_at(LocalDateTime.now());
+			
+			try {
+				postDAO.create(post);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		List<PostDTO> postList = postDAO.readByUserId((long)1, new PostPageDTO<PostDTO>());
 		
 		log.info(postList.toString());
+		
+	}
+	
+	@Test
+	public void insertPostTest() {
+		
+		for(int i=0; i<10; i++) {
+			PostDTO post = new PostDTO();
+			post.setUser_id((long) 18);
+			post.setUuid(UUID.randomUUID().toString());
+			post.setContent("테스트"+i);
+			post.setCreated_at(LocalDateTime.now());
+			post.setAge(25);
+			
+			try {
+				postDAO.create(post);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	@Test
+	public void postListReadByAgeTest() {
+		
+		List<PostDTO> postList = postDAO.findByAgeRange((long)17, 25, 25);
+		
+		log.info(postList.toString());
+		
+		
+		int minAge = 25;
+		int maxAge = 25;
+		
+        List<PostDTO> postList2 = postDAO.findByAgeRange((long)17, minAge, maxAge);
+		
+		log.info(postList2.toString());
 		
 	}
 
