@@ -1,6 +1,7 @@
 package com.lifeEgg.dto;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 import lombok.Data;
@@ -14,4 +15,7 @@ public class PostDTO {
 	private Long user_id; 
 	private String uuid; 
 	private int age; 
+	
+	
+
 }
