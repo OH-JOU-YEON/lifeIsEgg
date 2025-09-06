@@ -29,11 +29,12 @@ public interface PostDAO {
 	    //동일한 나이 게시물들을 불러오는 메서드
 	    
 	    public List<PostDTO> readByAge(int age);
-	    
+
 	    //포스트 uuid로 아이디 불러오는 메서드 
 	    public Long readPostIdByUuid(String uuid); 
 	    
-	    public List<PostDTO> findByAgeRange(Map<String, Object> params);
+	    public List<PostDTO> findByAgeRange(
+	    		@Param("user_id")Long userId, @Param("min_age")int minAge, @Param("max_age")int maxAge);
 
 	    public void update(PostDTO post) throws Exception;
 

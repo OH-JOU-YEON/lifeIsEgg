@@ -11,8 +11,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.lifeEgg.dao.UserDAO;
 import com.lifeEgg.dto.UserDTO;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
+@Slf4j
 public class UserDaoTest {
 	
 	@Autowired
@@ -34,13 +37,10 @@ public class UserDaoTest {
 		
 		UserDTO user = new UserDTO();
 		Long id = userDao.findUserIdByEmail("이메일");
-    	System.out.println(id);
+		log.info(user.toString());
     	Optional<UserDTO> optionalUser = userDao.findUserById(id);
     	user = optionalUser.orElseThrow(() -> new IllegalArgumentException("id: "+ id + "user not exist"));
-    	System.out.println(user.getAge());
-    	System.out.println(user.getEmail());
-    	System.out.println(user.getId());
-    	System.out.println(user.getName());
+    	log.info(user.toString());
 
     }
 	

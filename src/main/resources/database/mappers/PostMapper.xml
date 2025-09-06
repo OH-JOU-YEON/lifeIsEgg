@@ -31,12 +31,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id from post where uuid = #{uuid}
 	</select>
 	
-	<select id="findByAgeRange" parameterType="hashmap" resultType="PostDTO">
+	<select id="findByAgeRange" parameterType="map" resultType="PostDTO">
 		SELECT *
         FROM post
         WHERE user_id != #{user_id}
           AND status = 0
-          AND age BETWEEN #{minAge} AND #{maxAge}
+          AND age BETWEEN #{min_age} AND #{max_age}
 	</select>
 	
 	<update id="update">

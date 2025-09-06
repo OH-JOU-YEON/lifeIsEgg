@@ -93,16 +93,15 @@ public class PostService {
 	}
 
 	
-//	public FeedPageDTO<PostDTO> getPostsByAge(UserDTO user) {
-//		
-//		List<PostDTO> postList = postDAO.readByAge(user.getAge());
-//		
-//		FeedPageDTO<PostDTO> postPages = new FeedPageDTO<>();
-//		postPages.setContentList(postList);
-//		postPages.setTotalSize(postList.size());
-//		
-//		return postPages;
-//	}
+	public PostPageDTO<PostDTO> toPostPageDTO(List<PostDTO> postList) {
+
+		PostPageDTO<PostDTO> postPage = new PostPageDTO<>();
+		postPage.setContentList(postList);
+		postPage.setTotalSize(postList.size());
+
+		return postPage;
+	}
+	
 	
     public List<PostDTO> getPostsByAgeRange(UserDTO user){ //나이별+나잇대별로 가져오기
     	List<PostDTO> posts = new ArrayList<>();
@@ -118,17 +117,20 @@ public class PostService {
         
         Long userId = user.getId();
         int age = user.getAge();
+        int minAge;
+        int maxAge;
 
         for (int[] range : ranges) {
             if (posts.size() >= 10) break;
             
-            Map<String, Object> params = new HashMap<>();
-            params.put("user_id", userId);
-            params.put("minAge", age + range[0]);
-            params.put("maxAge", age + range[1]);
+            minAge = age + range[0];
+            maxAge = age + range[1];
 
-            List<PostDTO> searchResult = postDAO.findByAgeRange(params);
-
+            List<PostDTO> searchResult = postDAO.findByAgeRange(userId, minAge, maxAge);
+            
+            System.out.println("현재 나이 범위 min:" + minAge + " max:" + maxAge);
+            System.out.println("검색 결과: " + searchResult.toString());
+            
             // 이미 뽑은 결과 제외
             searchResult.removeAll(posts);
 
