@@ -109,8 +109,11 @@
     <!-- Js Plugins -->
         <script>
  // javascript에서 jstl 단일값 사용
-    const userAge = '<c:out value="${user.age}"/>';
     const userId = '<c:out value="${user.id}"/>';
+    
+    //응원을 보낼 때 응원을 보내는 일기의 uuid를 파라미터로 받음 
+    //cheer의 uuid는 별개임!!! 
+    const diaryUuid = '<c:out value="${diaryUuid}"/>'
 
 
 </script>
