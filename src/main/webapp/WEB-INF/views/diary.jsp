@@ -59,7 +59,7 @@
                   "
                 >
                   <img
-                    src="<c:url value='/resources/img/boiled-egg.png'/>"
+                    src="<c:url value='./resources/img/boiled-egg.png'/>"
                     style="width: 50px; height: 50px; margin-right: 8px"
                     alt=""
                   />
