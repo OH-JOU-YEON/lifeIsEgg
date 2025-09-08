@@ -90,7 +90,7 @@
           <div class="col-lg-9">
             <div class="hero__search">
               <div style="display: flex">
-                <button class="site-btn" onclick="login()" style="margin-left: auto">회원가입/로그인</button>
+                <button class="site-btn" onclick="login()">회원가입/로그인</button>
                 <script type="text/javascript">
                 	function login(){
                 		const form = document.createElement("form");
@@ -103,7 +103,7 @@
               </div>
             </div>
             <div class="product__details__text" style="display: flex">
-              <div class="col" style="position:relative; left:40px;">
+              <div class="col" style="position:relative; left:20px;">
                 <br>
                 <h3>오늘 하루의 마무리, 삶은 달걀</h3>
                 <br>
