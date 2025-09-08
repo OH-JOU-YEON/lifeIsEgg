@@ -2,7 +2,7 @@ package com.lifeEgg.controller;
 
 
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
@@ -73,7 +73,7 @@ public class WriteDiaryController {
 		
 		postDTO.setAge(diaryWriteDTO.getAge()); 
 		postDTO.setContent(diaryWriteDTO.getContent()); 
-		postDTO.setCreated_at(LocalDateTime.parse(diaryWriteDTO.getCreated_at(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+		postDTO.setCreated_at(LocalDate.parse(diaryWriteDTO.getCreated_at(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 		postDTO.setUser_id(diaryWriteDTO.getUserId()); 
 		postDTO.setUuid(UUID.randomUUID().toString()); 
 		

@@ -1,9 +1,7 @@
 package lifeEgg.dao;
 
-import java.time.LocalDateTime;
-import java.util.HashMap;
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import org.junit.Test;
@@ -60,7 +58,7 @@ public class PostDaoTest {
 			post.setUser_id((long) 1);
 			post.setUuid(UUID.randomUUID().toString());
 			post.setContent("테스트"+i);
-			post.setCreated_at(LocalDateTime.now());
+			post.setCreated_at(LocalDate.now());
 			
 			try {
 				postDAO.create(post);
@@ -84,7 +82,7 @@ public class PostDaoTest {
 			post.setUser_id((long) 18);
 			post.setUuid(UUID.randomUUID().toString());
 			post.setContent("테스트"+i);
-			post.setCreated_at(LocalDateTime.now());
+			post.setCreated_at(LocalDate.now());
 			post.setAge(25);
 			
 			try {
