@@ -89,6 +89,7 @@
                 <li><a href="./diaries">내 일기 목록</a></li>
                 <li><a href="./feed">추천</a></li>
                 <li><a href="./alarms">알림</a></li>
+                <li><a href="./user">내 정보</a></li>
                 <li><a href="./logout">로그아웃</a></li>
               </ul>
             </div>
