@@ -8,10 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.lifeEgg.dto.FeedPageDTO;
 import com.lifeEgg.dto.PostDTO;
 import com.lifeEgg.dto.UserDTO;
-import com.lifeEgg.service.PostService;
+import com.lifeEgg.service.FeedService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class FeedController {
 	
-	private final PostService postService;
+	private final FeedService feedService;
     
     @RequestMapping(value="/feed")
     public String feed(HttpSession session, Model model){
@@ -34,10 +33,10 @@ public class FeedController {
         model.addAttribute("user", loginUser);
         
         
-        List<PostDTO> postList = postService.getPostsByAgeRange(loginUser);
+        List<PostDTO> feedList = feedService.getFeedPosts(loginUser);
 
-        model.addAttribute("postPages", postService.toPostPageDTO(postList));
-        model.addAttribute("postList", postList);
+        model.addAttribute("feedPages", feedService.toFeedPageDTO(feedList));
+        model.addAttribute("feedList", feedList);
         
         
         return "feed";
