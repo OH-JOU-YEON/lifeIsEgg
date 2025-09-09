@@ -1,6 +1,5 @@
 package com.lifeEgg.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -38,6 +37,8 @@ public class UserService {
     }
 
     public void updateUser(UserDTO user) {
+    	Long userId = findUserIdByEmail(user.getEmail());
+    	user.setId(userId);
     	try {
     		userDao.updateUser(user);
 

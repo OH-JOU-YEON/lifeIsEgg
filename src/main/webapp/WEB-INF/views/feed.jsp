@@ -17,7 +17,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>feed</title>
+    <title>Life is Egg | Feed</title>
 
     <!-- Google Font -->
     <link
@@ -92,6 +92,7 @@
                 <li><a href="./diaries">내 일기 목록</a></li>
                 <li><a href="./feed">추천</a></li>
                 <li><a href="./alarms">알림</a></li>
+                <li><a href="./user">내 정보</a></li>
                 <li><a href="./logout">로그아웃</a></li>
               </ul>
             </div>
@@ -110,7 +111,7 @@
 
                   <tr>
                     <td class="shoping__cart__item">
-                      <h5>Vegetable’s Package</h5>
+                      <h5></h5>
                       <br />
                       <p>${post.created_at}</p>
                       <p>${post.content}</p>
@@ -126,9 +127,7 @@
             <!-- 페이징 영역 시작 -->
             <div class="product__pagination">
               <c:choose>
-        	    <c:when test="${postPages.hasPrev}">
-        		  <c:set var="url" value="${postPages.getUrl('./feed', postPages.page - 1)}" />
-        	    </c:when>
+        	    <c:when test="${postPages.hasPrev}"><c:set var="url" value="${postPages.getUrl('./feed', postPages.page - 1)}" /></c:when>
         	    <c:otherwise><c:set var="url" value="./feed" /></c:otherwise>
     		  </c:choose>
     		
@@ -141,14 +140,11 @@
     		
     		  <c:forEach var="i" begin="${postPages.firstPage}" end="${postPages.lastPage}" step="1">
     		  <a href="${postPages.getUrl('./feed', i)}"
-    		    <c:if test="${postPages.page eq i}">
-    		  	  aria-current="page" class="active"
-    		    </c:if>>${i}</a>
+    		    <c:if test="${postPages.page eq i}">aria-current="page" class="active"</c:if>>${i}</a>
     		  </c:forEach>
     		
     		  <c:choose>
-        	    <c:when test="${postPages.hasNext}">
-        		  <c:set var="url" value="${postPages.getUrl('./feed', pageInfo.page + 1)}" />
+        	    <c:when test="${postPages.hasNext}"><c:set var="url" value="${postPages.getUrl('./feed', pageInfo.page + 1)}" />
         	    </c:when>
         	    <c:otherwise><c:set var="url" value="#" /></c:otherwise>
     		  </c:choose>

@@ -23,10 +23,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where email =#{email}
     </select>
 
-	<update id="updateUser">
+	<update id="updateUser" parameterType="UserDTO">
 		update user
 		set name=#{name}, age=#{age}
 		where id = #{id} 
+		<selectKey order="BEFORE" resultType="Long" keyProperty="id">
+			select id
+			from user
+			where email =#{email}
+		</selectKey>
 	</update>
 
 	<delete id="deleteUser"> 

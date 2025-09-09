@@ -10,7 +10,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Ogani | Template</title>
+    <title>Life is Egg | Alarms</title>
 
     <!-- Google Font -->
     <link
@@ -44,7 +44,7 @@
         <div class="row">
           <div class="col-lg-3">
             <div class="header__logo">
-           <a href="./index.html"
+           <a href="./home"
                 ><div
                   class="logo"
                   style="
@@ -84,6 +84,7 @@
                 <li><a href="./diaries">내 일기 목록</a></li>
                 <li><a href="./feed">추천</a></li>
                 <li><a href="./alarms">알림</a></li>
+                <li><a href="./user">내 정보</a></li>
                 <li><a href="./logout">로그아웃</a></li>
                 
               </ul>
