@@ -81,7 +81,7 @@ public class PostDaoTest {
 			PostDTO post = new PostDTO();
 			post.setUser_id((long) 18);
 			post.setUuid(UUID.randomUUID().toString());
-			post.setContent("테스트"+i);
+			post.setContent("테스트2"+i);
 			post.setCreated_at(LocalDate.now());
 			post.setAge(25);
 			

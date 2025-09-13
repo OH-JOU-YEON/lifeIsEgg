@@ -13,7 +13,7 @@ public class FeedPageDTO <T> {
     private static final long pageSize = 10;
     
     private long page;
-    private long size = 10;
+    private long size = 5;
     private long totalSize;
     
     private List<T> contentList = new ArrayList<T>();

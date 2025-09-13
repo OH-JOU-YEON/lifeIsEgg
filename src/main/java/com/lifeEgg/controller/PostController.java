@@ -23,28 +23,25 @@ public class PostController {
 	
 	@GetMapping(value = "/diaries")
 	public String getMyPages(Model model, HttpSession session,@RequestParam(required = false) Long page) {
+		UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
+		if (loginUser == null) {
+			// 로그인 안됨
+			return "redirect:/home";
+		}
 		
-		 UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
-	        if (loginUser == null) {
-	            // 로그인 안됨
-	            return "redirect:/home";
-	        }
-	        
-	        if(page == null) {
-	        	page = (long) 0; 
-	        }
+		if(page == null) {
+			page = (long) 0; 
+		}
 
-	        model.addAttribute("user", loginUser);	        
+		model.addAttribute("user", loginUser);	        
 	        
-	     //임시로 포스트 컨텐츠 전부를 던짐. 뒤에 미리보기 추가할 것 
-	        PostPageDTO<PostDTO> postPages = postService.getPostsByUserId(loginUser.getId(),page);
-	        model.addAttribute("postPages",postPages);
-	        model.addAttribute("posts",postPages.getContentList());
+		//임시로 포스트 컨텐츠 전부를 던짐. 뒤에 미리보기 추가할 것 
+		PostPageDTO<PostDTO> postPages = postService.getPostsByUserId(loginUser.getId(),page);
+		model.addAttribute("postPages",postPages);
+		model.addAttribute("posts",postPages.getContentList());;
 		
 		return "mypages";
-		
 	}
-	
 	
 
 }

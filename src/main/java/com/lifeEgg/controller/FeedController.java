@@ -1,5 +1,6 @@
 package com.lifeEgg.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -36,13 +37,33 @@ public class FeedController {
 
         model.addAttribute("user", loginUser);
         
+        List<PostDTO> oldFeed = (List<PostDTO>) session.getAttribute("oldFeed");
+        List<PostDTO> feedList = new ArrayList<>();
         
-        List<PostDTO> feedList = feedService.getFeedPosts(loginUser);
+        int len = 5; //겹치지 않도록 저장해두는 갯수
 
-        model.addAttribute("feedPages", feedService.toFeedPageDTO(feedList,page));
+    	if (oldFeed == null) {
+        	oldFeed = new ArrayList<>();
+        	feedList = feedService.getFeedPosts(loginUser);
+        } else {
+        	feedList = feedService.getFeedPosts(loginUser, oldFeed);
+        	if (feedList == null) {
+        		oldFeed.clear();
+        		feedList = feedService.getFeedPosts(loginUser);
+        	}
+        }
+    	
+    	
         model.addAttribute("feedList", feedList);
+    	oldFeed.addAll(feedList);
+    	
+    	if (oldFeed.size() > len) {
+    		oldFeed.subList(0, oldFeed.size() - len - 1).clear();
+    	}
         
+        session.setAttribute("oldFeed", oldFeed);
         
         return "feed";
     }
+    
 }

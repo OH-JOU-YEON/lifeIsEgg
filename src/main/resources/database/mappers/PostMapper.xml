@@ -39,6 +39,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
           AND age BETWEEN #{min_age} AND #{max_age}
 	</select>
 	
+	<select id="findByAgeRangeExcludeOld" parameterType="map" resultType="PostDTO">
+		SELECT *
+        FROM post
+        WHERE user_id != #{user_id}
+          AND status = 0
+          AND age BETWEEN #{min_age} AND #{max_age}
+          AND id NOT IN
+          <foreach item="post" collection="old" open="(" separator="," close=")">
+          	#{post.id}
+          </foreach>
+	</select>
+	
 	<update id="update">
 		update post set content=#{content}, status=#{status}, created_at = #{created_at},
 			 where uuid = #{uuid}
