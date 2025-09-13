@@ -23,6 +23,9 @@ public class PostService {
 	
 	public void createPost(PostDTO postDTO) {
 		
+		postDTO.getContent();
+		String removeText = "<(/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>;]*)?(\s)*(/)?>";
+		postDTO.setContent(postDTO.getContent().replaceAll(removeText, ""));
 		try {
 			postDAO.create(postDTO);
 		} catch (Exception e) {
