@@ -45,7 +45,7 @@ $.ajax({
     dataType : 'text',       // 데이터 타입 (html, xml, json, text 등등)
     data : JSON.stringify(params),
     success : function(result) { // 결과 성공 콜백함수
-        location.href = "/lifeEgg/diaries" 
+        location.href = "./lifeEgg/diaries" 
     },
     error : function(request, status, error) { // 결과 에러 콜백함수
         console.log(error)

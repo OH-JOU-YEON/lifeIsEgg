@@ -21,7 +21,7 @@ $.ajax({
     dataType : 'text',       // 데이터 타입 (html, xml, json, text 등등)
     data : JSON.stringify(params),
     success : function(result) { // 결과 성공 콜백함수
-        location.href = "/lifeEgg/feed"  //응원작성완료했으면 마저 피드로 돌아감 
+        location.href = "./lifeEgg/feed"  //응원작성완료했으면 마저 피드로 돌아감 
     },
     error : function(request, status, error) { // 결과 에러 콜백함수
         console.log(error)
