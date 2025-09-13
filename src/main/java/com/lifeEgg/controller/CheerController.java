@@ -5,6 +5,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.lifeEgg.dto.CheerDTO;
-import com.lifeEgg.dto.UserDTO;
 import com.lifeEgg.dto.CheerWriteDTO;
+import com.lifeEgg.dto.UserDTO;
 import com.lifeEgg.service.CheerService;
 import com.lifeEgg.service.PostService;
 
@@ -67,7 +69,7 @@ public class CheerController {
 	
 	//일기에 응원 작성 
 	@PostMapping("/create/cheer")
-	public void createCheer(HttpServletRequest request,@RequestBody CheerWriteDTO cheerWriteDTO) {
+	public ResponseEntity createCheer(HttpServletRequest request,@RequestBody CheerWriteDTO cheerWriteDTO) {
 		
 		CheerDTO cheerDTO = new CheerDTO(); 
 		
@@ -85,7 +87,7 @@ public class CheerController {
 		
 		cheerService.createCheer(cheerDTO); 
 		
-		
+		return new ResponseEntity(HttpStatus.OK);
 		
 		
 	}

@@ -103,6 +103,7 @@
                   <tr>
                     <td class="shoping__cart__item">
                       <h5>${alarm.content}</h5>
+                      <h5>${alarm.id}</h5>
                       <br />
                     </td>
                   </tr>

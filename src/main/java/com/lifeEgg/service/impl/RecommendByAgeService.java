@@ -2,17 +2,13 @@ package com.lifeEgg.service.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.stereotype.Service;
 
 import com.lifeEgg.dao.PostDAO;
-import com.lifeEgg.dto.FeedPageDTO;
 import com.lifeEgg.dto.PostDTO;
 import com.lifeEgg.dto.UserDTO;
 import com.lifeEgg.service.FeedService;
@@ -26,15 +22,6 @@ public class RecommendByAgeService implements FeedService {
 	
 	private final PostDAO postDAO; 
 	
-//	@Override
-//	public FeedPageDTO<PostDTO> toFeedPageDTO(List<PostDTO> postList) {
-//
-//		FeedPageDTO<PostDTO> feedPage = new FeedPageDTO<>();
-//		feedPage.setContentList(postList);
-//		feedPage.setTotalSize(postList.size());
-//
-//		return feedPage;
-//	}
 	
 	@Override
     public List<PostDTO> getFeedPosts(UserDTO user){ //나잇대별로 가져오기
