@@ -9,6 +9,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,7 +69,7 @@ public class WriteDiaryController {
 	
 	
 	@PostMapping("/create/diary")
-	public void createDiary(HttpServletRequest request, @RequestBody DiaryWriteDTO diaryWriteDTO) {
+	public ResponseEntity createDiary(HttpServletRequest request, @RequestBody DiaryWriteDTO diaryWriteDTO) {
 		
 		PostDTO postDTO = new PostDTO(); 
 		
@@ -84,6 +86,9 @@ public class WriteDiaryController {
 		}
 		
 		postService.createPost(postDTO); 
+		
+		
+		return new ResponseEntity(HttpStatus.OK);
 		
 		
 		
