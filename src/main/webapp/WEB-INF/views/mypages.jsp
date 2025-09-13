@@ -101,8 +101,10 @@
 
                   <tr>
                     <td class="shoping__cart__item">
+                    <a href = "./diary/${post.uuid}">
+                    <p>${post.created_at}</p>
                       <h5>${post.content}</h5>
-                      <p>${post.created_at}</p>
+                      </a>
                       <br />
                     </td>
                   </tr>

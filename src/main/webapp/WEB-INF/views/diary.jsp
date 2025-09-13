@@ -30,10 +30,6 @@
   </head>
 
   <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-      <div class="loader"></div>
-    </div>
 
     <!-- Header Section Begin -->
     <header class="header">
@@ -59,7 +55,7 @@
                   "
                 >
                   <img
-                    src="<c:url value='./resources/img/boiled-egg.png'/>"
+                    src="<c:url value='/resources/img/boiled-egg.png'/>"
                     style="width: 50px; height: 50px; margin-right: 8px"
                     alt=""
                   />
@@ -73,7 +69,7 @@
         </div>
       </div>
     </header>
-    <!-- Header Section End -->
+    <!-- Header Section End --
 
     <!-- Hero Section Begin -->
     <section class="hero">
@@ -98,7 +94,7 @@
            <div class="section-title product__discount__title">
               <h2>'<c:out value="${post.created_at}"/>'</h2>
             </div>
-            <div id="content" data-name="main-content"></div>
+            <div id="viewer"></div>
           </div>
         </div>
       </div>
@@ -113,11 +109,11 @@
     //응원을 보낼 때 응원을 보내는 일기의 uuid를 파라미터로 받음 
     //cheer의 uuid는 별개임!!! 
     const diaryUuid = '<c:out value="${diaryUuid}"/>'
-    const content = '<c:out value="${post.content}"/>'
+    const content = '<c:out value="${post.content}" escapeXml="false"/>'
 
 
 </script>
-    <script src="<c:url value="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"/>"/></script>
+    <script src="<c:url value="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.js"/>"/></script>
     <script src="<c:url value="/resources/js/cheer.js"/>"/></script>
     <script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"/></script>
@@ -129,9 +125,9 @@
     <script src="<c:url value="/resources/js/main.js"/>"/></script>
     <script>
     const editor = new toastui.Editor({
-    	  el: document.querySelector("#content"),
+    	  el: document.querySelector("#viewer"),
     	  height: "500px",
-    	  initialEditType: "wysiwyg",
+    	  initialEditType: "markdown",
     	  initialValue: content,
     	  previewStyle: "vertical",
     	  viewer: true,
