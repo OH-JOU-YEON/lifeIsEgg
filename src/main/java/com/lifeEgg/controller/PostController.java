@@ -33,6 +33,7 @@ public class PostController {
 	        
 	     //임시로 포스트 컨텐츠 전부를 던짐. 뒤에 미리보기 추가할 것 
 	        PostPageDTO<PostDTO> postPages = postService.getPostsByUserId(loginUser.getId());
+	        System.out.println("마이페이지 총 "+ postPages.getTotalSize() + "개: " + postPages.getContentList().toString());
 	        model.addAttribute("postPages",postPages);
 	        model.addAttribute("posts",postPages.getContentList());
 		
