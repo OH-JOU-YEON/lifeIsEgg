@@ -71,11 +71,12 @@ public class PostService {
 	}
 	
 	
-	public PostPageDTO<PostDTO> getPostsByUserId(Long userId) {
+	public PostPageDTO<PostDTO> getPostsByUserId(Long userId, long page) {
 		
 		
 		
 		PostPageDTO<PostDTO> postPage = new PostPageDTO<>();
+		postPage.setPage(page);
 		List<PostDTO> postList = postDAO.readByUserId(userId,postPage);
 		postPage.setContentList(postList);
 		postPage.setTotalSize(postList.size());

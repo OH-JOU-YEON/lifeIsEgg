@@ -27,9 +27,10 @@ public class RecommendByAgeService implements FeedService {
 	private final PostDAO postDAO; 
 	
 	@Override
-	public FeedPageDTO<PostDTO> toFeedPageDTO(List<PostDTO> postList) {
+	public FeedPageDTO<PostDTO> toFeedPageDTO(List<PostDTO> postList, long page) {
 
 		FeedPageDTO<PostDTO> feedPage = new FeedPageDTO<>();
+		feedPage.setPage(page);
 		feedPage.setContentList(postList);
 		feedPage.setTotalSize(postList.size());
 

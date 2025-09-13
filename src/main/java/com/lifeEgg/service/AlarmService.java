@@ -49,11 +49,12 @@ public class AlarmService {
 	
 	//유저 아이디 별 알람 읽어오는 메서드 
 	
-	public AlarmPageDTO<AlarmDTO> getAlarmsByUserId(Long userId) {
+	public AlarmPageDTO<AlarmDTO> getAlarmsByUserId(Long userId, long page) {
 		
 		
 		
 		AlarmPageDTO<AlarmDTO> alarmPages = new AlarmPageDTO<>();
+		alarmPages.setPage(page);
 		List<AlarmDTO> alarmList = alarmDAO.readByUserId(userId,alarmPages);
 		alarmPages.setContentList(alarmList);
 		alarmPages.setTotalSize(alarmDAO.getAlarmsCountByUserId(userId));
