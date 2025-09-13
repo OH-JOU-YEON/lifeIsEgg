@@ -79,7 +79,7 @@ public class PostService {
 		postPage.setPage(page);
 		List<PostDTO> postList = postDAO.readByUserId(userId,postPage);
 		postPage.setContentList(postList);
-		postPage.setTotalSize(postList.size());
+		postPage.setTotalSize(postDAO.getPostCountByUserId(userId));
 		
 		
 		

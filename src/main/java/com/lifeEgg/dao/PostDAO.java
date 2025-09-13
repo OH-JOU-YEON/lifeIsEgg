@@ -25,6 +25,8 @@ public interface PostDAO {
 	//글쓴이의 포스트 불러오는 메서드
 	    
 	public List<PostDTO> readByUserId(@Param("userId") Long userId,@Param("postPage") PostPageDTO<PostDTO> postPage);
+	
+	public int getPostCountByUserId(@Param("userId") Long userId);
 	    
 	//동일한 나이 게시물들을 불러오는 메서드
 	    
