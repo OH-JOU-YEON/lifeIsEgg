@@ -23,6 +23,9 @@ public class PostService {
 	
 	public void createPost(PostDTO postDTO) {
 		
+		postDTO.getContent();
+		String removeText = "<(/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>;]*)?(\s)*(/)?>";
+		postDTO.setContent(postDTO.getContent().replaceAll(removeText, ""));
 		try {
 			postDAO.create(postDTO);
 		} catch (Exception e) {
@@ -79,7 +82,7 @@ public class PostService {
 		postPage.setPage(page);
 		List<PostDTO> postList = postDAO.readByUserId(userId,postPage);
 		postPage.setContentList(postList);
-		postPage.setTotalSize(postList.size());
+		postPage.setTotalSize(postDAO.getPostCountByUserId(userId));
 		
 		
 		

@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -70,7 +71,7 @@
     </header>
     <!-- Header Section End -->
 
-    <!-- Hero Section Begin -->
+    <!-- Hero Section Begin -->    
     <section class="hero">
       <div class="container">
         <div class="row">
@@ -101,10 +102,18 @@
                 <c:forEach items="${feedList}" var="feed">
 
                   <tr>
-                    <td class="shoping__cart__item">
-                      <h5>${feed.content}</h5>
-                      <br />
+                    <td class="shoping__cart__item" 
+                    onClick="location.href ='./diary/${feed.uuid}'" style="cursor:pointer;">
                       <p>${feed.created_at}</p>
+                      <c:choose>
+    					<c:when test="${fn:length(feed.content) > 20}">
+        				  <h5>${fn:substring(feed.content, 0, 20)}...</h5>
+    					</c:when>
+    					<c:otherwise>
+        				  <h5>${feed.content}</h5>
+    					</c:otherwise>
+					  </c:choose>
+                      <br>
                     </td>
                   </tr>
                 </c:forEach>

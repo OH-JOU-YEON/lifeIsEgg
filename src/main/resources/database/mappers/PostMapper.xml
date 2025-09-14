@@ -23,6 +23,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>
 	</select>
 	
+	<select id="getPostCountByUserId" resultType="int">
+		select count(*) 
+		from post 
+		where user_id = #{userId}
+	</select>
+	
 	<select id="readByAge" resultType="PostDTO">
 		select * from post where age = #{age}
 	</select>

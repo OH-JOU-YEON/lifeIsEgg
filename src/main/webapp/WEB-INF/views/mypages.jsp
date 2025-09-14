@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -100,12 +101,18 @@
               	<c:forEach var="post" items="${posts}" step = "1" varStatus="status" >
 
                   <tr>
-                    <td class="shoping__cart__item">
-                    <a href = "./diary/${post.uuid}">
-                    <p>${post.created_at}</p>
-                      <h5>${post.content}</h5>
-                      </a>
-                      <br />
+                    <td class="shoping__cart__item"
+                    onClick="location.href ='./diary/${post.uuid}'" style="cursor:pointer;">
+                      <p>${post.created_at}</p>
+                      <c:choose>
+    					<c:when test="${fn:length(post.content) > 20}">
+        				  <h5>${fn:substring(post.content, 0, 20)}...</h5>
+    					</c:when>
+    					<c:otherwise>
+        				  <h5>${post.content}</h5>
+    					</c:otherwise>
+					  </c:choose>
+                      <br/>
                     </td>
                   </tr>
 				</c:forEach>

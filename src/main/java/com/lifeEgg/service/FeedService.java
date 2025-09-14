@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.lifeEgg.dto.FeedPageDTO;
 import com.lifeEgg.dto.PostDTO;
 import com.lifeEgg.dto.UserDTO;
 
