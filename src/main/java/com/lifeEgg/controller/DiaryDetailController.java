@@ -35,6 +35,14 @@ public class DiaryDetailController {
         
         PostDTO postDTO = postService.getPostByUuid(uuid); 
         
+        //삭제하거나 응원을 보내기 위해 로그인 유저와 포스트 작성자가 일치하는지 일치하지 않는지 검사 
+        
+        if(postDTO.getId() == loginUser.getId()) {
+        	model.addAttribute("cheerable",false);
+        } else {
+        	model.addAttribute("cheerable",true); 
+        }
+        
         model.addAttribute("post", postDTO);
         return "diary";
     }
