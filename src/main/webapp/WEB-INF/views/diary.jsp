@@ -97,8 +97,8 @@
             <div id="viewer"></div>
             <br />
             <div style="display: flex">
-              <button class="last-btn" style="margin-left: auto">
-                삭제하기
+              <button id = "deleteOrCheer" class="last-btn" style="margin-left: auto" onclick = 'deleteOrCheer()'>
+                버튼 
               </button>
             </div>
           </div>
@@ -115,8 +115,9 @@
     
     //응원을 보낼 때 응원을 보내는 일기의 uuid를 파라미터로 받음 
     //cheer의 uuid는 별개임!!! 
-    const diaryUuid = '<c:out value="${diaryUuid}"/>'
-    const content = '<c:out value="${post.content}" escapeXml="false"/>'
+    const diaryUuid = '<c:out value="${uuid}"/>';
+    const content = '<c:out value="${post.content}" escapeXml="false"/>';
+    const publicParam = document.querySelector('#deleteOrCheer'); 
 
 
 </script>

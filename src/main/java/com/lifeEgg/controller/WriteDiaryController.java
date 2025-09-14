@@ -17,16 +17,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lifeEgg.dto.DiaryWriteDTO;
 import com.lifeEgg.dto.PostDTO;
+import com.lifeEgg.dto.PostDeleteDTO;
 import com.lifeEgg.dto.UserDTO;
 import com.lifeEgg.service.PostService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j 
 @Controller 
 @RequiredArgsConstructor
 public class WriteDiaryController {
@@ -97,10 +98,12 @@ public class WriteDiaryController {
 	}
 	
 	
-	@PostMapping("delete/diary")
-	public ResponseEntity deleteDiary(HttpServletRequest request,@RequestParam String uuid) {
+	@PostMapping("diary/delete")
+	public ResponseEntity deleteDiary(HttpServletRequest request, @RequestBody PostDeleteDTO postDeleteDTO) {
 		
-		postService.deletePost(uuid); 
+		
+		
+		postService.deletePost(postDeleteDTO.getUuid()); 
 		
 		
 		return new ResponseEntity(HttpStatus.OK);
