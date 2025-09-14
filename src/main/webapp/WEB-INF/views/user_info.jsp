@@ -44,7 +44,7 @@
         <div class="row">
           <div class="col-lg-3">
             <div class="header__logo">
-              <a href="./home">
+              <a href="/lifeEgg/home">
                 <div
                   class="logo"
                   style="
@@ -84,11 +84,11 @@
                 <span></span>
               </div>
               <ul>
-                <li><a href="./diaries">내 일기 목록</a></li>
-                <li><a href="./feed">추천</a></li>
-                <li><a href="./alarms">알림</a></li>
-                <li><a href="./user">내 정보</a></li>
-                <li><a href="./logout">로그아웃</a></li>
+                <li><a href="/lifeEgg/diaries">내 일기 목록</a></li>
+                <li><a href="/lifeEgg/feed">추천</a></li>
+                <li><a href="/lifeEgg/alarms">알림</a></li>
+                <li><a href="/lifeEgg/user">내 정보</a></li>
+                <li><a href="/lifeEgg/logout">로그아웃</a></li>
               </ul>
             </div>
            </div>
@@ -96,7 +96,7 @@
             <div class="section-title product__discount__title">
               <h2>내 정보</h2>
             </div>
-            <form action="./user/update" method="post">
+            <form action="/lifeEgg/user/update" method="post">
             	<div class="product__details__text">
             		<div class="col" style="position:relative; width:75%">
             			<p>내 정보는 다른 사용자에게 노출되지 않습니다.</p>
