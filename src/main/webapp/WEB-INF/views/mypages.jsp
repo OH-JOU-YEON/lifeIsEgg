@@ -98,7 +98,7 @@
             <div class="shoping__cart__table">
               <table>
                 <tbody>
-              	<c:forEach var="post" items="${posts}" step = "1" varStatus="status" >
+              	<c:forEach var="post" items="${posts}">
 
                   <tr>
                     <td class="shoping__cart__item"
