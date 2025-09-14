@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			 where uuid = #{uuid}
 	</update>
 	
-	<delete id="delete"> 
+	<delete id="delete" parameterType="String"> 
 		delete from Post where uuid = #{uuid} 
 	</delete>
 

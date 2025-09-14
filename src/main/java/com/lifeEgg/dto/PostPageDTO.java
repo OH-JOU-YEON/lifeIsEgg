@@ -13,7 +13,7 @@ public class PostPageDTO <T> {
     private static final long pageSize = 10;
     
     private long page;
-    private long size = 2;
+    private long size = 3;
     private long totalSize;
     
     private List<T> contentList = new ArrayList<T>();
