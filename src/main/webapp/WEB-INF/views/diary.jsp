@@ -95,6 +95,12 @@
               <h2>'<c:out value="${post.created_at}"/>'</h2>
             </div>
             <div id="viewer"></div>
+            <br />
+            <div style="display: flex">
+              <button class="last-btn" style="margin-left: auto">
+                삭제하기
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -105,6 +111,7 @@
         <script>
  // javascript에서 jstl 단일값 사용
     const userId = '<c:out value="${user.id}"/>';
+    const cheerable = '<c:out value="${cheerable}"/>';
     
     //응원을 보낼 때 응원을 보내는 일기의 uuid를 파라미터로 받음 
     //cheer의 uuid는 별개임!!! 

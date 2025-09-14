@@ -1,3 +1,48 @@
+function deleteOrCheer() {
+
+
+const publicParam = document.querySelector(".last-btn"); 
+
+if(cheerable == 'false') {
+
+publicParam.innerText = '삭제하기'; 
+publicParam.addEventListener('click', deleteCheer()); 
+
+} else {
+
+publicParam.innerText = '응원 보내기'; 
+publicParam.addEventListener('click', createCheer()); 
+}
+
+
+
+}
+
+function deletePost() {
+
+ console.log(diaryUuid); 
+
+
+$.ajax({
+    type : 'get',           // 타입 (get, post, put 등등)
+    url : './delete/diary' + "&" + diaryUuid,           // 요청할 서버url
+    async : true,            // 비동기화 여부 (default : true)
+    data: {},
+    success : function(result) { // 결과 성공 콜백함수
+        location.href = "./diaries" 
+    },
+    error : function(request, status, error) { // 결과 에러 콜백함수
+        console.log(error)
+    }
+})
+
+
+
+}
+
+
+
+
 function createCheer() {
 
  const params = {
