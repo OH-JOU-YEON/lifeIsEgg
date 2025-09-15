@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.lifeEgg.dao.PostDAO;
 import com.lifeEgg.dto.PostDTO;
 import com.lifeEgg.dto.PostPageDTO;
+import com.lifeEgg.dto.UserDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -87,6 +88,15 @@ public class PostService {
 		
 		
 		return postPage;
+	}
+	
+	public void updatePostAge(UserDTO user) {
+		List<PostDTO> postList = postDAO.readAllByUserId(user.getId());
+		
+		for (PostDTO post : postList) {
+			post.setAge(user.getAge());
+			updatePost(post);
+		}
 	}
 
 }

@@ -1,7 +1,6 @@
 package com.lifeEgg.dao;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -26,12 +25,10 @@ public interface PostDAO {
 	    
 	public List<PostDTO> readByUserId(@Param("userId") Long userId,@Param("postPage") PostPageDTO<PostDTO> postPage);
 	
-	public int getPostCountByUserId(@Param("userId") Long userId);
-	    
-	//동일한 나이 게시물들을 불러오는 메서드
-	    
-	public List<PostDTO> readByAge(int age);
+	public List<PostDTO> readAllByUserId(@Param("userId") Long userId);
 
+	public int getPostCountByUserId(@Param("userId") Long userId);
+	
 	//포스트 uuid로 아이디 불러오는 메서드 
 	public Long readPostIdByUuid(String uuid); 
 	
