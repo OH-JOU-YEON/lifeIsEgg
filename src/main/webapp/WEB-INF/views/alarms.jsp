@@ -30,6 +30,34 @@
   </head>
 
   <body>
+  
+                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
     <!-- Header Section Begin -->
     <header class="header">
       <div class="header__top">
@@ -102,17 +130,22 @@
 
                   <tr>
                     <td class="shoping__cart__item">
+                    <a data-toggle="modal" data-target="#exampleModal" href="#modal-default">
                       <h5>${alarm.content}</h5>
                       <h5>${alarm.id}</h5>
                       <br />
+                      </a>
                     </td>
                   </tr>
+                  
+  
 				</c:forEach>
               
                 </tbody>
               </table>
             </div>
-
+            
+ 
             <div class="product__pagination">
             
             <!-- 페이징 영역 시작 -->
@@ -149,6 +182,33 @@
     <!-- Hero Section End -->
 
     <!-- Js Plugins -->
+    <script>
+    const alarms = '<c:out value="${alarms}"/>';
+    
+    let myModal = document.getElementById('myModal')
+    let myInput = document.getElementById('myInput')
+    
+    let exampleModal = document.getElementById('exampleModal')
+exampleModal.addEventListener('show.bs.modal', function (event) {
+  // Button that triggered the modal
+  let button = event.relatedTarget
+  // Extract info from data-bs-* attributes
+  let recipient = '테스트'
+  // If necessary, you could initiate an AJAX request here
+  // and then do the updating in a callback.
+  //
+  // Update the modal's content.
+  let modalTitle = exampleModal.querySelector('.modal-title')
+  let modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+  modalTitle.textContent = 'New message to ' + recipient
+  modalBodyInput.value = recipient
+})
+
+    myModal.addEventListener('shown.bs.modal', function () {
+      myInput.focus()
+    })
+    </script>
     <script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/jquery.nice-select.min.js"/>"/></script>
