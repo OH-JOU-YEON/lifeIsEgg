@@ -23,6 +23,7 @@ import com.lifeEgg.dto.PostDTO;
 import com.lifeEgg.dto.PostDeleteDTO;
 import com.lifeEgg.dto.UserDTO;
 import com.lifeEgg.service.PostService;
+import com.lifeEgg.service.PreviewService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -75,8 +76,11 @@ public class WriteDiaryController {
 		
 		PostDTO postDTO = new PostDTO(); 
 		
+		String content = diaryWriteDTO.getContent(); 
+		
 		postDTO.setAge(diaryWriteDTO.getAge()); 
-		postDTO.setContent(diaryWriteDTO.getContent()); 
+		postDTO.setContent(content);
+		postDTO.setPreview(PreviewService.getPreview(content)); 
 		postDTO.setCreated_at(LocalDate.parse(diaryWriteDTO.getCreated_at(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 		postDTO.setUser_id(diaryWriteDTO.getUserId()); 
 		postDTO.setUuid(UUID.randomUUID().toString()); 

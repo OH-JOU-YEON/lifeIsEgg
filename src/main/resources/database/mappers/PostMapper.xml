@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.lifeEgg.dao.PostDAO">
 	
 	<insert id="create">
-		insert into post (content, status, created_at, user_id, uuid, age) values (#{content}, #{status},
-			#{created_at}, #{user_id}, #{uuid}, #{age})
+		insert into post (content, status, created_at, user_id, uuid, age, preview) values (#{content}, #{status},
+			#{created_at}, #{user_id}, #{uuid}, #{age}, #{preview})
 	</insert>
 	
 	<select id="readByUuid" resultType="PostDTO">

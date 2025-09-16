@@ -11,6 +11,7 @@ public class CheerDTO {
 	private Long post_id; 
 	private Long parent_id; 
 	private String uuid; 
+	private String preview;
 	
 	
 	
