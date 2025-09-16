@@ -1,6 +1,7 @@
 package lifeEgg.dao;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -77,13 +78,15 @@ public class PostDaoTest {
 	@Test
 	public void insertPostTest() {
 		
-		for(int i=0; i<10; i++) {
+		int userId = 3;
+		
+		for(int i=0; i<15; i++) {
 			PostDTO post = new PostDTO();
-			post.setUser_id((long) 18);
-			post.setUuid(UUID.randomUUID().toString());
-			post.setContent("테스트2"+i);
-			post.setCreated_at(LocalDate.now());
+			post.setUser_id((long) userId);
 			post.setAge(25);
+			post.setUuid(UUID.randomUUID().toString());
+			post.setContent("테스트용 유저" + userId + " : " + i);
+			post.setCreated_at(LocalDate.now());
 			
 			try {
 				postDAO.create(post);
@@ -97,7 +100,7 @@ public class PostDaoTest {
 	@Test
 	public void postListReadByAgeTest() {
 		
-		List<PostDTO> postList = postDAO.findByAgeRange((long)17, 25, 25);
+		List<PostDTO> postList = postDAO.findByAgeRange((long)1, 25, 25);
 		
 		log.info(postList.toString());
 		
@@ -105,9 +108,22 @@ public class PostDaoTest {
 		int minAge = 25;
 		int maxAge = 25;
 		
-        List<PostDTO> postList2 = postDAO.findByAgeRange((long)17, minAge, maxAge);
+        List<PostDTO> postList2 = postDAO.findByAgeRange((long)1, minAge, maxAge);
 		
 		log.info(postList2.toString());
+		
+	}
+	
+	@Test
+	public void postListReadByAgeExcludeOldTest() {
+		
+		List<PostDTO> postList = postDAO.findByAgeRange((long)1, 25, 25);
+		
+		log.info(postList.toString());
+		
+		List<PostDTO> result = postDAO.findByAgeRangeExcludeOld((long)1, 25, 25, postList.subList(0, 2));
+		
+		log.info(result.toString());
 		
 	}
 

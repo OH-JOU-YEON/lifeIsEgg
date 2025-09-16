@@ -23,14 +23,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>
 	</select>
 	
-	<select id="getPostCountByUserId" resultType="int">
-		select count(*) 
+	<select id="readAllByUserId" resultType="PostDTO">
+		select *
 		from post 
 		where user_id = #{userId}
 	</select>
 	
-	<select id="readByAge" resultType="PostDTO">
-		select * from post where age = #{age}
+	<select id="getPostCountByUserId" resultType="int">
+		select count(*) 
+		from post 
+		where user_id = #{userId}
 	</select>
 	
 	<select id="readPostIdByUuid" resultType="Long">
@@ -51,14 +53,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE user_id != #{user_id}
           AND status = 0
           AND age BETWEEN #{min_age} AND #{max_age}
-          AND id NOT IN
-          <foreach item="post" collection="old" open="(" separator="," close=")">
-          	#{post.id}
-          </foreach>
+          <if test="old != null and old.size > 0">
+          	AND id NOT IN
+          	<foreach item="post" collection="old" open="(" separator="," close=")">
+          		#{post.id}
+          	</foreach>
+          </if>
+          
 	</select>
 	
 	<update id="update">
-		update post set content=#{content}, status=#{status}, created_at = #{created_at},
+		update post set content=#{content}, status=#{status}, created_at = #{created_at}, age = #{age}
 			 where uuid = #{uuid}
 	</update>
 	
