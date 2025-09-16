@@ -10,5 +10,6 @@ public class AlarmDTO {
 	private Long post_id;
 	private Long cheer_id; 
 	private String uuid; 
+	private boolean readOrNot; 
 
 }
