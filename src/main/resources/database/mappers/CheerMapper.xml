@@ -6,7 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.lifeEgg.dao.CheerDAO">
 
 <insert id="create">
-insert into cheer (content, user_id, parent_id, uuid) values (#{content}, #{user_id}, #{parent_id}, #{uuid})
+insert into cheer (content, user_id, parent_id, uuid, preview) values (#{content}, #{user_id}, #{parent_id},
+ #{uuid}, #{preview})
 </insert>
 
 <select id="readByUserId" resultType="hashmap">

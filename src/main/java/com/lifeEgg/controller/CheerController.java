@@ -19,6 +19,7 @@ import com.lifeEgg.dto.CheerWriteDTO;
 import com.lifeEgg.dto.UserDTO;
 import com.lifeEgg.service.CheerService;
 import com.lifeEgg.service.PostService;
+import com.lifeEgg.service.PreviewService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -73,10 +74,13 @@ public class CheerController {
 		
 		CheerDTO cheerDTO = new CheerDTO(); 
 		
-		cheerDTO.setContent(cheerWriteDTO.getContent());
+		String content = cheerWriteDTO.getContent(); 
+		
+		cheerDTO.setContent(content);
 		cheerDTO.setUser_id(cheerWriteDTO.getUserId());
 		cheerDTO.setUuid(UUID.randomUUID().toString());
 		cheerDTO.setPost_id(postService.getPostIdByUuid(cheerWriteDTO.getDiaryUuid())); 
+		cheerDTO.setPreview(PreviewService.getPreview(content)); 
 		
 		//응원 uuid 변수가 존재하면 그걸로 응원 검색해서 아이디 받아와서 등록함. 
 		

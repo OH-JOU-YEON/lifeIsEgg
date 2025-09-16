@@ -13,6 +13,7 @@ public class PostDTO {
 	private Long user_id; 
 	private String uuid; 
 	private int age; 
+	private String preview; 
 	
 	
 
