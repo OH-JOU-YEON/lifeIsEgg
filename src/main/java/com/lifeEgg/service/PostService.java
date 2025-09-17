@@ -1,12 +1,12 @@
 package com.lifeEgg.service;
 
 import java.util.List;
-
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.lifeEgg.dao.PostDAO;
+import com.lifeEgg.dto.PostAlarmDTO;
 import com.lifeEgg.dto.PostDTO;
 import com.lifeEgg.dto.PostPageDTO;
 import com.lifeEgg.dto.UserDTO;
@@ -67,6 +67,12 @@ public class PostService {
 	return optionalPost.orElseThrow(() -> new IllegalArgumentException("post who has uuid doesn't exist"));
 		
 		
+	}
+	
+	//uuid로 포스트 id, 미리보기 검색하는 메서드 
+	public PostAlarmDTO getPostAlarmByUuid(String uuid) {
+		
+		return postDAO.readPostAlarmDTOByUuid(uuid); 
 	}
 	
 	public Long getPostIdByUuid(String uuid) {
