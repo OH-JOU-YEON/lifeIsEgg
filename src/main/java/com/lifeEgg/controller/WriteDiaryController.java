@@ -4,6 +4,8 @@ package com.lifeEgg.controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lifeEgg.dto.DiaryWriteDTO;
 import com.lifeEgg.dto.PostDTO;
@@ -68,6 +72,27 @@ public class WriteDiaryController {
 		
 		
 		return "diary-write";
+	}
+	
+	@GetMapping(value = "/write/date")
+	@ResponseBody
+	public Map<String, Object> findDiary(@RequestParam("date") String date) {
+		
+		System.out.println(date);
+		
+		Map<String, Object> response = new HashMap<>();
+		LocalDate created_at = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+		PostDTO post = postService.getPostByCreated(created_at);
+		
+		if (post != null) {
+			System.out.println(post.toString());
+			
+			response.put("exists", true);
+			response.put("uuid", post.getUuid()); //post를 통으로 보내면 직렬화 문제가 생김
+		} else {
+			response.put("exists", false);
+		}
+		return response;
 	}
 	
 	

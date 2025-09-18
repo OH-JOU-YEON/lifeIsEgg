@@ -3,6 +3,7 @@ package lifeEgg.dao;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.junit.Test;
@@ -125,6 +126,13 @@ public class PostDaoTest {
 		
 		log.info(result.toString());
 		
+	}
+	
+	@Test
+	public void getPostByDateTest() {
+		LocalDate created_at = LocalDate.of(2025, 9, 15);
+			
+		log.info(postDAO.readByCreated(created_at).toString()); 
 	}
 
 }

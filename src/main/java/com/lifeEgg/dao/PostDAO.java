@@ -1,5 +1,6 @@
 package com.lifeEgg.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,9 @@ public interface PostDAO {
 	//uuid로 글 하나를 불러오는 메서드
 	
 	public Optional<PostDTO> readByUuid(String uuid);
+	
+	//날짜로 글 하나 불러오기
+	public PostDTO readByCreated(LocalDate created_at);
 	    
 	//글쓴이의 포스트 불러오는 메서드
 	    
