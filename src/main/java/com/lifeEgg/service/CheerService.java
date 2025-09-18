@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.lifeEgg.dao.CheerDAO;
+import com.lifeEgg.dto.CheerAlarmDTO;
 import com.lifeEgg.dto.CheerDTO;
 
 import lombok.RequiredArgsConstructor;
@@ -43,6 +44,11 @@ public class CheerService {
 		List<CheerDTO> cheerList = cheerDAO.readByUserId(userId);
 		
 		return cheerList;
+	}
+	
+	//UUID로 응원 ID, 응원 미리보기 가져오는 메서드 
+	public CheerAlarmDTO getCheerAlarmByUuid(String uuid) {
+		return cheerDAO.readCheerAlarmDTOByUuid(uuid); 
 	}
 	
 	public Long getCheerIdByUuid(String uuid) {

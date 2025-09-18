@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.lifeEgg.dto.PostAlarmDTO;
 import com.lifeEgg.dto.PostDTO;
 import com.lifeEgg.dto.PostPageDTO;
 
@@ -31,6 +32,10 @@ public interface PostDAO {
 	
 	//포스트 uuid로 아이디 불러오는 메서드 
 	public Long readPostIdByUuid(String uuid); 
+	
+	//포스트 uuid로 알림에 넣을 미리보기, 포스트 아이디 불러오는 메서드
+	
+	public PostAlarmDTO readPostAlarmDTOByUuid(String uuid); 
 	
 	//나이별로 추천
 	public List<PostDTO> findByAgeRange(
