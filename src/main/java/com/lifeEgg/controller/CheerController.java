@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.lifeEgg.dto.AlarmDTO;
+import com.lifeEgg.dto.CheerAlarmDTO;
 import com.lifeEgg.dto.CheerDTO;
 import com.lifeEgg.dto.CheerWriteDTO;
+import com.lifeEgg.dto.PostAlarmDTO;
 import com.lifeEgg.dto.UserDTO;
+import com.lifeEgg.service.AlarmService;
 import com.lifeEgg.service.CheerService;
 import com.lifeEgg.service.PostService;
 import com.lifeEgg.service.PreviewService;
@@ -29,6 +33,7 @@ public class CheerController {
 	
 	private final CheerService cheerService; 
 	private final PostService postService; 
+	private final AlarmService alarmService; 
 	
 	
 	//일기에 응원 작성하는 화면
@@ -73,6 +78,8 @@ public class CheerController {
 	public ResponseEntity createCheer(HttpServletRequest request,@RequestBody CheerWriteDTO cheerWriteDTO) {
 		
 		CheerDTO cheerDTO = new CheerDTO(); 
+		AlarmDTO alarmDTO = new AlarmDTO(); 
+		PostAlarmDTO postAlarm = postService.getPostAlarmByUuid(cheerWriteDTO.getDiaryUuid()); 
 		
 		String content = cheerWriteDTO.getContent(); 
 		
@@ -81,12 +88,33 @@ public class CheerController {
 		cheerDTO.setUuid(UUID.randomUUID().toString());
 		cheerDTO.setPost_id(postService.getPostIdByUuid(cheerWriteDTO.getDiaryUuid())); 
 		cheerDTO.setPreview(PreviewService.getPreview(content)); 
+		alarmDTO.setUuid(UUID.randomUUID().toString()); 
+		alarmDTO.setPost_id(postAlarm.getPostId()); 
+		alarmDTO.setUser_id(postAlarm.getUserId()); 
+		
+	
+	
+		
+		
 		
 		//응원 uuid 변수가 존재하면 그걸로 응원 검색해서 아이디 받아와서 등록함. 
 		
 		if(cheerWriteDTO.getCheerUuid() != null) {
 			
 			cheerDTO.setParent_id(cheerService.getCheerIdByUuid(cheerWriteDTO.getCheerUuid())); 
+			
+			CheerAlarmDTO cheerAlarm = cheerService.getCheerAlarmByUuid(cheerWriteDTO.getCheerUuid()); 
+			
+			alarmDTO.setCheer_id(cheerAlarm.getCheerId()); 
+			
+			StringBuilder sb = new StringBuilder(cheerAlarm.getCheerPreview() + "...에 답장이 도착했습니다."); 
+			alarmDTO.setContent(sb.toString());
+			
+			
+		} else {
+			StringBuilder sb = new StringBuilder(postAlarm.getCreated_at() + "의 일기 " + postAlarm.getPostPreview() 
+			+ "...에 응원이 달렸습니다.\n" + PreviewService.getPreview(content)); 
+			alarmDTO.setContent(sb.toString()); 
 		}
 		
 		cheerService.createCheer(cheerDTO); 

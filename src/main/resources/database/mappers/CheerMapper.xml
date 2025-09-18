@@ -22,6 +22,10 @@ select * from cheer where uuid = #{uuid}
 select id from cheer where uuid = #{uuid}
 </select>
 
+<select id="readCheerAlarmDTOByUuid" resultType="CheerAlarmDTO">
+		select id cheerId, preview cheerPreview from post where uuid = #{uuid}
+	</select>
+
 
 <delete id="delete"> 
 delete from cheer where id = #{id} 

@@ -115,6 +115,7 @@
     //응원을 보낼 때 응원을 보내는 일기의 uuid를 파라미터로 받음 
     //cheer의 uuid는 별개임!!! 
     const diaryUuid = '<c:out value="${diaryUuid}"/>'
+    
     const cheerUuid = '<c:out value="${cheerUuid}"/>'
 
 
