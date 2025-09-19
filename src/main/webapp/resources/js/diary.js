@@ -68,10 +68,12 @@ $(document).ready(function () { //화면 준비되면 실행
     		dataType : 'json',
     		data: { date : created_at },
     		success : function(result) { // 결과 성공 콜백함수
-    			if (result && result.exists) { //post 존재하는지 확인
+    			if (result && result.user && result.exists) { //post 존재하는지 확인
     				var uuid = result.uuid;
         			console.log(uuid);
         	    	location.href = '/lifeEgg/write/' + uuid;
+                } else if (result && !result.user) {
+                	location.href = 'lifeEgg/home';
                 }
     		},
     		error : function(request, status, error) { // 결과 에러 콜백함수

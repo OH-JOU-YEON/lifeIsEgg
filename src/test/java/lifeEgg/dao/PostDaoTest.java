@@ -132,7 +132,7 @@ public class PostDaoTest {
 	public void getPostByDateTest() {
 		LocalDate created_at = LocalDate.of(2025, 9, 15);
 			
-		log.info(postDAO.readByCreated(created_at).toString()); 
+		log.info(postDAO.readByCreated((long) 1, created_at).toString()); 
 	}
 
 }

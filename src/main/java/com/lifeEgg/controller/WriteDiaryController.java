@@ -76,17 +76,22 @@ public class WriteDiaryController {
 	
 	@GetMapping(value = "/write/date")
 	@ResponseBody
-	public Map<String, Object> findDiary(@RequestParam("date") String date) {
-		
-		System.out.println(date);
-		
+	public Map<String, Object> findDiary(HttpSession session, @RequestParam("date") String date) {
+
 		Map<String, Object> response = new HashMap<>();
+		
+		UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
+        if (loginUser == null) {
+            // 로그인 안됨
+        	response.put("user", false);
+        	return response;
+        }
+        response.put("user", true);
+        
 		LocalDate created_at = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
-		PostDTO post = postService.getPostByCreated(created_at);
+		PostDTO post = postService.getPostByCreated(loginUser.getId(), created_at);
 		
 		if (post != null) {
-			System.out.println(post.toString());
-			
 			response.put("exists", true);
 			response.put("uuid", post.getUuid()); //post를 통으로 보내면 직렬화 문제가 생김
 		} else {
