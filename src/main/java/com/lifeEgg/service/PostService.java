@@ -1,5 +1,6 @@
 package com.lifeEgg.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,6 +81,10 @@ public class PostService {
 		return postDAO.readPostIdByUuid(uuid); 
 	}
 	
+	//date로 검색
+	public PostDTO getPostByCreated(LocalDate created_at) {
+		return postDAO.readByCreated(created_at);	
+	}
 	
 	public PostPageDTO<PostDTO> getPostsByUserId(Long userId, long page) {
 		
