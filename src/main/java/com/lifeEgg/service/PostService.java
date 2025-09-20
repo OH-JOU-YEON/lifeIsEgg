@@ -81,9 +81,9 @@ public class PostService {
 		return postDAO.readPostIdByUuid(uuid); 
 	}
 	
-	//date로 검색
-	public PostDTO getPostByCreated(LocalDate created_at) {
-		return postDAO.readByCreated(created_at);	
+	//created_at로 검색
+	public PostDTO getPostByCreated(Long user_id, LocalDate created_at) {
+		return postDAO.readByCreated(user_id, created_at);	
 	}
 	
 	public PostPageDTO<PostDTO> getPostsByUserId(Long userId, long page) {

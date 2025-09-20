@@ -100,7 +100,7 @@
                 <button class="site-btn" id = "publicOrNot" onclick = publicOrNot()>일기 공개하기</button>
               </div>
             </div>
-            <input type="date" id = "created_at"/>
+            <input type="date" id = "created_at" value = "${post.created_at}"/>
             <div id="content" data-name="main-content"></div>
             <br />
             <div style="display: flex">
@@ -138,7 +138,7 @@
     	  el: document.querySelector("#content"),
     	  height: "500px",
     	  initialEditType: "wysiwyg",
-    	  initialValue: "내용을 입력해 주세요.",
+    	  initialValue: "<c:out value='${post.content}' default='내용을 입력해 주세요.'/>",
     	  previewStyle: "vertical",
     	  hideModeSwitch: true,
     	  hooks: {
