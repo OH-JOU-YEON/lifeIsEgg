@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.lifeEgg.dao.CheerDAO;
 import com.lifeEgg.dto.CheerAlarmDTO;
 import com.lifeEgg.dto.CheerDTO;
+import com.lifeEgg.dto.CheerModalDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -50,6 +51,11 @@ public class CheerService {
 	public CheerAlarmDTO getCheerAlarmByUuid(String uuid) {
 		return cheerDAO.readCheerAlarmDTOByUuid(uuid); 
 	}
+	
+	public CheerModalDTO getCheerModalByid(long cheerId) {
+		return cheerDAO.readCheerModalDTOByUuId(cheerId); 
+	}
+	
 	
 	public Long getCheerIdByUuid(String uuid) {
 		
