@@ -1,7 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
@@ -10,7 +9,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Life is Egg | Alarms</title>
+    <title>Life is Egg | Diary</title>
 
     <!-- Google Font -->
     <link
@@ -27,12 +26,11 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/owl.carousel.min.css"/>" />
     <link rel="stylesheet" href="<c:url value="/resources/css/slicknav.min.css" />" />
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css" />" />
+    <link rel="stylesheet" href="<c:url value="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"/>" />
   </head>
 
   <body>
-  
-                           
-  
+
     <!-- Header Section Begin -->
     <header class="header">
       <div class="header__top">
@@ -57,7 +55,7 @@
                   "
                 >
                   <img
-                    src="<c:url value='resources/img/boiled-egg.png'/>"
+                    src="<c:url value='/resources/img/boiled-egg.png'/>"
                     style="width: 50px; height: 50px; margin-right: 8px"
                     alt=""
                   />
@@ -71,7 +69,7 @@
         </div>
       </div>
     </header>
-    <!-- Header Section End -->
+    <!-- Header Section End --
 
     <!-- Hero Section Begin -->
     <section class="hero">
@@ -89,66 +87,19 @@
                 <li><a href="/lifeEgg/alarms">알림</a></li>
                 <li><a href="/lifeEgg/user">내 정보</a></li>
                 <li><a href="/lifeEgg/logout">로그아웃</a></li>
-                
               </ul>
             </div>
           </div>
           <div class="col-lg-9">
-            <div class="section-title product__discount__title">
-              <h2>받은 알림</h2>
+           <div class="section-title product__discount__title">
+              <h2>'<c:out value="${post.created_at}"/>'</h2>
             </div>
-
-            <div class="shoping__cart__table">
-              <table>
-                <tbody>
-              	<c:forEach var="alarm" items="${alarms}" step = "1" varStatus="status" >
-
-                  <tr>
-                    <td class="shoping__cart__item">
-                    <a data-toggle="modal">
-                      <h5>${alarm.content}</h5>
-                      <h5>${alarm.id}</h5>
-                      <br />
-                      </a>
-                    </td>
-                  </tr>
-                  
-  
-				</c:forEach>
-              
-                </tbody>
-              </table>
-            </div>
-            
- 
-            <div class="product__pagination">
-            
-            <!-- 페이징 영역 시작 -->
-             <c:choose>
-        <c:when test="${alarmPages.hasPrev}"><c:set var="url" value="${alarmPages.getUrl('/lifeEgg/alarms', alarmPages.page - 1)}" /></c:when>
-        <c:otherwise><c:set var="url" value="/alarms" /></c:otherwise>
-    </c:choose>
-    <a href="${url}"<c:if test="${!alarmPages.hasPrev}"> class="disabled"</c:if>>
-        <span class="sr-only">Previous</span>
-        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
-        </svg>
-    </a>
-    <c:forEach var="i" begin="${alarmPages.firstPage}" end="${alarmPages.lastPage}" step="1">
-    <a href="${alarmPages.getUrl('/lifeEgg/alarms', i)}"<c:if test="${alarmPages.page eq i}">aria-current="page" class="active"</c:if>>${i}</a>
-    </c:forEach>
-    <c:choose>
-        <c:when test="${alarmPages.hasNext}"><c:set var="url" value="${alarmPages.getUrl('/lifeEgg/alarms', alarmPages.page + 1)}" /></c:when>
-        <c:otherwise><c:set var="url" value="#" /></c:otherwise>
-    </c:choose>
-    <a href="${url}"<c:if test="${!alarmPages.hasNext}"> class="disabled"</c:if>>
-        <span class="sr-only">Next</span>
-        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-        </svg>
-    </a>
-
-              
+            <div id="viewer"></div>
+            <br />
+            <div style="display: flex">
+              <button id = "deleteOrCheer" class="last-btn" style="margin-left: auto" onclick = 'deleteOrCheer()'>
+                버튼 
+              </button>
             </div>
           </div>
         </div>
@@ -157,13 +108,20 @@
     <!-- Hero Section End -->
 
     <!-- Js Plugins -->
-    <script>
-    const alarms = '<c:out value="${alarms}"/>';
+        <script>
+ // javascript에서 jstl 단일값 사용
+    const userId = '<c:out value="${user.id}"/>';
+    const cheerable = '<c:out value="${cheerable}"/>';
     
-   
-    </script>
+    //응원을 보낼 때 응원을 보내는 일기의 uuid를 파라미터로 받음 
+    //cheer의 uuid는 별개임!!! 
+    const diaryUuid = '<c:out value="${uuid}"/>';
+    const content = '<c:out value="${post.content}" escapeXml="false"/>';
+    const publicParam = document.querySelector('#deleteOrCheer'); 
+
+
+</script>
     <script src="<c:url value="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.js"/>"/></script>
-    
     <script src="<c:url value="/resources/js/alarm.js"/>"/></script>
     <script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"/></script>
@@ -173,7 +131,7 @@
     <script src="<c:url value="/resources/js/mixitup.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/owl.carousel.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/main.js"/>"/></script>
-     <script>
+    <script>
     const editor = new toastui.Editor({
     	  el: document.querySelector("#viewer"),
     	  height: "500px",
@@ -187,6 +145,5 @@
 
     	
 </script>
-  
   </body>
 </html>
