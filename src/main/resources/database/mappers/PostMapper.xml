@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<select id="readPostAlarmDTOByUuid" resultType="PostAlarmDTO">
-		select id postId, preview postPreview, user_id userId, created_at from post where uuid = #{uuid}
+		select preview postPreview, user_id userId, created_at from post where uuid = #{uuid}
 	</select>
 	
 	<select id="findByAgeRange" parameterType="map" resultType="PostDTO">
