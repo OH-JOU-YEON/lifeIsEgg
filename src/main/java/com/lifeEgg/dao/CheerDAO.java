@@ -18,6 +18,8 @@ public void create(CheerDTO cheer) throws Exception;
     public Optional<CheerDTO> readByUuid(String uuid);
    
     public Long readIdByUuid(String uuid); 
+    
+    public String getUuidById(Long id); 
    
   	public String getPreviewByUuid(String uuid); 
 

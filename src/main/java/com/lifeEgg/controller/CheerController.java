@@ -72,6 +72,41 @@ public class CheerController {
 		return "cheer-write";
 	}
 	
+
+		
+		//응원 보는 화면 메서드 
+		
+		@GetMapping(value = "/cheer/{cheerUuid}")
+		public String getCheer( Model model, HttpSession session, 
+				@PathVariable String cheerUuid) {
+			
+			 UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
+		        if (loginUser == null) {
+		            // 로그인 안됨
+		            return "redirect:/home";
+		        }
+
+		        model.addAttribute("user", loginUser);
+		        
+		        CheerDTO cheerDTO = cheerService.getCheerByUuid(cheerUuid); 
+		        
+		        model.addAttribute("cheer", cheerDTO); 
+		        
+		        //응원의 원본 포스트, 그 전 응원 검사해서 가져오는 메서드 
+		        
+		        String postUuid = postService.getUuidById(cheerDTO.getPost_id()); 
+		        model.addAttribute("diaryUuid", postUuid); 
+		        
+		        if(cheerDTO.getParent_id() != null) {
+		        String parentUuid = cheerService.getUuidById(cheerDTO.getParent_id());  
+		        model.addAttribute("cheerUuid", parentUuid);
+		        }
+		        
+			
+			
+			return "cheer";
+		}
+	
 	//일기에 응원 작성 
 	@PostMapping("/create/cheer")
 	public ResponseEntity createCheer(HttpServletRequest request,@RequestBody CheerWriteDTO cheerWriteDTO) {

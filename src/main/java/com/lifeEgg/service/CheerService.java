@@ -49,6 +49,11 @@ public class CheerService {
 		
 		return cheerDAO.getPreviewByUuid(uuid); 
 	}
+	
+	public String getUuidById(Long id) {
+		
+		return cheerDAO.getUuidById(id); 
+	}
 
 	
 	public Long getCheerIdByUuid(String uuid) {
