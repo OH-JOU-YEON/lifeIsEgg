@@ -92,7 +92,7 @@
           </div>
           <div class="col-lg-9">
            <div class="section-title product__discount__title">
-              <h2>'<c:out value="${post.created_at}"/>'</h2>
+              <h2>익명의 응원</h2>
             </div>
             <div id="viewer"></div>
             <br />
