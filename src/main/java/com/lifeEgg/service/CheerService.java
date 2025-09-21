@@ -6,9 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.lifeEgg.dao.CheerDAO;
-import com.lifeEgg.dto.CheerAlarmDTO;
 import com.lifeEgg.dto.CheerDTO;
-import com.lifeEgg.dto.CheerModalDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -54,15 +52,16 @@ public class CheerService {
 		return cheerList;
 	}
 	
-	//UUID로 응원 ID, 응원 미리보기 가져오는 메서드 
-	public CheerAlarmDTO getCheerAlarmByUuid(String uuid) {
-		return cheerDAO.readCheerAlarmDTOByUuid(uuid); 
+	public String getCheerPreviewByUuid(String uuid) {
+		
+		return cheerDAO.getPreviewByUuid(uuid); 
 	}
 	
-	public CheerModalDTO getCheerModalByid(long cheerId) {
-		return cheerDAO.readCheerModalDTOByUuId(cheerId); 
+	public String getUuidById(Long id) {
+		
+		return cheerDAO.getUuidById(id); 
 	}
-	
+
 	
 	public Long getCheerIdByUuid(String uuid) {
 		

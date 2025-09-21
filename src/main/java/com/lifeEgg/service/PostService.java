@@ -77,6 +77,11 @@ public class PostService {
 		
 	}
 	
+	public String getUuidById(Long id) {
+		
+		return postDAO.getUuidById(id); 
+	}
+	
 	//uuid로 포스트 id, 미리보기 검색하는 메서드 
 	public PostAlarmDTO getPostAlarmByUuid(String uuid) {
 		

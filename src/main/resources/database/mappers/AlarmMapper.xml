@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.lifeEgg.dao.AlarmDAO">
 	
 <insert id="create">
-insert into alarm (content, user_id, post_id, cheer_id, uuid, readOrNot) values (#{content}, #{user_id}, #{post_id}
-						,#{cheer_id}, #{uuid},#{readOrNot})
+insert into alarm (content, user_id, post_uuid, cheer_uuid, uuid, readOrNot) values (#{content}, #{user_id}, #{post_uuid}
+						,#{cheer_uuid}, #{uuid},#{readOrNot})
 </insert>
 
 

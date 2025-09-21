@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public class PostAlarmDTO {
 	
-	private Long postId; 
+	
 	
 	private String postPreview; 
 	

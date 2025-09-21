@@ -1,9 +1,13 @@
-//클릭하면 알람 미리보기에 나온 응원 전문을 읽어오는 함수 
+//cheer js랑 좀 다름 얘는 분기가 없음 
 
-function readCheer() {
+
+function createCheer() {
 
  const params = {
-         cheerId : cheerId,
+          userId: userId, 
+          content: editor.getHTML(),
+          diaryUuid: diaryUuid, 
+          cheerUuid: cheerUuid,
         };
  
  console.log(params); 
@@ -11,7 +15,7 @@ function readCheer() {
 
 $.ajax({
     type : 'post',           // 타입 (get, post, put 등등)
-    url : './read/cheer',           // 요청할 서버url
+    url : '/create/cheer',           // 요청할 서버url
     async : true,            // 비동기화 여부 (default : true)
     headers : {              // Http header
       "Content-Type" : "application/json",
@@ -20,7 +24,7 @@ $.ajax({
     dataType : 'text',       // 데이터 타입 (html, xml, json, text 등등)
     data : JSON.stringify(params),
     success : function(result) { // 결과 성공 콜백함수
-       
+        location.href = "/lifeEgg/feed"  //응원작성완료했으면 마저 피드로 돌아감 
     },
     error : function(request, status, error) { // 결과 에러 콜백함수
         console.log(error)

@@ -23,6 +23,8 @@ public interface PostDAO {
 	
 	public Optional<PostDTO> readByUuid(String uuid);
 	
+	public String getUuidById(long id); 
+	
 	//날짜로 글 하나 불러오기
 	public PostDTO readByCreated(@Param("user_id")Long userId, @Param("created_at")LocalDate created_at);
 	    

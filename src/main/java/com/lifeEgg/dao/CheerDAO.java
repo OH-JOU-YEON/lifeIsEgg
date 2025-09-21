@@ -5,9 +5,7 @@ import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.lifeEgg.dto.CheerAlarmDTO;
 import com.lifeEgg.dto.CheerDTO;
-import com.lifeEgg.dto.CheerModalDTO;
 
 
 @Mapper 
@@ -21,11 +19,9 @@ public void create(CheerDTO cheer) throws Exception;
    
     public Long readIdByUuid(String uuid); 
     
-  //cheer uuid로 알림에 넣을 미리보기, cheer 아이디 불러오는 메서드
-	
-  	public CheerAlarmDTO readCheerAlarmDTOByUuid(String uuid); 
-  	
-  	public CheerModalDTO readCheerModalDTOByUuId(long cheerId); 
+    public String getUuidById(Long id); 
+   
+  	public String getPreviewByUuid(String uuid); 
 
     public void delete(Long id) throws Exception;
     

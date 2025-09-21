@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.lifeEgg.dto.AlarmDTO;
-import com.lifeEgg.dto.CheerAlarmDTO;
 import com.lifeEgg.dto.CheerDTO;
 import com.lifeEgg.dto.CheerWriteDTO;
 import com.lifeEgg.dto.PostAlarmDTO;
@@ -37,7 +36,7 @@ public class CheerController {
 	
 	
 	//일기에 응원 작성하는 화면
-	@GetMapping(value = "/cheer/{diaryUuid}")
+	@GetMapping(value = "/writeCheer/{diaryUuid}")
 	public String writeCheer( Model model, HttpSession session, @PathVariable String diaryUuid) {
 		
 		 UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
@@ -55,7 +54,7 @@ public class CheerController {
 	
 	//응원에 응원 보내는 메서드 cheerUuid는 작성되는 응원이 아니라 부모 응원의 UUID 
 	
-	@GetMapping(value = "/cheer/{diaryUuid}/{cheerUuid}")
+	@GetMapping(value = "/writeCheer/{diaryUuid}/{cheerUuid}")
 	public String writeCheerCheer( Model model, HttpSession session, @PathVariable String diaryUuid,
 			@PathVariable String cheerUuid) {
 		
@@ -73,13 +72,49 @@ public class CheerController {
 		return "cheer-write";
 	}
 	
+
+		
+		//응원 보는 화면 메서드 
+		
+		@GetMapping(value = "/cheer/{cheerUuid}")
+		public String getCheer( Model model, HttpSession session, 
+				@PathVariable String cheerUuid) {
+			
+			 UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
+		        if (loginUser == null) {
+		            // 로그인 안됨
+		            return "redirect:/home";
+		        }
+
+		        model.addAttribute("user", loginUser);
+		        
+		        CheerDTO cheerDTO = cheerService.getCheerByUuid(cheerUuid); 
+		        
+		        model.addAttribute("cheer", cheerDTO); 
+		        
+		        //응원의 원본 포스트, 그 전 응원 검사해서 가져오는 메서드 
+		        
+		        String postUuid = postService.getUuidById(cheerDTO.getPost_id()); 
+		        model.addAttribute("diaryUuid", postUuid); 
+		        
+		        if(cheerDTO.getParent_id() != null) {
+		        String parentUuid = cheerService.getUuidById(cheerDTO.getParent_id());  
+		        model.addAttribute("cheerUuid", parentUuid);
+		        }
+		        
+			
+			
+			return "cheer";
+		}
+	
 	//일기에 응원 작성 
 	@PostMapping("/create/cheer")
 	public ResponseEntity createCheer(HttpServletRequest request,@RequestBody CheerWriteDTO cheerWriteDTO) {
 		
 		CheerDTO cheerDTO = new CheerDTO(); 
 		AlarmDTO alarmDTO = new AlarmDTO(); 
-		PostAlarmDTO postAlarm = postService.getPostAlarmByUuid(cheerWriteDTO.getDiaryUuid()); 
+		String postUuid = cheerWriteDTO.getDiaryUuid(); 
+		PostAlarmDTO postAlarm = postService.getPostAlarmByUuid(postUuid); 
 		
 		String content = cheerWriteDTO.getContent(); 
 		
@@ -89,25 +124,28 @@ public class CheerController {
 		cheerDTO.setPost_id(postService.getPostIdByUuid(cheerWriteDTO.getDiaryUuid())); 
 		cheerDTO.setPreview(PreviewService.getPreview(content)); 
 		alarmDTO.setUuid(UUID.randomUUID().toString()); 
-		alarmDTO.setPost_id(postAlarm.getPostId()); 
+		alarmDTO.setPost_uuid(postUuid); 
 		alarmDTO.setUser_id(postAlarm.getUserId()); 
 		
+		
 	
 	
 		
 		
 		
-		//응원 uuid 변수가 존재하면 그걸로 응원 검색해서 아이디 받아와서 등록함. 
+	
 		
 		if(cheerWriteDTO.getCheerUuid() != null) {
 			
-			cheerDTO.setParent_id(cheerService.getCheerIdByUuid(cheerWriteDTO.getCheerUuid())); 
+			String cheerUuid = cheerWriteDTO.getCheerUuid(); 
 			
-			CheerAlarmDTO cheerAlarm = cheerService.getCheerAlarmByUuid(cheerWriteDTO.getCheerUuid()); 
+			cheerDTO.setParent_id(cheerService.getCheerIdByUuid(cheerUuid)); 
 			
-			alarmDTO.setCheer_id(cheerAlarm.getCheerId()); 
 			
-			StringBuilder sb = new StringBuilder(cheerAlarm.getCheerPreview() + "...에 답장이 도착했습니다."); 
+			
+			alarmDTO.setCheer_uuid(cheerUuid); 
+			
+			StringBuilder sb = new StringBuilder(cheerService.getCheerPreviewByUuid(cheerUuid) + "...에 답장이 도착했습니다."); 
 			alarmDTO.setContent(sb.toString());
 			
 			
@@ -118,6 +156,8 @@ public class CheerController {
 		}
 		
 		cheerService.createCheer(cheerDTO); 
+		alarmService.createAlarm(alarmDTO);
+		
 		
 		return new ResponseEntity(HttpStatus.OK);
 		

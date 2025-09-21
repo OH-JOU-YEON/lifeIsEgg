@@ -1,20 +1,14 @@
 package com.lifeEgg.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lifeEgg.dto.AlarmDTO;
 import com.lifeEgg.dto.AlarmPageDTO;
-import com.lifeEgg.dto.CheerModalDTO;
-import com.lifeEgg.dto.CheerSearchDTO;
 import com.lifeEgg.dto.UserDTO;
 import com.lifeEgg.service.AlarmService;
 import com.lifeEgg.service.CheerService;
@@ -57,22 +51,6 @@ public class AlarmController {
 	}
 	
 	
-	@ResponseBody 
-	@PostMapping(value = "/alarms/read/cheer")
-	public CheerModalDTO getCheer( Model model, HttpServletRequest request, @RequestBody CheerSearchDTO cheerSearchDTO ) {
-		
-		
-		CheerModalDTO cheerModalDTO = cheerService.getCheerModalByid(cheerSearchDTO.getCheerId()); 
-		
-	      
-	        
-	        
-	        
-
-	        
-		
-		
-		return cheerModalDTO; 
-	}
+	
 
 }

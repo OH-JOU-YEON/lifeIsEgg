@@ -105,7 +105,7 @@
 
                   <tr>
                     <td class="shoping__cart__item">
-                    <a data-toggle="modal">
+                    <a href = '<c:out value="/cheer/${alarm.post_uuid}/${alarm.cheer_uuid} }"/>'>
                       <h5>${alarm.content}</h5>
                       <h5>${alarm.id}</h5>
                       <br />
