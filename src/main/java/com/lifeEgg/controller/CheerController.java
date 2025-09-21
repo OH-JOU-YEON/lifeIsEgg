@@ -92,6 +92,7 @@ public class CheerController {
 		alarmDTO.setPost_uuid(postUuid); 
 		alarmDTO.setUser_id(postAlarm.getUserId()); 
 		
+		
 	
 	
 		
@@ -120,6 +121,8 @@ public class CheerController {
 		}
 		
 		cheerService.createCheer(cheerDTO); 
+		alarmService.createAlarm(alarmDTO);
+		
 		
 		return new ResponseEntity(HttpStatus.OK);
 		
