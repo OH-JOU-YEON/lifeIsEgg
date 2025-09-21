@@ -104,14 +104,7 @@
                     <td class="shoping__cart__item"
                     onClick="location.href ='./diary/${post.uuid}'" style="cursor:pointer;">
                       <p>${post.created_at}</p>
-                      <c:choose>
-    					<c:when test="${fn:length(post.content) > 20}">
-        				  <h5>${fn:substring(post.content, 0, 20)}...</h5>
-    					</c:when>
-    					<c:otherwise>
-        				  <h5>${post.content}</h5>
-    					</c:otherwise>
-					  </c:choose>
+                      <h5>${post.preview}</h5>
                       <br/>
                     </td>
                   </tr>

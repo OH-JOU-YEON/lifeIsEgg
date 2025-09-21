@@ -40,5 +40,9 @@ delete from alarm where id = #{id}
 delete from alarm where uuid = #{uuid} 
 </delete>
 
+<delete id="deleteByPostId"> 
+	delete from alarm 
+	where post_id = #{post_id} 
+</delete>
 
 </mapper>

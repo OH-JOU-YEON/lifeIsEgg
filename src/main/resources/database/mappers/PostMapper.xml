@@ -56,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
         FROM post
         WHERE user_id != #{user_id}
-          AND status = 0
+          AND status = 1
           AND age BETWEEN #{min_age} AND #{max_age}
 	</select>
 	
@@ -64,7 +64,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
         FROM post
         WHERE user_id != #{user_id}
-          AND status = 0
+          AND status = 1
           AND age BETWEEN #{min_age} AND #{max_age}
           <if test="old != null and old.size > 0">
           	AND id NOT IN
@@ -76,12 +76,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="update">
-		update post set content=#{content}, status=#{status}, created_at = #{created_at}, age = #{age}
-			 where uuid = #{uuid}
+		update post 
+		set content=#{content}, status=#{status}, created_at = #{created_at}, age = #{age}, preview = #{preview}
+		where uuid = #{uuid}
 	</update>
 	
 	<delete id="delete" parameterType="String"> 
-		delete from Post where uuid = #{uuid} 
+		delete from post
+		where uuid = #{uuid} 
 	</delete>
 
 
