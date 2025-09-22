@@ -104,7 +104,7 @@
             <div id="content" data-name="main-content"></div>
             <br />
             <div style="display: flex">
-              <button class="last-btn" style="margin-left: auto" onclick = createDiary()>
+              <button class="last-btn" style="margin-left: auto" onclick = createOrUpdate()>
                 작성하기
               </button>
             </div>
