@@ -36,7 +36,7 @@ public class CheerController {
 	
 	
 	//일기에 응원 작성하는 화면
-	@GetMapping(value = "/writeCheer/{diaryUuid}")
+	@GetMapping(value = "/writeCheer/post/{diaryUuid}")
 	public String writeCheer( Model model, HttpSession session, @PathVariable String diaryUuid) {
 		
 		 UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
@@ -54,8 +54,8 @@ public class CheerController {
 	
 	//응원에 응원 보내는 메서드 cheerUuid는 작성되는 응원이 아니라 부모 응원의 UUID 
 	
-	@GetMapping(value = "/writeCheer/{diaryUuid}/{cheerUuid}")
-	public String writeCheerCheer( Model model, HttpSession session, @PathVariable String diaryUuid,
+	@GetMapping(value = "/writeCheer/cheer/{cheerUuid}")
+	public String writeCheerCheer( Model model, HttpSession session, 
 			@PathVariable String cheerUuid) {
 		
 		 UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
@@ -65,7 +65,7 @@ public class CheerController {
 	        }
 
 	        model.addAttribute("user", loginUser);
-	        model.addAttribute("diaryUuid",diaryUuid); 
+	      
 	        model.addAttribute("cheerUuid", cheerUuid); 
 		
 		
