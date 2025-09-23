@@ -14,10 +14,6 @@ insert into cheer (content, user_id, parent_id, uuid, preview) values (#{content
 select * from cheer where user_id = #{userId}
 </select>
 
-<select id="readByUuid" resultType="String">
-select uuid from cheer where id = #{id}
-</select>
-
 <select id="readByUuid" resultType="CheerDTO">
 select * from cheer where uuid = #{uuid}
 </select>
