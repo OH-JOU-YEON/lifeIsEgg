@@ -1,44 +1,10 @@
-
-
-
-
-
-
-
-
-
-if(cheerable == "false") {
-
-publicParam.innerText = '삭제하기'; 
-
-
-} else {
-
-publicParam.innerText = '응원 보내기'; 
-
-
-}
-
-function deleteOrCheer() {
-
-	if(publicParam.innerText == '삭제하기') {
-	deletePost()
-	}else {
-	goCheer()
-	}
-
-
-}
-
-
-
-
-
-
-function deletePost() {
+function createCheer() {
 
  const params = {
-          uuid : diaryUuid
+          userId: userId, 
+          content: editor.getHTML(),
+          diaryUuid: diaryUuid, 
+          cheerUuid: cheerUuid,
         };
  
  console.log(params); 
@@ -46,7 +12,7 @@ function deletePost() {
 
 $.ajax({
     type : 'post',           // 타입 (get, post, put 등등)
-    url : './delete',           // 요청할 서버url
+    url : './create/cheer',           // 요청할 서버url
     async : true,            // 비동기화 여부 (default : true)
     headers : {              // Http header
       "Content-Type" : "application/json",
@@ -55,27 +21,11 @@ $.ajax({
     dataType : 'text',       // 데이터 타입 (html, xml, json, text 등등)
     data : JSON.stringify(params),
     success : function(result) { // 결과 성공 콜백함수
-        location.href = "./diaries" 
+        location.href = "./feed"  //응원작성완료했으면 마저 피드로 돌아감 
     },
     error : function(request, status, error) { // 결과 에러 콜백함수
         console.log(error)
     }
 })
 
-
-
 }
-
-
-
-
-
-function goCheer() {
-
- location.href = "/lifeEgg//writeCheer/post/{diaryUuid}"
- 
-
-}
- 
-
-
