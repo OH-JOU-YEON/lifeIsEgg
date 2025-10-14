@@ -37,5 +37,9 @@ delete from cheer where id = #{id}
 delete from cheer where uuid = #{uuid} 
 </delete>
 
+<delete id="deleteByPostId"> 
+	delete from cheer 
+	where post_id = #{post_id} 
+</delete>
 
 </mapper>

@@ -36,7 +36,14 @@ public class CheerService {
 		}
 	}
 	
-	
+	public void deleteCheerByPostId(Long postId) {
+		try {
+			cheerDAO.deleteByPostId(postId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	public List<CheerDTO> getCheersByUserId(Long userId) {
 		

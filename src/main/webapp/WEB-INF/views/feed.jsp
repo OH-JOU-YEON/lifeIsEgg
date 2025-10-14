@@ -93,7 +93,7 @@
           <div class="col-lg-9">
             <div class="section-title product__discount__title">
               <h2>추천</h2>
-              <button class="site-btn" onclick="location.href='./feed'" style="position:relative; left:40px">새로고침</button>
+              <button class="site-btn" onclick="location.href='/lifeEgg/feed'" style="position:relative; left:40px">새로고침</button>
             </div>
             
             <div class="shoping__cart__table">
@@ -103,16 +103,9 @@
 
                   <tr>
                     <td class="shoping__cart__item" 
-                    onClick="location.href ='./diary/${feed.uuid}'" style="cursor:pointer;">
+                    onClick="location.href ='/lifeEgg/diary/${feed.uuid}'" style="cursor:pointer;">
                       <p>${feed.created_at}</p>
-                      <c:choose>
-    					<c:when test="${fn:length(feed.content) > 20}">
-        				  <h5>${fn:substring(feed.content, 0, 20)}...</h5>
-    					</c:when>
-    					<c:otherwise>
-        				  <h5>${feed.content}</h5>
-    					</c:otherwise>
-					  </c:choose>
+                      <h5>${feed.preview}</h5>
                       <br>
                     </td>
                   </tr>

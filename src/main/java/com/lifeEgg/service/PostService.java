@@ -22,12 +22,16 @@ public class PostService {
 	private final PostDAO postDAO; 
 	
 	
+	public String removeTag(String content) {
+		String removeText = "<(/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>;]*)?(\s)*(/)?>";
+		content = content.replaceAll(removeText, "");
+		return content;
+	}
 	
 	public void createPost(PostDTO postDTO) {
 		
-		postDTO.getContent();
-		String removeText = "<(/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>;]*)?(\s)*(/)?>";
-		postDTO.setContent(postDTO.getContent().replaceAll(removeText, ""));
+		String content = postDTO.getContent();
+		postDTO.setContent(removeTag(content));
 		try {
 			postDAO.create(postDTO);
 		} catch (Exception e) {
@@ -50,6 +54,9 @@ public class PostService {
 	
 	
 	public void updatePost(PostDTO postDTO) {
+		
+		String content = postDTO.getContent();
+		postDTO.setContent(removeTag(content));
 		
 		try {
 			postDAO.update(postDTO);

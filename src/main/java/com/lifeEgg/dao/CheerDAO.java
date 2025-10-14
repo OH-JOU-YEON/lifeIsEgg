@@ -26,5 +26,7 @@ public void create(CheerDTO cheer) throws Exception;
     public void delete(Long id) throws Exception;
     
     public void deleteByUuid(String uuid) throws Exception;
+    
+    public void deleteByPostId(Long postId) throws Exception;
 
 }
