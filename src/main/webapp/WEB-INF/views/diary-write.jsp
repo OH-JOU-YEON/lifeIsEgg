@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/slicknav.min.css" />" />
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css" />" />
     <link rel="stylesheet" href="<c:url value="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"/>" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
   </head>
 
   <body>
@@ -98,10 +100,13 @@
               </div>
             </div>
             <input type="date" id = "created_at" value = "${post.created_at}"/>
+            <!--
+            <input type="text" id = "datePicker" value = "${post.created_at}"/>
+            -->
             <div id="content" data-name="main-content"></div>
             <br />
             <div style="display: flex">
-              <button class="last-btn" style="margin-left: auto" onclick = createDiary()>
+              <button class="last-btn" style="margin-left: auto" onclick = createOrUpdate()>
                 작성하기
               </button>
             </div>

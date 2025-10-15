@@ -47,6 +47,15 @@ public class AlarmService {
 		}
 	}
 	
+	public void deleteAlarmByPostId(Long postId) {
+		try {
+			alarmDAO.deleteByPostId(postId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	//유저 아이디 별 알람 읽어오는 메서드 
 	
 	public AlarmPageDTO<AlarmDTO> getAlarmsByUserId(Long userId, long page) {

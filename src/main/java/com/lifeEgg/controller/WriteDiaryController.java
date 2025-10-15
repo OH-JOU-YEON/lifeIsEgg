@@ -26,6 +26,8 @@ import com.lifeEgg.dto.DiaryWriteDTO;
 import com.lifeEgg.dto.PostDTO;
 import com.lifeEgg.dto.PostDeleteDTO;
 import com.lifeEgg.dto.UserDTO;
+import com.lifeEgg.service.AlarmService;
+import com.lifeEgg.service.CheerService;
 import com.lifeEgg.service.PostService;
 import com.lifeEgg.service.PreviewService;
 
@@ -38,6 +40,8 @@ import lombok.extern.slf4j.Slf4j;
 public class WriteDiaryController {
 	
 	private final PostService postService;
+	private final CheerService cheerService;
+	private final AlarmService alarmService;
 	
 	@GetMapping(value = "/write")
 	public String writeDiary( Model model, HttpSession session) {
@@ -132,16 +136,35 @@ public class WriteDiaryController {
 	}
 	
 	
-	@PostMapping("diary/delete")
-	public ResponseEntity deleteDiary(HttpServletRequest request, @RequestBody PostDeleteDTO postDeleteDTO) {
+	@PostMapping("diary/update")
+	public ResponseEntity updateDiary(HttpServletRequest request, @RequestBody PostDTO post) {
 		
+		//넘어오는 값 보고 한번 수정하기
 		
+		System.out.println(post.toString());
 		
-		postService.deletePost(postDeleteDTO.getUuid()); 
-		
+		String content = post.getContent(); 
+		post.setPreview(PreviewService.getPreview(content)); 
+		postService.updatePost(post);
 		
 		return new ResponseEntity(HttpStatus.OK);
 	}
+	
+	
+	@PostMapping("diary/delete")
+	public ResponseEntity deleteDiary(HttpServletRequest request, @RequestBody PostDeleteDTO postDeleteDTO) {
+		
+		String uuid = postDeleteDTO.getUuid();
+		PostDTO post = postService.getPostByUuid(uuid);
+		
+		Long postId = post.getId();
+		alarmService.deleteAlarmByPostId(postId);
+		cheerService.deleteCheerByPostId(postId);
+		postService.deletePost(uuid); 
+		
+		return new ResponseEntity(HttpStatus.OK);
+	}
+	
 	
 
 }

@@ -26,5 +26,6 @@ public void create(AlarmDTO alarm) throws Exception;
     
     public void deleteByUuid(String uuid) throws Exception;
 
+    public void deleteByPostId(Long postId) throws Exception;
 
 }
