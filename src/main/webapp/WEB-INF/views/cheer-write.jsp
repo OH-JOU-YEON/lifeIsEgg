@@ -30,10 +30,7 @@
   </head>
 
   <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-      <div class="loader"></div>
-    </div>
+   
 
     <!-- Header Section Begin -->
     <header class="header">
@@ -121,7 +118,7 @@
 
 </script>
     <script src="<c:url value="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"/>"/></script>
-    <script src="<c:url value="/resources/js/cheer.js"/>"/></script>
+    <script src="<c:url value="/resources/js/cheer-write.js"/>"/></script>
     <script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/jquery.nice-select.min.js"/>"/></script>
