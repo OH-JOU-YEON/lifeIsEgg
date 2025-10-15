@@ -46,11 +46,11 @@ function deletePost() {
 
 $.ajax({
     type : 'post',           // 타입 (get, post, put 등등)
-<<<<<<< HEAD
+
     url : 'lifeEgg/diary/delete',           // 요청할 서버url
-=======
+
     url : '/lifeEgg/diary/delete',           // 요청할 서버url
->>>>>>> branch 'jouyeon' of https://github.com/OH-JOU-YEON/lifeIsEgg.git
+
     async : true,            // 비동기화 여부 (default : true)
     headers : {              // Http header
       "Content-Type" : "application/json",
