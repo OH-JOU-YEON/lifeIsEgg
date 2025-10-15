@@ -12,7 +12,7 @@ function createCheer() {
 
 $.ajax({
     type : 'post',           // 타입 (get, post, put 등등)
-    url : './create/cheer',           // 요청할 서버url
+    url : 'lifeEgg/create/cheer',           // 요청할 서버url
     async : true,            // 비동기화 여부 (default : true)
     headers : {              // Http header
       "Content-Type" : "application/json",

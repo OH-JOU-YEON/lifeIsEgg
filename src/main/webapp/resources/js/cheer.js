@@ -24,7 +24,7 @@ function deleteOrCheer() {
 	if(publicParam.innerText == '삭제하기') {
 	deletePost()
 	}else {
-	goCheer()
+	goCheer(diaryUuid)
 	}
 
 
@@ -46,7 +46,9 @@ function deletePost() {
 
 $.ajax({
     type : 'post',           // 타입 (get, post, put 등등)
-    url : '/lifeEgg/diary/delete',           // 요청할 서버url
+
+    url : 'lifeEgg/diary/delete',           // 요청할 서버url
+
     async : true,            // 비동기화 여부 (default : true)
     headers : {              // Http header
       "Content-Type" : "application/json",
@@ -70,9 +72,9 @@ $.ajax({
 
 
 
-function goCheer() {
+function goCheer(diaryUuid) {
 
- location.href = "/lifeEgg//writeCheer/post/{diaryUuid}"
+ location.href = "/lifeEgg//writeCheer/post/" + diaryUuid; 
  
 
 }
