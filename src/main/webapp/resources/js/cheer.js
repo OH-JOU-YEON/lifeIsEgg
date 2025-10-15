@@ -49,8 +49,6 @@ $.ajax({
 
     url : 'lifeEgg/diary/delete',           // 요청할 서버url
 
-    url : '/lifeEgg/diary/delete',           // 요청할 서버url
-
     async : true,            // 비동기화 여부 (default : true)
     headers : {              // Http header
       "Content-Type" : "application/json",
