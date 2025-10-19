@@ -94,11 +94,14 @@
            <div class="section-title product__discount__title">
               <h2>'<c:out value="${post.created_at}"/>'</h2>
             </div>
-            <div id="viewer"></div>
+            <div id="viewer">
+            <c:out value="${post.content}"/>
+
+            </div>
             <br />
             <div style="display: flex">
               <button id = "deleteOrCheer" class="last-btn" style="margin-left: auto" onclick = 'deleteOrCheer()'>
-                버튼 
+                응원하기
               </button>
             </div>
           </div>
@@ -108,19 +111,24 @@
     <!-- Hero Section End -->
 
     <!-- Js Plugins -->
-        <script>
+   <script>
  // javascript에서 jstl 단일값 사용
-    const userId = '<c:out value="${user.id}"/>';
-    const cheerable = '<c:out value="${cheerable}"/>';
+   
+    
+    let cheerable = <c:out value="${cheerable}"/>;
     
     //응원을 보낼 때 응원을 보내는 일기의 uuid를 파라미터로 받음 
     //cheer의 uuid는 별개임!!! 
-    const diaryUuid = '<c:out value="${uuid}"/>';
-    const content = '<c:out value="${post.content}" escapeXml="false"/>';
-    const publicParam = document.querySelector('#deleteOrCheer'); 
+    let diaryUuid = <c:out value="${uuid}"/>;
+    let publicParam = document.querySelector('#deleteOrCheer'); 
+    userId = await ${user.id}; 
+	
+	
+    
+    
 
 
-</script>
+	</script>
     <script src="<c:url value="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.js"/>"/></script>
     <script src="<c:url value="/resources/js/cheer.js"/>"/></script>
     <script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"/></script>
@@ -131,19 +139,6 @@
     <script src="<c:url value="/resources/js/mixitup.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/owl.carousel.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/main.js"/>"/></script>
-    <script>
-    const editor = new toastui.Editor({
-    	  el: document.querySelector("#viewer"),
-    	  height: "500px",
-    	  initialEditType: "markdown",
-    	  initialValue: content,
-    	  previewStyle: "vertical",
-    	  viewer: true,
-    	  useScript: true,
-    	  
-    	});
-
-    	
-</script>
+  
   </body>
 </html>
