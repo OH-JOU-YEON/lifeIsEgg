@@ -13,8 +13,9 @@ import com.lifeEgg.security.CustomUserDetails;
 import com.lifeEgg.service.PostService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-
+ 
 @Controller
 @RequiredArgsConstructor
 public class DiaryDetailController {
@@ -30,16 +31,20 @@ public class DiaryDetailController {
             // 로그인 안됨
             return "redirect:/home";
         }
-    	
+        
         CustomUserDetails detail = (CustomUserDetails) auth.getPrincipal();
         UserDTO user = detail.toUserDTO();
         
+        uuid = uuid.trim(); 
+       
         model.addAttribute("uuid",uuid);
         model.addAttribute("user", user);
         
         //uuid에 맞는 포스트 검색해와서 보내주기 
         
-        PostDTO postDTO = postService.getPostByUuid(uuid); 
+        PostDTO postDTO = postService.getPostByUuid(uuid);
+        System.out.println("PostContent " + postDTO.getContent());
+         
         
         //삭제하거나 응원을 보내기 위해 로그인 유저와 포스트 작성자가 일치하는지 일치하지 않는지 검사 
         
