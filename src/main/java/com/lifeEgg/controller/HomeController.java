@@ -15,9 +15,10 @@ public class HomeController {
     @GetMapping(value="/home")
     public String home(){
     	
+    	//security에 저장된 인증 확인
     	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     	
-        if (auth == null || !auth.isAuthenticated()) {
+        if (auth == null || !auth.isAuthenticated()) { //저장된 인증이 없거나 인증되지 않은 경우
             // 로그인 안됨
             return "home";
         }
