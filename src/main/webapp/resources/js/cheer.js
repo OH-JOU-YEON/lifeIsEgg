@@ -13,28 +13,6 @@ $(document).ready(function(){
 
 
 
-if(cheerable == "false") {
-
-publicParam.innerText = '삭제하기'; 
-
-
-} else {
-
-publicParam.innerText = '응원 보내기'; 
-
-
-}
-
-function deleteOrCheer() {
-
-	if(publicParam.innerText == '삭제하기') {
-	deletePost()
-	}else {
-	goCheer(diaryUuid)
-	}
-
-
-}
 
 
 
