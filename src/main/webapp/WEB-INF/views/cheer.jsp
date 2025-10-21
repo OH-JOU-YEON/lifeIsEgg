@@ -98,10 +98,18 @@
             <div id="viewer"></div>
             <br />
             <div style="display: flex">
-              <button id = "deleteOrCheer" class="last-btn" style="margin-left: auto" onclick = 'createCheer()'>
+            <c:choose>
+           	 <c:when test="${cheerable == true}">
+              <button id = "deleteOrCheer" class="last-btn" style="margin-left: auto" onclick = 'goCheer()'>
                 답장하기
               </button>
-              
+              </c:when>
+              <c:otherwise>
+              <button id = "deleteOrCheer" class="last-btn" style="margin-left: auto" onclick = 'deleteCheer()'>
+                삭제하기
+              </button>
+              </c:otherwise>
+            </c:choose>
             </div>
           </div>
         </div>
