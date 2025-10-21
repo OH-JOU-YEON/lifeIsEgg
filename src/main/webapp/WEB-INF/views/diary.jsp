@@ -96,14 +96,23 @@
               <h2>'<c:out value="${post.created_at}"/>'</h2>
             </div>
             <div id="viewer">
-            <c:out value="${post.content}"/>
+            <c:out value="${post.content}" escapeXml="false"/>
 
             </div>
             <br />
             <div style="display: flex">
-              <button id = "deleteOrCheer" class="last-btn" style="margin-left: auto" onclick = 'deleteOrCheer()'>
-                응원하기
+              <c:choose>
+           	 <c:when test="${cheerable == true}">
+              <button id = "deleteOrCheer" class="last-btn" style="margin-left: auto" onclick = 'goCheer()'>
+                답장하기
               </button>
+              </c:when>
+              <c:otherwise>
+              <button id = "deleteOrCheer" class="last-btn" style="margin-left: auto" onclick = 'deletePost()'>
+                삭제하기
+              </button>
+              </c:otherwise>
+              </c:choose>
             </div>
           </div>
         </div>
@@ -116,13 +125,13 @@
  // javascript에서 jstl 단일값 사용
    
     
-    let cheerable = <c:out value="${cheerable}"/>;
+   
     
     //응원을 보낼 때 응원을 보내는 일기의 uuid를 파라미터로 받음 
     //cheer의 uuid는 별개임!!! 
     let diaryUuid = <c:out value="${uuid}"/>;
     let publicParam = document.querySelector('#deleteOrCheer'); 
-    userId = await ${user.id}; 
+    userId = ${user.id}; 
 	
 	
     
