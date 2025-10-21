@@ -1,9 +1,15 @@
 
 
-
-
-
-
+//POST 요청 시 인가 필요: csrf 토큰을 헤더에 추가
+$(document).ready(function(){
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $.ajaxSetup({
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader(header, token);
+      }
+    });
+});
 
 
 

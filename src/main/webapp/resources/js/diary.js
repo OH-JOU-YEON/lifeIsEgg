@@ -2,21 +2,27 @@
 
 function publicOrNot() {
 
+	const publicParam = document.querySelector("#publicOrNot"); 
 
-const publicParam = document.querySelector("#publicOrNot"); 
-
-if(publicParam.innerText == '일기 공개하기') {
-
-publicParam.innerText = '일기 비공개하기'; 
-
-} else {
-
-publicParam.innerText = '일기 공개하기'; 
+	if(publicParam.innerText == '일기 공개하기') {
+		publicParam.innerText = '일기 비공개하기'; 
+	} else {
+		publicParam.innerText = '일기 공개하기'; 
+	}
 }
 
 
+//POST 요청 시 인가 필요: csrf 토큰을 헤더에 추가(jsp에 meta 추가하기!!!)
+$(document).ready(function(){
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $.ajaxSetup({
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader(header, token);
+      }
+    });
+});
 
-}
 
 function createOrUpdate() {
 	const url = window.location.pathname;
@@ -27,7 +33,7 @@ function createOrUpdate() {
 function createDiary() {
 
 	console.log("create");
-
+		
 	const params = {
 		created_at: document.querySelector("#created_at").value,
 		status: document.querySelector("#publicOrNot").innerText,
@@ -42,7 +48,7 @@ function createDiary() {
 		async : true,            // 비동기화 여부 (default : true)
 		headers : {              // Http header
 			"Content-Type" : "application/json",
-			"X-HTTP-Method-Override" : "POST"
+			"X-HTTP-Method-Override" : "POST",
 		},
 		dataType : 'text',       // 데이터 타입 (html, xml, json, text 등등)
 		data : JSON.stringify(params),
@@ -79,7 +85,7 @@ function updateDiary() {
 		async : true,            // 비동기화 여부 (default : true)
 		headers : {              // Http header
 			"Content-Type" : "application/json",
-			"X-HTTP-Method-Override" : "POST"
+			"X-HTTP-Method-Override" : "POST",
 		},
 		dataType : 'text',       // 데이터 타입 (html, xml, json, text 등등)
 		data : JSON.stringify(params),
@@ -93,10 +99,12 @@ function updateDiary() {
 }
 
 
-//created_at 바뀌면 인식
+
 $(document).ready(function () { //화면 준비되면 실행
+	let now = document.querySelector("#created_at").value; //update시 편집중인 날짜(create시 null)
+	console.log("now: " + now);
 	let old;
-	$("#created_at").on("click", function(){
+	$("#created_at").on("click", function(){ //created_at 바뀌면 인식
 		old = $(this).val();
 		if (!old) return; //null일 시 종료
 	});
@@ -104,6 +112,9 @@ $(document).ready(function () { //화면 준비되면 실행
     $("#created_at").on("change", function(){
 		var created_at = $(this).val();
 		if (!created_at) return; //null일 시 종료
+		console.log("now: " + now);
+		console.log("created_at: " + created_at);
+		if (created_at == now) return; //편집 중인 날짜를 선택하면 변화 없도록
 		
 		$.ajax({
     		type : 'get',
@@ -117,7 +128,6 @@ $(document).ready(function () { //화면 준비되면 실행
         			if (isSure)
         	    		location.href = '/lifeEgg/write/' + uuid;
         	    	else {
-        	    		console.log("확인용:" + old);
         	    		$("#created_at").val(old);
         	    	}	
                 } else if (result && !result.user) {

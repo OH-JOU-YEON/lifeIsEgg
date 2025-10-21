@@ -3,10 +3,11 @@ package com.lifeEgg.controller;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import com.lifeEgg.dto.CheerDTO;
 import com.lifeEgg.dto.CheerWriteDTO;
 import com.lifeEgg.dto.PostAlarmDTO;
 import com.lifeEgg.dto.UserDTO;
+import com.lifeEgg.security.CustomUserDetails;
 import com.lifeEgg.service.AlarmService;
 import com.lifeEgg.service.CheerService;
 import com.lifeEgg.service.PostService;
@@ -37,17 +39,19 @@ public class CheerController {
 	
 	//일기에 응원 작성하는 화면
 	@GetMapping(value = "/writeCheer/post/{diaryUuid}")
-	public String writeCheer( Model model, HttpSession session, @PathVariable String diaryUuid) {
+	public String writeCheer( Model model, @PathVariable String diaryUuid) {
 		
-		 UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
-	        if (loginUser == null) {
-	            // 로그인 안됨
-	            return "redirect:/home";
-	        }
-
-	        model.addAttribute("user", loginUser);
-	        model.addAttribute("diaryUuid",diaryUuid); 
-		
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	
+        if (auth == null || !auth.isAuthenticated()) {
+            // 로그인 안됨
+            return "redirect:/home";
+        }
+    	
+        CustomUserDetails detail = (CustomUserDetails) auth.getPrincipal();
+        UserDTO user = detail.toUserDTO();
+        model.addAttribute("user", user);
+        model.addAttribute("diaryUuid", diaryUuid); 
 		
 		return "cheer-write";
 	}
@@ -55,57 +59,60 @@ public class CheerController {
 	//응원에 응원 보내는 메서드 cheerUuid는 작성되는 응원이 아니라 부모 응원의 UUID 
 	
 	@GetMapping(value = "/writeCheer/cheer/{cheerUuid}")
-	public String writeCheerCheer( Model model, HttpSession session, 
-			@PathVariable String cheerUuid) {
+	public String writeCheerCheer( Model model, @PathVariable String cheerUuid) {
 		
-		 UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
-	        if (loginUser == null) {
-	            // 로그인 안됨
-	            return "redirect:/home";
-	        }
-
-	        model.addAttribute("user", loginUser);
-	      
-	        model.addAttribute("cheerUuid", cheerUuid); 
-		
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	
+        if (auth == null || !auth.isAuthenticated()) {
+            // 로그인 안됨
+            return "redirect:/home";
+        }
+    	
+        CustomUserDetails detail = (CustomUserDetails) auth.getPrincipal();
+        UserDTO user = detail.toUserDTO();
+        
+        model.addAttribute("user", user);
+        model.addAttribute("cheerUuid", cheerUuid); 
 		
 		return "cheer-write";
 	}
 	
-
+	
+	
+	//응원 보는 화면 메서드 
+	@GetMapping(value = "/cheer/{cheerUuid}")
+	public String getCheer( Model model, @PathVariable String cheerUuid) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
-		//응원 보는 화면 메서드 
-		
-		@GetMapping(value = "/cheer/{cheerUuid}")
-		public String getCheer( Model model, HttpSession session, 
-				@PathVariable String cheerUuid) {
-			
-			 UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
-		        if (loginUser == null) {
-		            // 로그인 안됨
-		            return "redirect:/home";
-		        }
-
-		        model.addAttribute("user", loginUser);
-		        
-		        CheerDTO cheerDTO = cheerService.getCheerByUuid(cheerUuid); 
-		        
-		        model.addAttribute("cheer", cheerDTO); 
-		        
-		        //응원의 원본 포스트, 그 전 응원 검사해서 가져오는 메서드 
-		        
-		        String postUuid = postService.getUuidById(cheerDTO.getPost_id()); 
-		        model.addAttribute("diaryUuid", postUuid); 
-		        
-		        if(cheerDTO.getParent_id() != null) {
-		        String parentUuid = cheerService.getUuidById(cheerDTO.getParent_id());  
-		        model.addAttribute("cheerUuid", parentUuid);
-		        }
-		        
-			
-			
-			return "cheer";
+		if (auth == null || !auth.isAuthenticated()) {
+			// 로그인 안됨
+			return "redirect:/home";
 		}
+	    
+		CustomUserDetails detail = (CustomUserDetails) auth.getPrincipal();
+		UserDTO user = detail.toUserDTO();
+		
+		model.addAttribute("user", user);
+		
+		CheerDTO cheerDTO = cheerService.getCheerByUuid(cheerUuid); 
+		
+		model.addAttribute("cheer", cheerDTO); 
+		
+		//응원의 원본 포스트, 그 전 응원 검사해서 가져오는 메서드 
+		
+		String postUuid = postService.getUuidById(cheerDTO.getPost_id()); 
+		
+		model.addAttribute("diaryUuid", postUuid); 
+		
+		if(cheerDTO.getParent_id() != null) {
+			String parentUuid = cheerService.getUuidById(cheerDTO.getParent_id()); 
+			model.addAttribute("cheerUuid", parentUuid);
+		}
+
+		return "cheer";
+	}
+
+	
 	
 	//일기에 응원 작성 
 	@PostMapping("/create/cheer")
@@ -126,11 +133,6 @@ public class CheerController {
 		alarmDTO.setUuid(UUID.randomUUID().toString()); 
 		alarmDTO.setPost_uuid(postUuid); 
 		alarmDTO.setUser_id(postAlarm.getUserId()); 
-		
-		
-	
-	
-		
 		
 		
 	
