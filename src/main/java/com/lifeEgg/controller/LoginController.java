@@ -3,12 +3,16 @@ package com.lifeEgg.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lifeEgg.dto.UserDTO;
+import com.lifeEgg.security.CustomUserDetails;
 import com.lifeEgg.service.LoginService;
 
 import lombok.RequiredArgsConstructor;
@@ -33,11 +37,19 @@ public class LoginController {
     	
     	UserDTO user = loginService.login(code);
     	
-    	HttpSession session = request.getSession();
-        request.changeSessionId();
-        session.setAttribute("loginUser", user);
+    	CustomUserDetails detail = user.toCustomUserDetails();
+    	
+        UsernamePasswordAuthenticationToken auth =
+            	new UsernamePasswordAuthenticationToken(detail, null, detail.getAuthorities());
         
-        return "redirect:/home";
+        
+        SecurityContext context = SecurityContextHolder.createEmptyContext();
+        context.setAuthentication(auth);
+        SecurityContextHolder.setContext(context);
+        
+        request.getSession(true).setAttribute("SPRING_SECURITY_CONTEXT", context);
+        
+        return "redirect:/feed";
 
     }
     
@@ -50,8 +62,6 @@ public class LoginController {
         return "redirect:/home";
         
     }
-	
-
 	
 }
 

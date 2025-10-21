@@ -39,15 +39,19 @@ public class GoogleLoginService implements LoginService {
     private String googleClientId;
     @Value("${google.client.pw}")
     private String googleClientPw;
+    @Value("${domain.link}")
+    private String domain;
 		
     private final UserService userService; //반드시 user -> login 방향으로만 참조할 것
 
     
     @Override
 	public String getUrl() {
+    	
+    	domain = "localhost:8090";
 		
 		String url = "https://accounts.google.com/o/oauth2/v2/auth?client_id=" + googleClientId
-                + "&redirect_uri=http://localhost:8090/lifeEgg/oauth2/google"
+                + "&redirect_uri=http://" + domain + "/lifeEgg/oauth2/google"
                 + "&response_type=code"
                 + "&scope=email profile"
                 + " https://www.googleapis.com/auth/user.birthday.read"
@@ -59,13 +63,14 @@ public class GoogleLoginService implements LoginService {
 	public String getToken(String code) {
 		
 		RestTemplate restTemplate = new RestTemplate();
-        
+		domain = "localhost:8090";
+		
         //액세스 토큰 받아오기
         MultiValueMap<String, Object> tokenParams = new LinkedMultiValueMap<>();
         tokenParams.add("code", code);
         tokenParams.add("client_id", googleClientId);
         tokenParams.add("client_secret", googleClientPw);
-        tokenParams.add("redirect_uri", "http://localhost:8090/lifeEgg/oauth2/google");
+        tokenParams.add("redirect_uri", "http://" + domain + "/lifeEgg/oauth2/google");
         tokenParams.add("grant_type", "authorization_code");
         
         ResponseEntity<GoogleTokenDTO> responseEntity = restTemplate.postForEntity("https://oauth2.googleapis.com/token",

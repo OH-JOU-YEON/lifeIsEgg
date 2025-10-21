@@ -1,7 +1,7 @@
 package com.lifeEgg.controller;
 
-import javax.servlet.http.HttpSession;
-
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lifeEgg.dto.PostDTO;
 import com.lifeEgg.dto.UserDTO;
+import com.lifeEgg.security.CustomUserDetails;
 import com.lifeEgg.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,20 +23,22 @@ public class DiaryDetailController {
 	private final PostService postService; 
     
     @RequestMapping(value="/diary/{uuid}")
-    public String diaryDetail(@PathVariable String uuid, HttpSession session, Model model){
+    public String diaryDetail(@PathVariable String uuid, Model model){
     	
-        UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
-        if (loginUser == null) {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	
+        if (auth == null || !auth.isAuthenticated()) {
             // 로그인 안됨
             return "redirect:/home";
         }
         
+        CustomUserDetails detail = (CustomUserDetails) auth.getPrincipal();
+        UserDTO user = detail.toUserDTO();
+        
         uuid = uuid.trim(); 
        
-        System.out.println("PostUuid: " + uuid);  
-        System.out.println("LoginUser: " + loginUser);
         model.addAttribute("uuid",uuid);
-        model.addAttribute("user", loginUser);
+        model.addAttribute("user", user);
         
         //uuid에 맞는 포스트 검색해와서 보내주기 
         
@@ -45,7 +48,7 @@ public class DiaryDetailController {
         
         //삭제하거나 응원을 보내기 위해 로그인 유저와 포스트 작성자가 일치하는지 일치하지 않는지 검사 
         
-        if(postDTO.getUser_id() == loginUser.getId()) {
+        if(postDTO.getUser_id() == user.getId()) {
         	model.addAttribute("cheerable",false);
         } else {
         	model.addAttribute("cheerable",true); 

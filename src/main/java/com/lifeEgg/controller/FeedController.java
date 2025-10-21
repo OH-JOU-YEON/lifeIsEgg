@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lifeEgg.dto.PostDTO;
 import com.lifeEgg.dto.UserDTO;
+import com.lifeEgg.security.CustomUserDetails;
 import com.lifeEgg.service.FeedService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,16 +29,19 @@ public class FeedController {
     @RequestMapping(value="/feed")
     public String feed(HttpSession session, Model model,@RequestParam(required = false) Long page){
     	
-        UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
-        if (loginUser == null) {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	
+        if (auth == null || !auth.isAuthenticated()) {
             // 로그인 안됨
             return "redirect:/home";
         }
+    	
+        CustomUserDetails detail = (CustomUserDetails) auth.getPrincipal();
+        UserDTO user = detail.toUserDTO();
+        
         if(page == null) {
         	page = (long) 0; 
         }
-
-        model.addAttribute("user", loginUser);
         
         List<PostDTO> oldFeed = (List<PostDTO>) session.getAttribute("oldFeed");
         List<PostDTO> feedList = new ArrayList<>();
@@ -44,15 +50,14 @@ public class FeedController {
 
     	if (oldFeed == null) {
         	oldFeed = new ArrayList<>();
-        	feedList = feedService.getFeedPosts(loginUser);
+        	feedList = feedService.getFeedPosts(user);
         } else {
-        	feedList = feedService.getFeedPosts(loginUser, oldFeed);
+        	feedList = feedService.getFeedPosts(user, oldFeed);
         	if (feedList == null) {
         		oldFeed.clear();
-        		feedList = feedService.getFeedPosts(loginUser);
+        		feedList = feedService.getFeedPosts(user);
         	}
         }
-    	
     	
         model.addAttribute("feedList", feedList);
     	oldFeed.addAll(feedList);

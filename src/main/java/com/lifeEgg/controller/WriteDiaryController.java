@@ -9,10 +9,11 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ import com.lifeEgg.dto.DiaryWriteDTO;
 import com.lifeEgg.dto.PostDTO;
 import com.lifeEgg.dto.PostDeleteDTO;
 import com.lifeEgg.dto.UserDTO;
+import com.lifeEgg.security.CustomUserDetails;
 import com.lifeEgg.service.AlarmService;
 import com.lifeEgg.service.CheerService;
 import com.lifeEgg.service.PostService;
@@ -44,56 +46,66 @@ public class WriteDiaryController {
 	private final AlarmService alarmService;
 	
 	@GetMapping(value = "/write")
-	public String writeDiary( Model model, HttpSession session) {
+	public String writeDiary(Model model) {
 		
-		 UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
-	        if (loginUser == null) {
-	            // 로그인 안됨
-	            return "redirect:/home";
-	        }
-
-	        model.addAttribute("user", loginUser);
-		
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	
+        if (auth == null || !auth.isAuthenticated()) {
+            // 로그인 안됨
+            return "redirect:/home";
+        }
+    	
+        CustomUserDetails detail = (CustomUserDetails) auth.getPrincipal();
+        UserDTO user = detail.toUserDTO();
+        
+        model.addAttribute("user", user);
 		
 		return "diary-write";
 	}
 	
 	
 	@GetMapping(value = "/write/{uuid}")
-	public String updateDiary(Model model, HttpSession session, @PathVariable String uuid) {
+	public String updateDiary(Model model, @PathVariable String uuid) {
 		
-		 UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
-	        if (loginUser == null) {
-	            // 로그인 안됨
-	            return "redirect:/home";
-	        }
-
-	        model.addAttribute("user", loginUser);
-	        
-	        PostDTO post = postService.getPostByUuid(uuid);
-	        
-	        model.addAttribute("post",post);
-		
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	
+        if (auth == null || !auth.isAuthenticated()) {
+            // 로그인 안됨
+            return "redirect:/home";
+        }
+    	
+        CustomUserDetails detail = (CustomUserDetails) auth.getPrincipal();
+        UserDTO user = detail.toUserDTO();
+        model.addAttribute("user", user);
+        
+        PostDTO post = postService.getPostByUuid(uuid);
+        model.addAttribute("post",post);
 		
 		return "diary-write";
 	}
 	
+	
 	@GetMapping(value = "/write/date")
 	@ResponseBody
-	public Map<String, Object> findDiary(HttpSession session, @RequestParam("date") String date) {
+	public Map<String, Object> findDiary(@RequestParam("date") String date) {
 
 		Map<String, Object> response = new HashMap<>();
 		
-		UserDTO loginUser = (UserDTO) session.getAttribute("loginUser");
-        if (loginUser == null) {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	
+        if (auth == null || !auth.isAuthenticated()) {
             // 로그인 안됨
         	response.put("user", false);
         	return response;
         }
+    	
+        CustomUserDetails detail = (CustomUserDetails) auth.getPrincipal();
+        UserDTO user = detail.toUserDTO();
+        
         response.put("user", true);
         
 		LocalDate created_at = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
-		PostDTO post = postService.getPostByCreated(loginUser.getId(), created_at);
+		PostDTO post = postService.getPostByCreated(user.getId(), created_at);
 		
 		if (post != null) {
 			response.put("exists", true);
@@ -127,22 +139,14 @@ public class WriteDiaryController {
 		
 		postService.createPost(postDTO); 
 		
-		
 		return new ResponseEntity(HttpStatus.OK);
-		
-		
-		
 		
 	}
 	
 	
 	@PostMapping("diary/update")
 	public ResponseEntity updateDiary(HttpServletRequest request, @RequestBody PostDTO post) {
-		
-		//넘어오는 값 보고 한번 수정하기
-		
-		System.out.println(post.toString());
-		
+						
 		String content = post.getContent(); 
 		post.setPreview(PreviewService.getPreview(content)); 
 		postService.updatePost(post);
@@ -164,7 +168,5 @@ public class WriteDiaryController {
 		
 		return new ResponseEntity(HttpStatus.OK);
 	}
-	
-	
 
 }

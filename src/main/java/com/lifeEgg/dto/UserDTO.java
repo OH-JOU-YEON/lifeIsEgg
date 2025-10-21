@@ -1,6 +1,7 @@
 package com.lifeEgg.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lifeEgg.security.CustomUserDetails;
 
 import lombok.Data;
 
@@ -13,4 +14,13 @@ public class UserDTO { //유저 정보를 받아올 시에만 필요하므로 id
     private String name;
     private int age;
     private String email;
+    
+    public CustomUserDetails toCustomUserDetails() {
+    	CustomUserDetails detail = new CustomUserDetails();
+    	detail.setId(id);
+    	detail.setAge(age);
+    	detail.setEmail(email);
+    	detail.setName(name);
+    	return detail;
+    }
 }
