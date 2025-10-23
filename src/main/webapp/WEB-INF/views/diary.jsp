@@ -129,18 +129,12 @@
     
     //응원을 보낼 때 응원을 보내는 일기의 uuid를 파라미터로 받음 
     //cheer의 uuid는 별개임!!! 
-    let diaryUuid = <c:out value="${uuid}"/>;
+    const diaryUuid = '<c:out value="${uuid}"/>';
     let publicParam = document.querySelector('#deleteOrCheer'); 
     userId = ${user.id}; 
 	
-	
-    
-    
-
-
 	</script>
     <script src="<c:url value="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.js"/>"/></script>
-    <script src="<c:url value="/resources/js/cheer.js"/>"/></script>
     <script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/jquery.nice-select.min.js"/>"/></script>
@@ -149,6 +143,7 @@
     <script src="<c:url value="/resources/js/mixitup.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/owl.carousel.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/main.js"/>"/></script>
+    <script src="<c:url value="/resources/js/cheer.js"/>"/></script>
   
   </body>
 </html>

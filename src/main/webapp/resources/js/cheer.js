@@ -56,7 +56,7 @@ $.ajax({
 
 
 
-function goCheer(diaryUuid) {
+function goCheer() {
 
  location.href = "/lifeEgg/writeCheer/post/" + diaryUuid; 
  
