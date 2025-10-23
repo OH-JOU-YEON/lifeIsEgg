@@ -58,7 +58,7 @@ $.ajax({
 
 function goCheer(diaryUuid) {
 
- location.href = "/lifeEgg//writeCheer/post/" + diaryUuid; 
+ location.href = "/lifeEgg/writeCheer/post/" + diaryUuid; 
  
 
 }
