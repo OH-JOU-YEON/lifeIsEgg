@@ -120,7 +120,7 @@ public class CheerController {
 		
 		CheerDTO cheerDTO = new CheerDTO(); 
 		AlarmDTO alarmDTO = new AlarmDTO(); 
-		String postUuid = cheerWriteDTO.getDiaryUuid(); 
+		String postUuid = cheerWriteDTO.getDiaryUuid().trim(); 
 		PostAlarmDTO postAlarm = postService.getPostAlarmByUuid(postUuid); 
 		
 		String content = cheerWriteDTO.getContent(); 
@@ -141,7 +141,7 @@ public class CheerController {
 			
 			String cheerUuid = cheerWriteDTO.getCheerUuid(); 
 			
-			cheerDTO.setParent_id(cheerService.getCheerIdByUuid(cheerUuid)); 
+			cheerDTO.setParent_id(postService.getPostIdByUuid(cheerWriteDTO.getDiaryUuid())); 
 			
 			
 			
@@ -155,6 +155,7 @@ public class CheerController {
 			StringBuilder sb = new StringBuilder(postAlarm.getCreated_at() + "의 일기 " + postAlarm.getPostPreview() 
 			+ "...에 응원이 달렸습니다.\n" + PreviewService.getPreview(content)); 
 			alarmDTO.setContent(sb.toString()); 
+		
 		}
 		
 		cheerService.createCheer(cheerDTO); 
