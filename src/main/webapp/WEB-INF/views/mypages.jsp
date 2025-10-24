@@ -91,10 +91,14 @@
             </div>
           </div>
           <div class="col-lg-9">
-            <div class="section-title product__discount__title">
+      
+            <div class="section-title product__discount__title" style="display: flex; justify-content: space-between;">
               <h2>내 일기</h2>
+              <button class="site-btn" style="margin-right:100px" id = "write" onClick="location.href ='/lifeEgg/write'">일기 작성하기</button>
+             
             </div>
-
+            
+			
             <div class="shoping__cart__table">
               <table>
                 <tbody>
