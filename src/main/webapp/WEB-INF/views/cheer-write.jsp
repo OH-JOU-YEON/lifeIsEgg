@@ -119,7 +119,6 @@
 
 </script>
     <script src="<c:url value="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"/>"/></script>
-    <script src="<c:url value="/resources/js/cheer-write.js"/>"/></script>
     <script src="<c:url value="/resources/js/jquery-3.3.1.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/jquery.nice-select.min.js"/>"/></script>
@@ -128,6 +127,7 @@
     <script src="<c:url value="/resources/js/mixitup.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/owl.carousel.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/main.js"/>"/></script>
+     <script src="<c:url value="/resources/js/cheer-write.js"/>"/></script>
     <script>
     const editor = new toastui.Editor({
     	  el: document.querySelector("#content"),
