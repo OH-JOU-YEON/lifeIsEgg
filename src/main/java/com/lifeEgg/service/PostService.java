@@ -98,6 +98,10 @@ public class PostService {
 		return postDAO.readByCreated(user_id, created_at);	
 	}
 	
+	public List<String> getCreatedListByUserId(Long userId) {
+		return postDAO.findCreatedByUserId(userId);
+	}
+	
 	public PostPageDTO<PostDTO> getPostsByUserId(Long userId, long page) {
 		
 		
