@@ -147,7 +147,7 @@ public class CheerController {
 			
 			alarmDTO.setCheer_uuid(cheerUuid); 
 			
-			StringBuilder sb = new StringBuilder(cheerService.getCheerPreviewByUuid(cheerUuid) + "...에 답장이 도착했습니다."); 
+			StringBuilder sb = new StringBuilder(cheerService.getCheerPreviewByUuid(cheerUuid.trim()) + "...에 답장이 도착했습니다."); 
 			alarmDTO.setContent(sb.toString());
 			
 			
