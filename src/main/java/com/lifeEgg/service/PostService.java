@@ -90,7 +90,7 @@ public class PostService {
 	
 	public Long getPostIdByUuid(String uuid) {
 		
-		return postDAO.readPostIdByUuid(uuid); 
+		return postDAO.readPostIdByUuid(uuid.trim()); 
 	}
 	
 	//created_at로 검색
