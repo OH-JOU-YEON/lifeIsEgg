@@ -141,7 +141,7 @@ public class CheerController {
 			
 			String cheerUuid = cheerWriteDTO.getCheerUuid(); 
 			
-			cheerDTO.setParent_id(postService.getPostIdByUuid(cheerWriteDTO.getDiaryUuid())); 
+			cheerDTO.setParent_id(cheerService.getCheerIdByUuid(cheerUuid)); 
 			
 			
 			
