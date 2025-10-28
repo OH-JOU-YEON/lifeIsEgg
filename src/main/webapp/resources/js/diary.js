@@ -141,6 +141,20 @@ $(document).ready(function () { //화면 준비되면 실행
 	});
 });
 
+flatpickr.localize(flatpickr.l10ns.ko); 
+$(document).ready(function(){
+    flatpickr("#created_at", {
+        dateFormat: "Y-m-d",
+        onDayCreate: function (dObj, dStr, fp, dayElem) {
+        	console.log("writtenDates" + writtenDates);
+            const dateStr = fp.formatDate(dayElem.dateObj, "Y-m-d");
+            if (writtenDates.includes(dateStr)) {
+            	console.log("확인용");
+                dayElem.className += " has-action";
+            }
+        }
+    });
+});
 
 
 

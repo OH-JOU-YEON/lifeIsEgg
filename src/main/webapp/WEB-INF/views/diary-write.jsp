@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,10 +27,10 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/jquery-ui.min.css"/>" />
     <link rel="stylesheet" href="<c:url value="/resources/css/owl.carousel.min.css"/>" />
     <link rel="stylesheet" href="<c:url value="/resources/css/slicknav.min.css" />" />
+    <link rel="stylesheet" href="<c:url value="/resources/css/calender.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css" />" />
     <link rel="stylesheet" href="<c:url value="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"/>" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
   </head>
 
   <body>
@@ -100,10 +101,13 @@
                 <button class="site-btn" id = "publicOrNot" onclick = publicOrNot()>일기 공개하기</button>
               </div>
             </div>
-            <input type="date" id = "created_at" value = "${post.created_at}"/>
-            <!--
-            <input type="text" id = "datePicker" value = "${post.created_at}"/>
-            -->
+            <input type="text" id="created_at" value = "${post.created_at}" placeholder="0000-00-00"/>
+            <script>
+            var writtenDates = [];
+            <c:forEach items="${dates}" var="date">
+            	writtenDates.push("${date}");
+            </c:forEach>
+    		</script>
             <div id="content" data-name="main-content"></div>
             <br />
             <div style="display: flex">
@@ -134,6 +138,9 @@
     <script src="<c:url value="/resources/js/jquery.slicknav.js"/>"/></script>
     <script src="<c:url value="/resources/js/mixitup.min.js"/>"/></script>
     <script src="<c:url value="/resources/js/owl.carousel.min.js"/>"/></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
     <script src="<c:url value="/resources/js/diary.js"/>"/></script>
     <script src="<c:url value="/resources/js/main.js"/>"/></script>
     <script>

@@ -43,13 +43,15 @@ public interface PostDAO {
 	
 	public PostAlarmDTO readPostAlarmDTOByUuid(String uuid); 
 	
+	public List<String> findCreatedByUserId(@Param("userId") Long userId);
+	
 	//나이별로 추천
 	public List<PostDTO> findByAgeRange(
 			@Param("user_id")Long userId, @Param("min_age")int minAge, @Param("max_age")int maxAge);
 	
 	public List<PostDTO> findByAgeRangeExcludeOld(@Param("user_id")Long userId, 
 			@Param("min_age")int minAge, @Param("max_age")int maxAge, @Param("old") List<PostDTO> old);
-
+	
 	public void update(PostDTO post) throws Exception;
 
 	public void delete(String uuid) throws Exception;

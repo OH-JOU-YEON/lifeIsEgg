@@ -51,9 +51,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id from post where uuid = #{uuid}
 	</select>
 	
-	
 	<select id="readPostAlarmDTOByUuid" resultType="PostAlarmDTO">
 		select preview postPreview, user_id userId, created_at from post where uuid = #{uuid}
+	</select>
+	
+	<select id="findCreatedByUserId" resultType="String">
+		select created_at
+		from post
+		where user_id = #{userId}
 	</select>
 	
 	<select id="findByAgeRange" parameterType="map" resultType="PostDTO">
@@ -76,7 +81,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
           		#{post.id}
           	</foreach>
           </if>
-          
 	</select>
 	
 	<update id="update">

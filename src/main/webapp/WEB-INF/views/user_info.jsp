@@ -97,6 +97,7 @@
               <h2>내 정보</h2>
             </div>
             <form action="/lifeEgg/user/update" method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             	<div class="product__details__text">
             		<div class="col" style="position:relative; width:75%">
             			<p>내 정보는 다른 사용자에게 노출되지 않습니다.</p>

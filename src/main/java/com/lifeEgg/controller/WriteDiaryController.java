@@ -5,8 +5,10 @@ package com.lifeEgg.controller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -59,6 +61,11 @@ public class WriteDiaryController {
         UserDTO user = detail.toUserDTO();
         
         model.addAttribute("user", user);
+        
+        List<String> dates = postService.getCreatedListByUserId(user.getId());
+        dates = dates.stream().distinct().collect(Collectors.toList());
+                
+        model.addAttribute("dates", dates);
 		
 		return "diary-write";
 	}
@@ -80,6 +87,8 @@ public class WriteDiaryController {
         
         PostDTO post = postService.getPostByUuid(uuid);
         model.addAttribute("post",post);
+        
+        
 		
 		return "diary-write";
 	}
